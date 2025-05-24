@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글로벌 친환경자동차 시장 현황</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const GlobalMarketSlide = () => {
+      const chartRef = useRef(null);
+      const chartInstance = useRef(null);
+      const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+
+      // 반응형 크기 계산 함수
+      const calculateSize = () => {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        
+        // 16:9 비율 유지
+        const aspectRatio = 16 / 9;
+        let width, height;
+        
+        if (screenWidth / screenHeight > aspectRatio) {
+          height = Math.min(screenHeight, 1080);
+          width = height * aspectRatio;
+        } else {
+          width = Math.min(screenWidth, 1920);
+          height = width / aspectRatio;
+        }
+        
+        return { width, height };
+      };
+
+      useEffect(() => {
+        const updateSize = () => {
+          setContainerSize(calculateSize());
+        };
+        
+        updateSize();
+        window.addEventListener('resize', updateSize);
+        return () => window.removeEventListener('resize', updateSize);
+      }, []);
+
+      useEffect(() => {
+        if (chartRef.current && containerSize.width > 0) {
+          // 기존 차트 인스턴스 제거
+          if (chartInstance.current) {
+            chartInstance.current.destroy();
+          }
+
+          const ctx = chartRef.current.getContext('2d');
+          
+          // 차트 크기를 컨테이너 크기에 맞게 조정
+          const chartWidth = Math.min(containerSize.width * 0.8, 800);
+          const chartHeight = chartWidth * 0.6;
+          
+          chartInstance.current = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: ['2019', '2020', '2021', '2022', '2023', '2024E'],
+              datasets: [{
+                label: '전체 친환경차 시장 (백만 대)',
+                data: [2.2, 3.1, 6.6, 10.5, 14.1, 18.7],
+                borderColor: '#8257e5',
+                backgroundColor: 'rgba(130, 87, 229, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#8257e5',
+                pointBorderColor: '#ffffff',
+                pointBorderWidth: 2,
+                pointRadius: 6
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: true,
+                  position: 'top',
+                  labels: {
+                    font: {
+                      size: Math.max(10, containerSize.width * 0.01),
+                      family: 'Noto Sans KR'
+                    }
+                  }
+                },
+                tooltip: {
+                  backgroundColor: 'rgba(130, 87, 229, 0.9)',
+                  titleColor: '#ffffff',
+                  bodyColor: '#ffffff',
+                  borderColor: '#8257e5',
+                  borderWidth: 1
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  grid: {
+                    color: 'rgba(0, 0, 0, 0.1)'
+                  },
+                  ticks: {
+                    font: {
+                      size: Math.max(8, containerSize.width * 0.008)
+                    },
+                    callback: function(value) {
+                      return value + 'M';
+                    }
+                  }
+                },
+                x: {
+                  grid: {
+                    color: 'rgba(0, 0, 0, 0.1)'
+                  },
+                  ticks: {
+                    font: {
+                      size: Math.max(8, containerSize.width * 0.008)
+                    }
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        return () => {
+          if (chartInstance.current) {
+            chartInstance.current.destroy();
+          }
+        };
+      }, [containerSize]);
+
+      const getFontSize = (baseSize) => {
+        const scale = Math.min(containerSize.width / 1920, containerSize.height / 1080);
+        return Math.max(baseSize * scale, 12);
+      };
+
+      const getSpacing = (baseSpacing) => {
+        const scale = Math.min(containerSize.width / 1920, containerSize.height / 1080);
+        return Math.max(baseSpacing * scale, 8);
+      };
+
+      if (containerSize.width === 0) return <div>Loading...</div>;
+
+      return (
+        <div 
+          className="slide bg-gradient-to-br from-gray-50 to-white overflow-hidden relative"
+          style={{
+            width: `${containerSize.width}px`,
+            height: `${containerSize.height}px`,
+            margin: '0 auto',
+            aspectRatio: '16/9'
+          }}
+        >
+          {/* 헤더 */}
+          <div className="content-container p-8" style={{ padding: `${getSpacing(32)}px` }}>
+            <div className="text-center mb-8" style={{ marginBottom: `${getSpacing(32)}px` }}>
+              <h1 
+                className="font-bold mb-4 bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent"
+                style={{ 
+                  fontSize: `${getFontSize(48)}px`,
+                  marginBottom: `${getSpacing(16)}px`
+                }}
+              >
+                글로벌 친환경자동차 시장 현황
+              </h1>
+              <p 
+                className="text-gray-600"
+                style={{ fontSize: `${getFontSize(24)}px` }}
+              >
+                2019-2024 시장 성장 추이와 전망
+              </p>
+            </div>
+
+            {/* 차트 영역 */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" style={{ gap: `${getSpacing(32)}px` }}>
+              <div className="lg:col-span-2">
+                <div 
+                  className="chart-container bg-white rounded-2xl p-6 shadow-lg"
+                  style={{
+                    padding: `${getSpacing(24)}px`,
+                    height: `${Math.min(containerSize.height * 0.5, 400)}px`
+                  }}
+                >
+                  <canvas ref={chartRef}></canvas>
+                </div>
+              </div>
+
+              {/* 인사이트 카드들 */}
+              <div className="space-y-4" style={{ gap: `${getSpacing(16)}px` }}>
+                <div className="insight-card p-6 rounded-xl" style={{ padding: `${getSpacing(24)}px` }}>
+                  <div className="flex items-center mb-3" style={{ marginBottom: `${getSpacing(12)}px` }}>
+                    <i className="fas fa-chart-line text-purple-600 mr-3" style={{ fontSize: `${getFontSize(20)}px` }}></i>
+                    <h3 
+                      className="font-bold text-gray-800"
+                      style={{ fontSize: `${getFontSize(18)}px` }}
+                    >
+                      급속한 성장
+                    </h3>
+                  </div>
+                  <p 
+                    className="text-gray-600"
+                    style={{ fontSize: `${getFontSize(14)}px` }}
+                  >
+                    2019년 2.2백만 대에서 2024년 18.7백만 대로 <strong>8배 이상 성장</strong> 예상
+                  </p>
+                </div>
+
+                <div className="insight-card p-6 rounded-xl" style={{ padding: `${getSpacing(24)}px` }}>
+                  <div className="flex items-center mb-3" style={{ marginBottom: `${getSpacing(12)}px` }}>
+                    <i className="fas fa-globe text-purple-600 mr-3" style={{ fontSize: `${getFontSize(20)}px` }}></i>
+                    <h3 
+                      className="font-bold text-gray-800"
+                      style={{ fontSize: `${getFontSize(18)}px` }}
+                    >
+                      글로벌 확산
+                    </h3>
+                  </div>
+                  <p 
+                    className="text-gray-600"
+                    style={{ fontSize: `${getFontSize(14)}px` }}
+                  >
+                    중국, 유럽, 북미를 중심으로 전 세계적으로 친환경차 도입 가속화
+                  </p>
+                </div>
+
+                <div className="insight-card p-6 rounded-xl" style={{ padding: `${getSpacing(24)}px` }}>
+                  <div className="flex items-center mb-3" style={{ marginBottom: `${getSpacing(12)}px` }}>
+                    <i className="fas fa-battery-full text-purple-600 mr-3" style={{ fontSize: `${getFontSize(20)}px` }}></i>
+                    <h3 
+                      className="font-bold text-gray-800"
+                      style={{ fontSize: `${getFontSize(18)}px` }}
+                    >
+                      기술 발전
+                    </h3>
+                  </div>
+                  <p 
+                    className="text-gray-600"
+                    style={{ fontSize: `${getFontSize(14)}px` }}
+                  >
+                    배터리 기술 향상과 충전 인프라 확충으로 <strong>시장 진입 장벽 낮아짐</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 하단 통계 */}
+            <div className="grid grid-cols-3 gap-6 mt-8" style={{ 
+              gap: `${getSpacing(24)}px`, 
+              marginTop: `${getSpacing(32)}px` 
+            }}>
+              <div className="text-center bg-white rounded-xl p-6 shadow-sm" style={{ padding: `${getSpacing(24)}px` }}>
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(32)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  750%
+                </div>
+                <p 
+                  className="text-gray-600 text-sm"
+                  style={{ fontSize: `${getFontSize(14)}px` }}
+                >
+                  5년간 성장률
+                </p>
+              </div>
+              <div className="text-center bg-white rounded-xl p-6 shadow-sm" style={{ padding: `${getSpacing(24)}px` }}>
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(32)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  18.7M
+                </div>
+                <p 
+                  className="text-gray-600 text-sm"
+                  style={{ fontSize: `${getFontSize(14)}px` }}
+                >
+                  2024년 예상 판매량
+                </p>
+              </div>
+              <div className="text-center bg-white rounded-xl p-6 shadow-sm" style={{ padding: `${getSpacing(24)}px` }}>
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(32)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  12%
+                </div>
+                <p 
+                  className="text-gray-600 text-sm"
+                  style={{ fontSize: `${getFontSize(14)}px` }}
+                >
+                  전체 자동차 시장 점유율
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<GlobalMarketSlide />, document.getElementById('root'));
+  </script>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    .insight-card {
+      background-color: white;
+      border-left: 4px solid #8257e5;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .insight-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    @media (max-width: 768px) {
+      .grid-cols-1.lg\\:grid-cols-3 {
+        grid-template-columns: 1fr;
+      }
+      
+      .lg\\:col-span-2 {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</body>
+</html>

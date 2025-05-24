@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>친환경자동차 최신 기술 동향</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const TechTrendsSlide = () => {
+      const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+
+      // 반응형 크기 계산 함수
+      const calculateSize = () => {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        
+        // 16:9 비율 유지
+        const aspectRatio = 16 / 9;
+        let width, height;
+        
+        if (screenWidth / screenHeight > aspectRatio) {
+          height = Math.min(screenHeight, 1080);
+          width = height * aspectRatio;
+        } else {
+          width = Math.min(screenWidth, 1920);
+          height = width / aspectRatio;
+        }
+        
+        return { width, height };
+      };
+
+      useEffect(() => {
+        const updateSize = () => {
+          setContainerSize(calculateSize());
+        };
+        
+        updateSize();
+        window.addEventListener('resize', updateSize);
+        return () => window.removeEventListener('resize', updateSize);
+      }, []);
+
+      const getFontSize = (baseSize) => {
+        const scale = Math.min(containerSize.width / 1920, containerSize.height / 1080);
+        return Math.max(baseSize * scale, 10);
+      };
+
+      const getSpacing = (baseSpacing) => {
+        const scale = Math.min(containerSize.width / 1920, containerSize.height / 1080);
+        return Math.max(baseSpacing * scale, 4);
+      };
+
+      const getIconSize = (baseSize) => {
+        const scale = Math.min(containerSize.width / 1920, containerSize.height / 1080);
+        return Math.max(baseSize * scale, 30);
+      };
+
+      const technologies = [
+        {
+          icon: 'fas fa-battery-full',
+          title: '배터리 기술',
+          description: '차세대 배터리 기술 혁신',
+          features: [
+            '고체 배터리 상용화',
+            '에너지 밀도 30% 향상',
+            '15분 급속충전 기술',
+            '100만km 수명 보장'
+          ],
+          metrics: ['800km 주행거리', '15분 충전']
+        },
+        {
+          icon: 'fas fa-microchip',
+          title: '자율주행',
+          description: 'AI 기반 완전 자율주행',
+          features: [
+            'Level 4/5 자율주행',
+            'AI 학습 알고리즘',
+            '5G 통신 연동',
+            'V2X 기술 적용'
+          ],
+          metrics: ['Level 4+', '99.9% 안전']
+        },
+        {
+          icon: 'fas fa-charging-station',
+          title: '충전 인프라',
+          description: '초고속 충전 네트워크',
+          features: [
+            '350kW 초고속 충전',
+            '무선 충전 기술',
+            '태양광 연동 충전소',
+            '스마트 그리드 연결'
+          ],
+          metrics: ['350kW 출력', '90% 전국망']
+        },
+        {
+          icon: 'fas fa-leaf',
+          title: '친환경 소재',
+          description: '지속가능한 제조 공정',
+          features: [
+            '재활용 소재 80%',
+            '탄소중립 생산',
+            '바이오 플라스틱',
+            'LCA 최적화'
+          ],
+          metrics: ['80% 재활용', '0 탄소배출']
+        }
+      ];
+
+      const innovations = [
+        {
+          title: '양방향 충전 (V2G)',
+          description: '전기차가 전력망에 전기를 공급하는 기술로 에너지 효율성 극대화',
+          icon: '🔄'
+        },
+        {
+          title: '통합 플랫폼',
+          description: '다양한 차종에 적용 가능한 통합 EV 플랫폼으로 개발비용 절감',
+          icon: '🏗️'
+        },
+        {
+          title: '디지털 트윈',
+          description: '실시간 차량 상태 모니터링과 예측 정비로 운영 효율성 향상',
+          icon: '👥'
+        }
+      ];
+
+      if (containerSize.width === 0) return <div>Loading...</div>;
+
+      return (
+        <div 
+          className="slide bg-gradient-to-br from-gray-50 to-white overflow-hidden relative flex flex-col"
+          style={{
+            width: `${containerSize.width}px`,
+            height: `${containerSize.height}px`,
+            margin: '0 auto',
+            aspectRatio: '16/9',
+            padding: `${getSpacing(64)}px`
+          }}
+        >
+          {/* 헤더 */}
+          <div className="text-center mb-8" style={{ marginBottom: `${getSpacing(32)}px` }}>
+            <h1 
+              className="font-bold mb-2 bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent"
+              style={{ 
+                fontSize: `${getFontSize(48)}px`,
+                marginBottom: `${getSpacing(8)}px`
+              }}
+            >
+              친환경자동차 최신 기술 동향
+            </h1>
+            <p 
+              className="text-gray-500"
+              style={{ fontSize: `${getFontSize(20)}px` }}
+            >
+              2025년 혁신 기술과 미래 전망
+            </p>
+          </div>
+          
+          {/* 기술 카드 그리드 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" style={{ 
+            gap: `${getSpacing(24)}px`,
+            marginBottom: `${getSpacing(32)}px`
+          }}>
+            {technologies.map((tech, index) => (
+              <div 
+                key={tech.title}
+                className="tech-card bg-white rounded-xl shadow-lg"
+                style={{ padding: `${getSpacing(24)}px` }}
+              >
+                <div 
+                  className="tech-icon mx-auto"
+                  style={{
+                    width: `${getIconSize(60)}px`,
+                    height: `${getIconSize(60)}px`,
+                    marginBottom: `${getSpacing(16)}px`
+                  }}
+                >
+                  <i 
+                    className={tech.icon}
+                    style={{ fontSize: `${getFontSize(28)}px` }}
+                  ></i>
+                </div>
+                <h3 
+                  className="font-bold text-gray-800 text-center mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(18)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  {tech.title}
+                </h3>
+                <p 
+                  className="text-gray-600 text-center mb-4"
+                  style={{ 
+                    fontSize: `${getFontSize(12)}px`,
+                    marginBottom: `${getSpacing(16)}px`
+                  }}
+                >
+                  {tech.description}
+                </p>
+                <div className="space-y-2" style={{ marginBottom: `${getSpacing(16)}px` }}>
+                  {tech.features.map((feature, i) => (
+                    <div 
+                      key={i}
+                      className="feature-item"
+                      style={{ fontSize: `${getFontSize(11)}px` }}
+                    >
+                      <i className="fas fa-check-circle feature-icon"></i>
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {tech.metrics.map((metric, i) => (
+                    <span 
+                      key={i}
+                      className="metric-badge"
+                      style={{ fontSize: `${getFontSize(10)}px` }}
+                    >
+                      {metric}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 혁신 기술 하이라이트 */}
+          <div className="flex-1">
+            <h2 
+              className="font-bold text-gray-800 mb-6 text-center"
+              style={{ 
+                fontSize: `${getFontSize(28)}px`,
+                marginBottom: `${getSpacing(24)}px`
+              }}
+            >
+              🚀 주목할 혁신 기술
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{ gap: `${getSpacing(24)}px` }}>
+              {innovations.map((innovation, index) => (
+                <div 
+                  key={innovation.title}
+                  className="highlight-box rounded-lg"
+                  style={{ padding: `${getSpacing(24)}px` }}
+                >
+                  <div className="flex items-center mb-3" style={{ marginBottom: `${getSpacing(12)}px` }}>
+                    <span 
+                      className="text-2xl mr-3"
+                      style={{ 
+                        fontSize: `${getFontSize(24)}px`,
+                        marginRight: `${getSpacing(12)}px`
+                      }}
+                    >
+                      {innovation.icon}
+                    </span>
+                    <h3 
+                      className="font-bold text-purple-800"
+                      style={{ fontSize: `${getFontSize(16)}px` }}
+                    >
+                      {innovation.title}
+                    </h3>
+                  </div>
+                  <p 
+                    className="text-gray-700"
+                    style={{ fontSize: `${getFontSize(12)}px` }}
+                  >
+                    {innovation.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 하단 전망 */}
+          <div 
+            className="mt-8 bg-purple-50 rounded-lg"
+            style={{ 
+              marginTop: `${getSpacing(32)}px`,
+              padding: `${getSpacing(32)}px`
+            }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center" style={{ gap: `${getSpacing(24)}px` }}>
+              <div>
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(32)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  2025
+                </div>
+                <p 
+                  className="text-gray-600"
+                  style={{ fontSize: `${getFontSize(12)}px` }}
+                >
+                  고체 배터리 상용화
+                </p>
+              </div>
+              <div>
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(32)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  2027
+                </div>
+                <p 
+                  className="text-gray-600"
+                  style={{ fontSize: `${getFontSize(12)}px` }}
+                >
+                  레벨 4 자율주행 대중화
+                </p>
+              </div>
+              <div>
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(32)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  2030
+                </div>
+                <p 
+                  className="text-gray-600"
+                  style={{ fontSize: `${getFontSize(12)}px` }}
+                >
+                  전 차종 전동화 완료
+                </p>
+              </div>
+              <div>
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(32)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  100%
+                </div>
+                <p 
+                  className="text-gray-600"
+                  style={{ fontSize: `${getFontSize(12)}px` }}
+                >
+                  재활용 소재 목표
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<TechTrendsSlide />, document.getElementById('root'));
+  </script>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    .tech-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    
+    .tech-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .tech-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8257e5 0%, #a78bfa 100%);
+      color: white;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .feature-icon {
+      color: #8257e5;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    
+    .metric-badge {
+      background-color: rgba(130, 87, 229, 0.1);
+      color: #8257e5;
+      border-radius: 16px;
+      padding: 0.25rem 0.75rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(130, 87, 229, 0.05) 0%, rgba(167, 139, 250, 0.1) 100%);
+      border-left: 4px solid #8257e5;
+    }
+    
+    @media (max-width: 1024px) {
+      .lg\\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .md\\:grid-cols-2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .md\\:grid-cols-3 {
+        grid-template-columns: 1fr;
+      }
+      
+      .md\\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .md\\:grid-cols-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
