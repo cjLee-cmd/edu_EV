@@ -23,7 +23,7 @@ function initNavigation() {
     // 현재 페이지에 해당하는 링크에 active 클래스 추가
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href').split('/').pop();
-        if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+        if (linkHref === currentPage || (currentPage === '' && linkHref === 'main.html')) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');

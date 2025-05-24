@@ -22,6 +22,15 @@
 4. [기업별 경쟁 현황](lesson_1/04.html)
 5. [최신 기술 동향](lesson_1/05.html)
 
+### Lesson 2
+##### [전기차 현황 종합 정보](lesson_2/main.html)
+
+#### 주요 페이지
+1. [기술 동향](lesson_2/technologies.html) - 배터리, 충전, 자율주행 기술
+2. [시장 동향](lesson_2/market.html) - 글로벌 시장 분석 및 예측
+3. [환경 영향](lesson_2/environment.html) - 탄소 배출량 및 환경 효과
+4. [미래 전망](lesson_2/future.html) - 2030년까지의 전망과 트렌드
+
 ## 🔧 기술 스택
 - React 18 (CDN)
 - Tailwind CSS

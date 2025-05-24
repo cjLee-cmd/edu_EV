@@ -5,14 +5,567 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>전기차 환경 영향 - 교육용 웹사이트</title>
     <meta name="description" content="전기차가 환경에 미치는 영향, 탄소 배출량 비교, 생애주기 분석 등에 대한 종합적인 정보를 제공합니다.">
-    <meta name="keywords" content="전기차 환경 영향, 탄소 배출량, 생애주기 분석, 지속가능성, 환경적 영향">
-    <meta name="author" content="전기차 교육 플랫폼">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#198754">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    
+    <!-- React 18 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 100vw;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .env-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .env-card:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+            
+            .chart-container {
+                height: 250px;
+            }
+        }
+    </style>
 </head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // 네비게이션 컴포넌트
+        const Navigation = ({ activeSection }) => {
+            const sections = [
+                { id: 'home', label: '홈', icon: 'fas fa-home', href: 'main.html' },
+                { id: 'technologies', label: '기술', icon: 'fas fa-cogs', href: 'technologies.html' },
+                { id: 'market', label: '시장 동향', icon: 'fas fa-chart-line', href: 'market.html' },
+                { id: 'environment', label: '환경 영향', icon: 'fas fa-leaf', href: 'environment.html' },
+                { id: 'future', label: '미래 전망', icon: 'fas fa-rocket', href: 'future.html' }
+            ];
+
+            return (
+                <nav className="bg-gray-800 shadow-lg sticky top-0 z-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between h-16">
+                            <div className="flex items-center">
+                                <h1 className="text-xl font-bold text-white">전기차 현황</h1>
+                            </div>
+                            <div className="hidden md:flex space-x-8 items-center">
+                                {sections.map((section) => (
+                                    <a
+                                        key={section.id}
+                                        href={section.href}
+                                        className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                                            section.id === 'environment'
+                                                ? 'bg-emerald-600 text-white'
+                                                : 'text-gray-300 hover:text-white hover:bg-gray-700'
+                                        }`}
+                                    >
+                                        <i className={`${section.icon} mr-2`}></i>
+                                        {section.label}
+                                    </a>
+                                ))}
+                            </div>
+                            <div className="md:hidden flex items-center">
+                                <button className="text-gray-300 hover:text-white">
+                                    <i className="fas fa-bars text-xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        // 히어로 섹션 컴포넌트
+        const HeroSection = () => {
+            return (
+                <div className="hero-section">
+                    <Navigation />
+                    <div className="flex-1 flex items-center justify-center px-4 py-12">
+                        <div className="max-w-6xl mx-auto text-center">
+                            <div className="mb-8">
+                                <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+                                    <i className="fas fa-leaf mr-4 text-green-300"></i>
+                                    환경 영향
+                                </h1>
+                                <p className="text-xl md:text-2xl text-emerald-100 mb-8">
+                                    지속 가능한 미래를 위한 전기차의 환경적 가치
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-4 text-white">
+                                    <div className="flex items-center bg-white/20 px-4 py-2 rounded-full">
+                                        <i className="fas fa-smog mr-2"></i>
+                                        <span>탄소 배출량</span>
+                                    </div>
+                                    <div className="flex items-center bg-white/20 px-4 py-2 rounded-full">
+                                        <i className="fas fa-recycle mr-2"></i>
+                                        <span>생애주기 분석</span>
+                                    </div>
+                                    <div className="flex items-center bg-white/20 px-4 py-2 rounded-full">
+                                        <i className="fas fa-wind mr-2"></i>
+                                        <span>대기 질</span>
+                                    </div>
+                                    <div className="flex items-center bg-white/20 px-4 py-2 rounded-full">
+                                        <i className="fas fa-globe-americas mr-2"></i>
+                                        <span>지구 온난화</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // 탄소 배출량 비교 차트
+        const EmissionChart = () => {
+            const chartRef = useRef(null);
+            const chartInstance = useRef(null);
+
+            useEffect(() => {
+                if (chartRef.current) {
+                    const ctx = chartRef.current.getContext('2d');
+                    
+                    if (chartInstance.current) {
+                        chartInstance.current.destroy();
+                    }
+
+                    chartInstance.current = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['전기차', '하이브리드', '가솔린', '디젤'],
+                            datasets: [{
+                                label: 'CO₂ 배출량 (g/km)',
+                                data: [45, 95, 180, 155],
+                                backgroundColor: [
+                                    '#10b981',
+                                    '#f59e0b',
+                                    '#dc2626',
+                                    '#6b7280'
+                                ]
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: '차종별 CO₂ 배출량 비교',
+                                    font: {
+                                        family: 'Noto Sans KR',
+                                        size: 16,
+                                        weight: 'bold'
+                                    }
+                                },
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'CO₂ 배출량 (g/km)'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                return () => {
+                    if (chartInstance.current) {
+                        chartInstance.current.destroy();
+                    }
+                };
+            }, []);
+
+            return (
+                <div className="chart-container">
+                    <canvas ref={chartRef}></canvas>
+                </div>
+            );
+        };
+
+        // 생애주기 분석 차트
+        const LifecycleChart = () => {
+            const chartRef = useRef(null);
+            const chartInstance = useRef(null);
+
+            useEffect(() => {
+                if (chartRef.current) {
+                    const ctx = chartRef.current.getContext('2d');
+                    
+                    if (chartInstance.current) {
+                        chartInstance.current.destroy();
+                    }
+
+                    chartInstance.current = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['배터리 제조', '차량 제조', '운행 단계', '폐기 단계'],
+                            datasets: [{
+                                data: [40, 25, 30, 5],
+                                backgroundColor: [
+                                    '#dc2626',
+                                    '#f59e0b',
+                                    '#10b981',
+                                    '#6b7280'
+                                ]
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: '전기차 생애주기별 환경 영향 (%)',
+                                    font: {
+                                        family: 'Noto Sans KR',
+                                        size: 16,
+                                        weight: 'bold'
+                                    }
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }
+                    });
+                }
+
+                return () => {
+                    if (chartInstance.current) {
+                        chartInstance.current.destroy();
+                    }
+                };
+            }, []);
+
+            return (
+                <div className="chart-container">
+                    <canvas ref={chartRef}></canvas>
+                </div>
+            );
+        };
+
+        // 환경 효과 통계
+        const EnvironmentStats = () => {
+            const stats = [
+                {
+                    icon: 'fas fa-smog',
+                    value: '75%',
+                    label: 'CO₂ 배출량 감소',
+                    description: '내연기관 대비',
+                    color: 'green'
+                },
+                {
+                    icon: 'fas fa-wind',
+                    value: '90%',
+                    label: '대기오염 물질 감소',
+                    description: 'NOx, PM 기준',
+                    color: 'blue'
+                },
+                {
+                    icon: 'fas fa-battery-three-quarters',
+                    value: '95%',
+                    label: '배터리 재활용률',
+                    description: '리튬, 코발트 등',
+                    color: 'purple'
+                },
+                {
+                    icon: 'fas fa-seedling',
+                    value: '1.2억 톤',
+                    label: '연간 CO₂ 절감량',
+                    description: '전 세계 전기차 기준',
+                    color: 'emerald'
+                }
+            ];
+
+            const getColorClasses = (color) => {
+                const colors = {
+                    green: 'bg-green-500',
+                    blue: 'bg-blue-500',
+                    purple: 'bg-purple-500',
+                    emerald: 'bg-emerald-500'
+                };
+                return colors[color] || colors.green;
+            };
+
+            return (
+                <div className="py-16 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-4">환경적 효과</h2>
+                            <p className="text-lg text-gray-600">전기차가 만드는 긍정적 변화</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                            {stats.map((stat, index) => (
+                                <div key={index} className="env-card p-6 rounded-xl text-center">
+                                    <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${getColorClasses(stat.color)} text-white`}>
+                                        <i className={`${stat.icon} text-2xl`}></i>
+                                    </div>
+                                    <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
+                                    <div className="text-gray-900 font-medium mb-1">{stat.label}</div>
+                                    <div className="text-sm text-gray-500">{stat.description}</div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div className="card p-8">
+                                <h3 className="text-2xl font-bold text-center mb-6">차종별 배출량 비교</h3>
+                                <EmissionChart />
+                            </div>
+                            <div className="card p-8">
+                                <h3 className="text-2xl font-bold text-center mb-6">생애주기 환경 영향</h3>
+                                <LifecycleChart />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // 환경 영향 상세 분석
+        const EnvironmentAnalysis = () => {
+            const analyses = [
+                {
+                    title: '대기 질 개선',
+                    icon: 'fas fa-wind',
+                    impact: '매우 긍정적',
+                    details: [
+                        '도심 지역 미세먼지 농도 20% 감소',
+                        '질소산화물(NOx) 배출량 90% 저감',
+                        '소음 공해 70% 감소'
+                    ],
+                    color: 'blue'
+                },
+                {
+                    title: '기후 변화 대응',
+                    icon: 'fas fa-globe-americas',
+                    impact: '긍정적',
+                    details: [
+                        '2030년까지 15억 톤 CO₂ 절감 목표',
+                        '재생 에너지와 연계 시 탄소 중립',
+                        '전력망 안정성 기여 (V2G)'
+                    ],
+                    color: 'green'
+                },
+                {
+                    title: '자원 순환',
+                    icon: 'fas fa-recycle',
+                    impact: '개선 필요',
+                    details: [
+                        '배터리 원자재 채굴 환경 영향',
+                        '리튬, 코발트 재활용 기술 발전',
+                        '순환 경제 모델 구축 중'
+                    ],
+                    color: 'orange'
+                },
+                {
+                    title: '에너지 효율',
+                    icon: 'fas fa-bolt',
+                    impact: '매우 긍정적',
+                    details: [
+                        '에너지 변환 효율 90% 이상',
+                        '내연기관 대비 3배 높은 효율',
+                        '스마트 충전으로 그리드 최적화'
+                    ],
+                    color: 'purple'
+                }
+            ];
+
+            const getColorClasses = (color) => {
+                const colors = {
+                    blue: 'border-blue-200 bg-blue-50',
+                    green: 'border-green-200 bg-green-50',
+                    orange: 'border-orange-200 bg-orange-50',
+                    purple: 'border-purple-200 bg-purple-50'
+                };
+                return colors[color] || colors.green;
+            };
+
+            const getImpactColor = (impact) => {
+                const colors = {
+                    '매우 긍정적': 'text-green-600 bg-green-100',
+                    '긍정적': 'text-blue-600 bg-blue-100',
+                    '개선 필요': 'text-orange-600 bg-orange-100'
+                };
+                return colors[impact] || colors['긍정적'];
+            };
+
+            return (
+                <div className="py-16 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-4">환경 영향 분석</h2>
+                            <p className="text-lg text-gray-600">전기차의 다각도 환경 영향 평가</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {analyses.map((analysis, index) => (
+                                <div key={index} className={`env-card p-6 rounded-xl border-2 ${getColorClasses(analysis.color)}`}>
+                                    <div className="flex items-start justify-between mb-4">
+                                        <div className="flex items-center">
+                                            <div className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${getColorClasses(analysis.color).replace('bg-', 'bg-').replace('-50', '-200')}`}>
+                                                <i className={`${analysis.icon} text-xl text-gray-700`}></i>
+                                            </div>
+                                            <h3 className="text-xl font-semibold text-gray-900">{analysis.title}</h3>
+                                        </div>
+                                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${getImpactColor(analysis.impact)}`}>
+                                            {analysis.impact}
+                                        </span>
+                                    </div>
+                                    <ul className="space-y-2">
+                                        {analysis.details.map((detail, detailIndex) => (
+                                            <li key={detailIndex} className="flex items-start text-gray-700">
+                                                <i className="fas fa-check-circle text-green-500 mr-2 text-sm mt-1"></i>
+                                                <span>{detail}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // 푸터 컴포넌트
+        const Footer = () => {
+            return (
+                <footer className="bg-gray-800 text-white py-12">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div>
+                                <h3 className="text-xl font-bold mb-4">전기차 현황</h3>
+                                <p className="text-gray-300 mb-4">지속 가능한 미래를 위한 교육 플랫폼</p>
+                                <div className="flex space-x-4">
+                                    <a href="#" className="text-gray-300 hover:text-white">
+                                        <i className="fab fa-facebook text-xl"></i>
+                                    </a>
+                                    <a href="#" className="text-gray-300 hover:text-white">
+                                        <i className="fab fa-twitter text-xl"></i>
+                                    </a>
+                                    <a href="#" className="text-gray-300 hover:text-white">
+                                        <i className="fab fa-linkedin text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="text-lg font-semibold mb-4">빠른 링크</h4>
+                                <ul className="space-y-2">
+                                    <li><a href="main.html" className="text-gray-300 hover:text-white">홈</a></li>
+                                    <li><a href="technologies.html" className="text-gray-300 hover:text-white">기술</a></li>
+                                    <li><a href="market.html" className="text-gray-300 hover:text-white">시장 동향</a></li>
+                                    <li><a href="environment.html" className="text-gray-300 hover:text-white">환경 영향</a></li>
+                                    <li><a href="future.html" className="text-gray-300 hover:text-white">미래 전망</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="text-lg font-semibold mb-4">문의 정보</h4>
+                                <div className="text-gray-300 space-y-2">
+                                    <div className="flex items-center">
+                                        <i className="fas fa-calendar-alt mr-2"></i>
+                                        <span>2025년 5월</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <i className="fas fa-building mr-2"></i>
+                                        <span>Power Solution Inc.</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <i className="fas fa-user mr-2"></i>
+                                        <span>CEO 이창준</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+                            <p className="text-gray-300">&copy; 2025 전기차 현황. 모든 권리 보유.</p>
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+
+        // 메인 앱 컴포넌트
+        const App = () => {
+            return (
+                <div className="min-h-screen">
+                    <HeroSection />
+                    <EnvironmentStats />
+                    <EnvironmentAnalysis />
+                    <Footer />
+                </div>
+            );
+        };
+
+        // 앱 렌더링
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
 <body>
     <!-- 헤더 영역 -->
     <header class="bg-success bg-gradient text-white py-3">

@@ -13,7 +13,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <div class="collapse navbar-collapse" id="navbarMain">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo ($current_page == 'index.html' || $current_page == 'index.php') ? 'active' : ''; ?>" href="/index.html">홈</a>
+                    <a class="nav-link <?php echo ($current_page == 'main.html' || $current_page == 'index.php') ? 'active' : ''; ?>" href="/main.html">홈</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($current_page == 'technologies.html') ? 'active' : ''; ?>" href="/technologies.html">기술</a>

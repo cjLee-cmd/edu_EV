@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <h1 class="site-title"><a href="/index.html" class="text-white text-decoration-none">전기차 현황</a></h1>
+                    <h1 class="site-title"><a href="/main.html" class="text-white text-decoration-none">전기차 현황</a></h1>
                     <p class="site-description mb-0">지속 가능한 미래를 위한 교육 플랫폼</p>
                 </div>
                 <div class="col-md-6 d-none d-md-block">

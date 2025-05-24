@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전기차 현황 - 교육용 웹사이트</title>
+    <meta name="description" content="전기차의 현황, 기술, 시장, 환경 영향, 미래 전망에 대한 교육 자료를 제공하는 웹사이트입니다.">
+    
+    <!-- React 18 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 100vw;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: #22c55e;
+            transform: translateY(-2px);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+            
+            .chart-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // 네비게이션 컴포넌트
+        const Navigation = ({ activeSection, setActiveSection }) => {
+            const sections = [
+                { id: 'home', label: '홈', icon: 'fas fa-home', href: 'main.html' },
+                { id: 'technologies', label: '기술', icon: 'fas fa-cogs', href: 'technologies.html' },
+                { id: 'market', label: '시장 동향', icon: 'fas fa-chart-line', href: 'market.html' },
+                { id: 'environment', label: '환경 영향', icon: 'fas fa-leaf', href: 'environment.html' },
+                { id: 'future', label: '미래 전망', icon: 'fas fa-rocket', href: 'future.html' }
+            ];
+
+            return (
+                <nav className="bg-gray-800 shadow-lg sticky top-0 z-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between h-16">
+                            <div className="flex items-center">
+                                <h1 className="text-xl font-bold text-white">전기차 현황</h1>
+                            </div>
+                            <div className="hidden md:flex space-x-8 items-center">
+                                {sections.map((section) => (
+                                    <a
+                                        key={section.id}
+                                        href={section.href}
+                                        className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                                            section.id === 'home'
+                                                ? 'bg-green-600 text-white'
+                                                : 'text-gray-300 hover:text-white hover:bg-gray-700'
+                                        }`}
+                                    >
+                                        <i className={`${section.icon} mr-2`}></i>
+                                        {section.label}
+                                    </a>
+                                ))}
+                            </div>
+                            <div className="md:hidden flex items-center">
+                                <button className="text-gray-300 hover:text-white">
+                                    <i className="fas fa-bars text-xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        // 히어로 섹션 컴포넌트
+        const HeroSection = () => {
+            return (
+                <div className="hero-section">
+                    <Navigation />
+                    <div className="flex-1 flex items-center justify-center px-4 py-12">
+                        <div className="max-w-6xl mx-auto text-center">
+                            <div className="mb-8">
+                                <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+                                    <i className="fas fa-bolt mr-4 text-yellow-300"></i>
+                                    전기차 현황
+                                </h1>
+                                <p className="text-xl md:text-2xl text-green-100 mb-8">
+                                    지속 가능한 미래를 위한 종합 교육 플랫폼
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-4 text-white">
+                                    <div className="flex items-center bg-white/20 px-4 py-2 rounded-full">
+                                        <i className="fas fa-battery-full mr-2"></i>
+                                        <span>배터리 기술</span>
+                                    </div>
+                                    <div className="flex items-center bg-white/20 px-4 py-2 rounded-full">
+                                        <i className="fas fa-chart-line mr-2"></i>
+                                        <span>시장 분석</span>
+                                    </div>
+                                    <div className="flex items-center bg-white/20 px-4 py-2 rounded-full">
+                                        <i className="fas fa-leaf mr-2"></i>
+                                        <span>환경 영향</span>
+                                    </div>
+                                    <div className="flex items-center bg-white/20 px-4 py-2 rounded-full">
+                                        <i className="fas fa-rocket mr-2"></i>
+                                        <span>미래 전망</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // 개요 차트 컴포넌트
+        const OverviewChart = () => {
+            const chartRef = useRef(null);
+            const chartInstance = useRef(null);
+
+            useEffect(() => {
+                if (chartRef.current) {
+                    const ctx = chartRef.current.getContext('2d');
+                    
+                    // 기존 차트 파괴
+                    if (chartInstance.current) {
+                        chartInstance.current.destroy();
+                    }
+
+                    chartInstance.current = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['순수전기차 (BEV)', '플러그인 하이브리드 (PHEV)', '기타'],
+                            datasets: [{
+                                data: [68, 28, 4],
+                                backgroundColor: [
+                                    '#22c55e',
+                                    '#3b82f6',
+                                    '#f59e0b'
+                                ],
+                                borderWidth: 2,
+                                borderColor: '#ffffff'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        padding: 20,
+                                        font: {
+                                            family: 'Noto Sans KR'
+                                        }
+                                    }
+                                },
+                                title: {
+                                    display: true,
+                                    text: '전기차 시장 점유율 (2024)',
+                                    font: {
+                                        family: 'Noto Sans KR',
+                                        size: 16,
+                                        weight: 'bold'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                return () => {
+                    if (chartInstance.current) {
+                        chartInstance.current.destroy();
+                    }
+                };
+            }, []);
+
+            return (
+                <div className="chart-container">
+                    <canvas ref={chartRef}></canvas>
+                </div>
+            );
+        };
+
+        // 기능 카드 컴포넌트
+        const FeatureCards = () => {
+            const features = [
+                {
+                    icon: 'fas fa-cogs',
+                    title: '기술 동향',
+                    description: '최신 배터리, 충전, 자율주행 기술',
+                    href: 'technologies.html',
+                    color: 'blue'
+                },
+                {
+                    icon: 'fas fa-chart-line',
+                    title: '시장 동향',
+                    description: '글로벌 시장 분석 및 예측',
+                    href: 'market.html',
+                    color: 'green'
+                },
+                {
+                    icon: 'fas fa-leaf',
+                    title: '환경 영향',
+                    description: '탄소 배출량 및 환경 효과',
+                    href: 'environment.html',
+                    color: 'emerald'
+                },
+                {
+                    icon: 'fas fa-rocket',
+                    title: '미래 전망',
+                    description: '2030년까지의 전망과 트렌드',
+                    href: 'future.html',
+                    color: 'purple'
+                }
+            ];
+
+            const getColorClasses = (color) => {
+                const colors = {
+                    blue: 'text-blue-600 bg-blue-50 hover:bg-blue-100',
+                    green: 'text-green-600 bg-green-50 hover:bg-green-100',
+                    emerald: 'text-emerald-600 bg-emerald-50 hover:bg-emerald-100',
+                    purple: 'text-purple-600 bg-purple-50 hover:bg-purple-100'
+                };
+                return colors[color] || colors.blue;
+            };
+
+            return (
+                <div className="py-16 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-4">주요 섹션</h2>
+                            <p className="text-lg text-gray-600">전기차에 대한 종합적인 정보를 확인하세요</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {features.map((feature, index) => (
+                                <a
+                                    key={index}
+                                    href={feature.href}
+                                    className="feature-card p-6 rounded-xl text-center block hover:no-underline"
+                                >
+                                    <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${getColorClasses(feature.color)}`}>
+                                        <i className={`${feature.icon} text-2xl`}></i>
+                                    </div>
+                                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                                    <p className="text-gray-600">{feature.description}</p>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // 통계 섹션 컴포넌트
+        const StatsSection = () => {
+            const stats = [
+                { label: '전 세계 전기차 판매량', value: '1,080만 대', subtitle: '2023년 기준' },
+                { label: '시장 성장률', value: '35%', subtitle: '전년 대비' },
+                { label: '충전소 수', value: '270만 개', subtitle: '글로벌 기준' },
+                { label: '탄소 절감량', value: '1.2억 톤', subtitle: 'CO₂ 기준' }
+            ];
+
+            return (
+                <div className="py-16 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-4">전기차 현황 통계</h2>
+                            <p className="text-lg text-gray-600">최신 데이터로 본 전기차 시장</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {stats.map((stat, index) => (
+                                <div key={index} className="text-center">
+                                    <div className="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl">
+                                        <div className="text-3xl font-bold text-green-600 mb-2">{stat.value}</div>
+                                        <div className="text-gray-900 font-medium mb-1">{stat.label}</div>
+                                        <div className="text-sm text-gray-500">{stat.subtitle}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-12">
+                            <div className="card p-8">
+                                <h3 className="text-2xl font-bold text-center mb-6">시장 점유율 분석</h3>
+                                <OverviewChart />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // 푸터 컴포넌트
+        const Footer = () => {
+            return (
+                <footer className="bg-gray-800 text-white py-12">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div>
+                                <h3 className="text-xl font-bold mb-4">전기차 현황</h3>
+                                <p className="text-gray-300 mb-4">지속 가능한 미래를 위한 교육 플랫폼</p>
+                                <div className="flex space-x-4">
+                                    <a href="#" className="text-gray-300 hover:text-white">
+                                        <i className="fab fa-facebook text-xl"></i>
+                                    </a>
+                                    <a href="#" className="text-gray-300 hover:text-white">
+                                        <i className="fab fa-twitter text-xl"></i>
+                                    </a>
+                                    <a href="#" className="text-gray-300 hover:text-white">
+                                        <i className="fab fa-linkedin text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="text-lg font-semibold mb-4">빠른 링크</h4>
+                                <ul className="space-y-2">
+                                    <li><a href="main.html" className="text-gray-300 hover:text-white">홈</a></li>
+                                    <li><a href="technologies.html" className="text-gray-300 hover:text-white">기술</a></li>
+                                    <li><a href="market.html" className="text-gray-300 hover:text-white">시장 동향</a></li>
+                                    <li><a href="environment.html" className="text-gray-300 hover:text-white">환경 영향</a></li>
+                                    <li><a href="future.html" className="text-gray-300 hover:text-white">미래 전망</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="text-lg font-semibold mb-4">문의 정보</h4>
+                                <div className="text-gray-300 space-y-2">
+                                    <div className="flex items-center">
+                                        <i className="fas fa-calendar-alt mr-2"></i>
+                                        <span>2025년 5월</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <i className="fas fa-building mr-2"></i>
+                                        <span>Power Solution Inc.</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <i className="fas fa-user mr-2"></i>
+                                        <span>CEO 이창준</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+                            <p className="text-gray-300">&copy; 2025 전기차 현황. 모든 권리 보유.</p>
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+
+        // 메인 앱 컴포넌트
+        const App = () => {
+            const [activeSection, setActiveSection] = useState('home');
+
+            return (
+                <div className="min-h-screen">
+                    <HeroSection />
+                    <FeatureCards />
+                    <StatsSection />
+                    <Footer />
+                </div>
+            );
+        };
+
+        // 앱 렌더링
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
+</body>
+</html>

@@ -12,7 +12,7 @@
             <div class="col-md-4 mb-3 mb-md-0">
                 <h5>링크</h5>
                 <ul class="list-unstyled">
-                    <li><a href="/index.html" class="text-decoration-none text-white">홈</a></li>
+                    <li><a href="/main.html" class="text-decoration-none text-white">홈</a></li>
                     <li><a href="/technologies.html" class="text-decoration-none text-white">기술</a></li>
                     <li><a href="/market.html" class="text-decoration-none text-white">시장 동향</a></li>
                     <li><a href="/environment.html" class="text-decoration-none text-white">환경 영향</a></li>

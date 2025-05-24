@@ -29,7 +29,7 @@ function initNavigationElements() {
 function setActiveNavigationItem() {
     // 현재 페이지 URL 가져오기
     const currentPath = window.location.pathname;
-    const currentPage = currentPath.split('/').pop() || 'index.html';
+    const currentPage = currentPath.split('/').pop() || 'main.html';
     
     // 모든 네비게이션 링크 가져오기
     const navLinks = document.querySelectorAll('.nav-link');
