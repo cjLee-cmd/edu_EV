@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>친환경자동차 최신 기술 동향</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .slide {
+      width: 1920px;
+      min-height: 1080px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    }
+    .header-gradient {
+      background: linear-gradient(90deg, #8257e5 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .content-container {
+      position: relative;
+      z-index: 10;
+    }
+    .tech-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    .tech-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+    .tech-icon {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #8257e5 0%, #a78bfa 100%);
+      color: white;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .feature-icon {
+      color: #8257e5;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    .metric-badge {
+      background-color: rgba(130, 87, 229, 0.1);
+      color: #8257e5;
+      border-radius: 16px;
+      padding: 0.25rem 0.75rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(130, 87, 229, 0.05) 0%, rgba(167, 139, 250, 0.1) 100%);
+      border-left: 4px solid #8257e5;
+    }
+    .navigation {
+      position: fixed;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+    .nav-button {
+      background-color: rgba(130, 87, 229, 0.2);
+      color: #8257e5;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .nav-button:hover {
+      background-color: rgba(130, 87, 229, 0.5);
+    }
+    .page-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #9CA3AF;
+    }
+    .source {
+      position: absolute;
+      bottom: 20px;
+      right: 80px;
+      font-size: 12px;
+      color: #D1D5DB;
+    }
+    .progress-bar-bg {
+      height: 6px;
+      background-color: rgba(209, 213, 219, 0.3);
+      border-radius: 3px;
+    }
+    .progress-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #8257e5 0%, #a78bfa 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="slide flex flex-col p-16">
+    <!-- Header -->
+    <div class="mb-10">
+      <h1 class="text-5xl font-bold header-gradient mb-2">친환경자동차 최신 기술 동향</h1>
+      <p class="text-xl text-gray-500">배터리, 인프라, 경량화 등 주요 기술 혁신과 전망</p>
+    </div>
+    
+    <!-- Main content -->
+    <div class="content-container flex-1 grid grid-cols-3 gap-8">
+      <!-- Technology Cards -->
+      <div class="flex flex-col space-y-6">
+        <!-- Battery Technology -->
+        <div class="tech-card p-6 flex-1">
+          <div class="tech-icon mx-auto">
+            <i class="fas fa-battery-full text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-center text-gray-800 mb-4">배터리 기술</h3>
+          
+          <div class="space-y-4">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-arrow-up"></i>
+              </div>
+              <span class="text-gray-700">전고체 배터리: 에너지 밀도 80% 증가, 충전 시간 50% 단축</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-arrow-up"></i>
+              </div>
+              <span class="text-gray-700">리튬-황 배터리: 주행거리 최대 800km 실현</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-arrow-up"></i>
+              </div>
+              <span class="text-gray-700">나트륨 이온 배터리: 저비용, 안전성 향상</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-4 border-t border-gray-100">
+            <p class="text-sm text-purple-700 font-medium">예상 대중화 시기</p>
+            <div class="mt-2 flex items-center">
+              <span class="text-xs text-gray-500 mr-2">2023</span>
+              <div class="flex-1 progress-bar-bg">
+                <div class="progress-bar" style="width: 65%"></div>
+              </div>
+              <span class="text-xs text-gray-500 ml-2">2028</span>
+            </div>
+            <div class="mt-2 text-center">
+              <span class="metric-badge">2026년 상용화 예상</span>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Hydrogen Fuel Cell Technology -->
+        <div class="tech-card p-6 flex-1">
+          <div class="tech-icon mx-auto">
+            <i class="fas fa-atom text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-center text-gray-800 mb-4">수소연료전지</h3>
+          
+          <div class="space-y-4">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-arrow-up"></i>
+              </div>
+              <span class="text-gray-700">충전시간 5분 이내, 주행거리 700km 이상</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-arrow-up"></i>
+              </div>
+              <span class="text-gray-700">수소 저장 효율 30% 개선된 신소재 개발</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+              <span class="text-gray-700">생산비용 40% 절감 기술 확보</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-4 border-t border-gray-100">
+            <p class="text-sm text-purple-700 font-medium">글로벌 수소차 시장 전망</p>
+            <div class="mt-2 flex items-center">
+              <span class="text-xs text-gray-500 mr-2">2024</span>
+              <div class="flex-1 progress-bar-bg">
+                <div class="progress-bar" style="width: 30%"></div>
+              </div>
+              <span class="text-xs text-gray-500 ml-2">2030</span>
+            </div>
+            <div class="mt-2 text-center">
+              <span class="metric-badge">2030년 120만대 규모</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Middle Column -->
+      <div class="flex flex-col space-y-6">
+        <!-- Charging Infrastructure -->
+        <div class="tech-card p-6 flex-1">
+          <div class="tech-icon mx-auto">
+            <i class="fas fa-charging-station text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-center text-gray-800 mb-4">충전 인프라</h3>
+          
+          <div class="space-y-4">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <span class="text-gray-700">초고속 충전: 350kW 이상, 10분에 80% 충전</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-road"></i>
+              </div>
+              <span class="text-gray-700">무선 충전 도로: 주행 중 자동 충전 기술</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-exchange-alt"></i>
+              </div>
+              <span class="text-gray-700">양방향 충전(V2G): 전력망 안정화 기여</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-4 border-t border-gray-100">
+            <p class="text-sm text-purple-700 font-medium">글로벌 충전소 증가 전망</p>
+            <div class="mt-2 flex items-center">
+              <span class="text-xs text-gray-500 mr-2">2023</span>
+              <div class="flex-1 progress-bar-bg">
+                <div class="progress-bar" style="width: 25%"></div>
+              </div>
+              <span class="text-xs text-gray-500 ml-2">2030</span>
+            </div>
+            <div class="mt-2 text-center">
+              <span class="metric-badge">연평균 46.5% 성장</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Highlight Insights -->
+        <div class="highlight-box p-6 rounded-lg flex-1">
+          <h3 class="text-2xl font-bold text-purple-800 mb-4">핵심 인사이트</h3>
+          <div class="space-y-4">
+            <p class="text-lg text-gray-700">
+              <span class="text-purple-700 font-bold">배터리 기술 혁신과 가격 하락</span>이 전기차 보급의 핵심 요소로 작용. 2025년 kWh당 $80 이하로 하락 예상
+            </p>
+            <p class="text-lg text-gray-700">
+              전기차와 수소차 기술은 <span class="text-purple-700 font-bold">상호보완적 관계로 발전</span> 중이며, 차종과 용도별 최적화 진행
+            </p>
+            <p class="text-lg text-gray-700">
+              <span class="text-purple-700 font-bold">자율주행+친환경 파워트레인 결합</span>으로 모빌리티 서비스 혁신 가속화
+            </p>
+            <p class="text-lg text-gray-700">
+              소프트웨어 정의 자동차(SDV)로 <span class="text-purple-700 font-bold">지속적 성능 개선과 새로운 비즈니스 모델</span> 등장
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column -->
+      <div class="flex flex-col space-y-6">
+        <!-- Lightweight Technology -->
+        <div class="tech-card p-6 flex-1">
+          <div class="tech-icon mx-auto">
+            <i class="fas fa-feather-alt text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-center text-gray-800 mb-4">경량화 기술</h3>
+          
+          <div class="space-y-4">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-tachometer-alt"></i>
+              </div>
+              <span class="text-gray-700">고강도 복합소재: 강도 유지하며 무게 40% 감소</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-recycle"></i>
+              </div>
+              <span class="text-gray-700">바이오 기반 소재: 친환경성과 경량화 동시 충족</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <span class="text-gray-700">3D 프린팅 부품: 맞춤형 설계로 효율 극대화</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-4 border-t border-gray-100">
+            <p class="text-sm text-purple-700 font-medium">경량화 효과</p>
+            <div class="mt-2 flex items-center">
+              <span class="text-xs text-gray-500 mr-2">10%</span>
+              <div class="flex-1 progress-bar-bg">
+                <div class="progress-bar" style="width: 60%"></div>
+              </div>
+              <span class="text-xs text-gray-500 ml-2">30%</span>
+            </div>
+            <div class="mt-2 text-center">
+              <span class="metric-badge">주행거리 6~8% 증가</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Autonomous Driving -->
+        <div class="tech-card p-6 flex-1">
+          <div class="tech-icon mx-auto">
+            <i class="fas fa-robot text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-center text-gray-800 mb-4">자율주행 기술</h3>
+          
+          <div class="space-y-4">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <span class="text-gray-700">친환경차와 자율주행 기술 통합 가속화</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <span class="text-gray-700">AI 기반 이미지 처리로 인식률 98% 달성</span>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <span class="text-gray-700">최적 주행 알고리즘으로 에너지 효율 15% 향상</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-4 border-t border-gray-100">
+            <p class="text-sm text-purple-700 font-medium">자율주행 단계별 상용화</p>
+            <div class="mt-2 flex items-center">
+              <span class="text-xs text-gray-500 mr-2">Level 3</span>
+              <div class="flex-1 progress-bar-bg">
+                <div class="progress-bar" style="width: 50%"></div>
+              </div>
+              <span class="text-xs text-gray-500 ml-2">Level 5</span>
+            </div>
+            <div class="mt-2 text-center">
+              <span class="metric-badge">Level 4 2028년 상용화</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bottom Statistics Row -->
+    <div class="mt-8 grid grid-cols-4 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-700 flex items-center">
+        <div class="bg-purple-100 rounded-full p-3 mr-4">
+          <i class="fas fa-battery-three-quarters text-xl text-purple-700"></i>
+        </div>
+        <div>
+          <h3 class="text-3xl font-bold text-purple-700">-89%</h3>
+          <p class="text-sm text-gray-600">배터리 가격 하락 (2010년 대비)</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-500 flex items-center">
+        <div class="bg-purple-100 rounded-full p-3 mr-4">
+          <i class="fas fa-charging-station text-xl text-purple-700"></i>
+        </div>
+        <div>
+          <h3 class="text-3xl font-bold text-purple-700">3,200만대</h3>
+          <p class="text-sm text-gray-600">2030년 글로벌 전기차 판매 목표</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-400 flex items-center">
+        <div class="bg-purple-100 rounded-full p-3 mr-4">
+          <i class="fas fa-road text-xl text-purple-700"></i>
+        </div>
+        <div>
+          <h3 class="text-3xl font-bold text-purple-700">1,000km</h3>
+          <p class="text-sm text-gray-600">2027년 1회 충전 목표 주행거리</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-300 flex items-center">
+        <div class="bg-purple-100 rounded-full p-3 mr-4">
+          <i class="fas fa-leaf text-xl text-purple-700"></i>
+        </div>
+        <div>
+          <h3 class="text-3xl font-bold text-purple-700">탄소중립</h3>
+          <p class="text-sm text-gray-600">2045년 글로벌 자동차 산업 목표</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Page number -->
+    <div class="page-indicator">
+      <span class="text-lg">5 / 7</span>
+    </div>
+    
+    <!-- Source attribution -->
+    <div class="source">
+      <span>자료출처: Stylus Media Group, 한국자동차연구원, IRS글로벌, 블룸버그 NEF</span>
+    </div>
+  </div>
+  
+  <!-- Navigation buttons -->
+  <div class="navigation">
+    <button class="nav-button" onclick="previousSlide()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="nav-button" onclick="nextSlide()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+  
+  <script>
+    // Navigation functionality
+    function previousSlide() {
+      // Navigation logic will be implemented for previous slide
+      console.log("Previous slide");
+    }
+    
+    function nextSlide() {
+      // Navigation logic will be implemented for next slide
+      console.log("Next slide");
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        previousSlide();
+      } else if (event.key === 'ArrowRight') {
+        nextSlide();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글로벌 친환경자동차 시장 현황</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .slide {
+      width: 1920px;
+      min-height: 1080px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    }
+    .header-gradient {
+      background: linear-gradient(90deg, #8257e5 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .content-container {
+      position: relative;
+      z-index: 10;
+    }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 480px;
+    }
+    .insight-card {
+      background-color: white;
+      border-left: 4px solid #8257e5;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .insight-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    .navigation {
+      position: fixed;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+    .nav-button {
+      background-color: rgba(130, 87, 229, 0.2);
+      color: #8257e5;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    .nav-button:hover {
+      background-color: rgba(130, 87, 229, 0.5);
+      transform: scale(1.1);
+    }
+    .nav-button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .nav-button:active {
+      transform: scale(0.95);
+    }
+    .page-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #9CA3AF;
+    }
+    .source {
+      position: absolute;
+      bottom: 20px;
+      right: 80px;
+      font-size: 12px;
+      color: #D1D5DB;
+    }
+    .pulse-animation {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+      }
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, rgba(130, 87, 229, 0.05) 0%, rgba(167, 139, 250, 0.1) 100%);
+    }
+    .mega-number {
+      font-size: 6rem;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(90deg, #8257e5 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .trend-indicator {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      background-color: rgba(16, 185, 129, 0.1);
+      color: #059669;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide flex flex-col p-16">
+    <!-- Header -->
+    <div class="mb-6">
+      <h1 class="text-5xl font-bold header-gradient mb-2">글로벌 친환경자동차 시장 현황</h1>
+      <p class="text-xl text-gray-500">2020-2025 성장 추이 분석</p>
+    </div>
+    
+    <!-- Main content -->
+    <div class="content-container flex-1 grid grid-cols-5 gap-8">
+      <!-- Chart section -->
+      <div class="col-span-3">
+        <div class="chart-container bg-white p-6 rounded-lg shadow-sm">
+          <canvas id="marketShareChart"></canvas>
+        </div>
+      </div>
+      
+      <!-- Key metrics -->
+      <div class="col-span-2 space-y-6">
+        <div class="insight-card p-8 rounded-lg text-center">
+          <div class="mega-number pulse-animation">25%</div>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">2025년 목표 점유율</h3>
+          <p class="text-sm text-gray-600">미국 시장 기준</p>
+          <div class="trend-indicator mt-3">
+            <i class="fas fa-arrow-up mr-1"></i>
+            연평균 +15.2%
+          </div>
+        </div>
+        
+        <div class="insight-card p-8 rounded-lg text-center">
+          <div class="mega-number pulse-animation" style="font-size: 4.5rem;">36%</div>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">하이브리드 성장률</h3>
+          <p class="text-sm text-gray-600">2024년 실적</p>
+          <div class="trend-indicator mt-3">
+            <i class="fas fa-chart-line mr-1"></i>
+            160만대 돌파
+          </div>
+        </div>
+        
+        <div class="insight-card p-6 rounded-lg">
+          <h3 class="text-3xl font-bold text-purple-700 mb-3">$3.27조</h3>
+          <p class="text-lg font-semibold text-gray-700">2033년 시장 규모</p>
+          <p class="text-sm text-gray-500 mt-2">연평균 25.3% 성장 예측</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bottom insights -->
+    <div class="mt-8 grid grid-cols-4 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-700 flex items-center">
+        <i class="fas fa-battery-full text-3xl text-purple-700 mr-4"></i>
+        <div>
+          <div class="text-2xl font-bold text-purple-700">7.9%</div>
+          <div class="text-sm text-gray-600">순수 전기차 점유율</div>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-500 flex items-center">
+        <i class="fas fa-leaf text-3xl text-purple-700 mr-4"></i>
+        <div>
+          <div class="text-2xl font-bold text-purple-700">15.0%</div>
+          <div class="text-sm text-gray-600">하이브리드 점유율</div>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-400 flex items-center">
+        <i class="fas fa-charging-station text-3xl text-purple-700 mr-4"></i>
+        <div>
+          <div class="text-2xl font-bold text-purple-700">2.1%</div>
+          <div class="text-sm text-gray-600">PHEV 점유율</div>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-300 flex items-center">
+        <i class="fas fa-hydrogen text-3xl text-purple-700 mr-4"></i>
+        <div>
+          <div class="text-2xl font-bold text-purple-700">0.3%</div>
+          <div class="text-sm text-gray-600">수소차 점유율</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key takeaway -->
+    <div class="mt-6 gradient-bg p-6 rounded-lg border-l-4 border-purple-500">
+      <p class="text-lg text-gray-700">
+        <span class="font-bold text-purple-700">핵심 인사이트:</span> 
+        하이브리드가 전환기 주도하며 급성장 중. 순수 전기차는 인프라 확대와 함께 점진적 증가. 2025년 이후 전기차 가속화 예상.
+      </p>
+    </div>
+    
+    <!-- Page number -->
+    <div class="page-indicator">
+      <span class="text-lg">2 / 7</span>
+    </div>
+    
+    <!-- Source attribution -->
+    <div class="source">
+      <span>자료출처: 에드먼즈, 한국자동차연구원, 콕스 오토모티브</span>
+    </div>
+  </div>
+  
+  <!-- Navigation buttons -->
+  <div class="navigation">
+    <button class="nav-button" onclick="previousSlide()" id="prevBtn">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="nav-button" onclick="nextSlide()" id="nextBtn">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+  
+  <script>
+    // Chart initialization
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.getElementById('marketShareChart').getContext('2d');
+      
+      const marketShareChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['2020', '2021', '2022', '2023', '2024', '2025(예상)'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '친환경차 시장 점유율 (%)',
+              data: [8.2, 10.5, 14.2, 18.5, 20.8, 25.0],
+              backgroundColor: 'rgba(167, 139, 250, 0.7)',
+              borderColor: '#8257e5',
+              borderWidth: 1
+            },
+            {
+              type: 'line',
+              label: '전기차(BEV) 점유율 (%)',
+              data: [1.8, 3.2, 5.4, 6.9, 7.7, 7.9],
+              borderColor: '#7e22ce',
+              backgroundColor: 'rgba(126, 34, 206, 0.1)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.2,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '하이브리드(HEV) 점유율 (%)',
+              data: [5.0, 6.2, 7.5, 9.7, 11.7, 15.0],
+              borderColor: '#c084fc',
+              backgroundColor: 'rgba(192, 132, 252, 0.1)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.2,
+              yAxisID: 'y'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: '친환경자동차 시장 점유율 추이 (%)',
+              font: {
+                size: 20,
+                family: 'Noto Sans KR',
+                weight: 'bold'
+              },
+              color: '#4B5563',
+              padding: 20
+            },
+            legend: {
+              position: 'top',
+              align: 'center',
+              labels: {
+                font: {
+                  family: 'Noto Sans KR',
+                  size: 14
+                },
+                color: '#4B5563'
+              }
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false
+            }
+          },
+          scales: {
+            x: {
+              grid: {
+                display: false
+              },
+              ticks: {
+                font: {
+                  family: 'Noto Sans KR',
+                  size: 12
+                }
+              }
+            },
+            y: {
+              beginAtZero: true,
+              max: 30,
+              ticks: {
+                callback: function(value) {
+                  return value + '%';
+                },
+                font: {
+                  family: 'Noto Sans KR'
+                }
+              }
+            }
+          }
+        }
+      });
+      
+      updateNavigationButtons();
+    });
+    
+    // Simplified navigation system
+    function previousSlide() {
+      navigateToSlide(1);
+    }
+    
+    function nextSlide() {
+      navigateToSlide(3);
+    }
+    
+    function navigateToSlide(slideNumber) {
+      console.log(`Navigating to slide ${slideNumber}`);
+      
+      // Primary method: postMessage to parent
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: 'slideNavigation',
+          slide: slideNumber
+        }, '*');
+      }
+      
+      // Fallback: direct parent function call
+      if (window.parent && typeof window.parent.adjustSlideViewport === 'function') {
+        window.parent.adjustSlideViewport(slideNumber);
+      }
+      
+      // Fallback: URL hash
+      window.location.hash = `slide-${slideNumber}`;
+    }
+    
+    function updateNavigationButtons() {
+      const currentSlide = 2;
+      const totalSlides = 7;
+      
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      if (prevBtn) {
+        prevBtn.disabled = currentSlide <= 1;
+        prevBtn.style.opacity = currentSlide <= 1 ? '0.3' : '1';
+      }
+      
+      if (nextBtn) {
+        nextBtn.disabled = currentSlide >= totalSlides;
+        nextBtn.style.opacity = currentSlide >= totalSlides ? '0.3' : '1';
+      }
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        previousSlide();
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        nextSlide();
+      }
+    });
+    
+    // Touch navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', function(event) {
+      touchStartX = event.touches[0].clientX;
+    });
+    
+    document.addEventListener('touchend', function(event) {
+      touchEndX = event.changedTouches[0].clientX;
+      const deltaX = touchStartX - touchEndX;
+      
+      if (Math.abs(deltaX) > 50) {
+        if (deltaX > 0) {
+          nextSlide();
+        } else {
+          previousSlide();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

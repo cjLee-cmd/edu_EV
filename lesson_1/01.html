@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>친환경자동차 기술/시장 예측</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .slide {
+      width: 1920px;
+      min-height: 1080px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    }
+    .title {
+      font-weight: 800;
+      background: linear-gradient(90deg, #8257e5 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -1px;
+      animation: fadeInUp 1s ease-out;
+    }
+    .subtitle {
+      color: #4B5563;
+      font-weight: 400;
+      letter-spacing: 1px;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+    .gradient-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.2;
+      background: linear-gradient(45deg, #9775FA 0%, #7B61FF 100%);
+      z-index: 1;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    .content-container {
+      position: relative;
+      z-index: 10;
+    }
+    .icon-container {
+      position: absolute;
+      opacity: 0.05;
+      right: 100px;
+      bottom: 100px;
+      transform: rotate(-10deg);
+      animation: float 6s ease-in-out infinite;
+    }
+    .icon-ev {
+      font-size: 500px;
+      color: #8257e5;
+    }
+    .presenter-info {
+      position: absolute;
+      bottom: 80px;
+      left: 80px;
+      animation: fadeInLeft 1s ease-out 0.6s both;
+    }
+    .navigation {
+      position: fixed;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+    .nav-button {
+      background-color: rgba(130, 87, 229, 0.2);
+      color: #8257e5;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    .nav-button:hover {
+      background-color: rgba(130, 87, 229, 0.5);
+      transform: scale(1.1);
+    }
+    .nav-button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .nav-button:active {
+      transform: scale(0.95);
+    }
+    .date {
+      position: absolute;
+      bottom: 40px;
+      right: 80px;
+      color: #9CA3AF;
+      animation: fadeIn 1s ease-out 0.9s both;
+    }
+    .source {
+      position: absolute;
+      bottom: 20px;
+      right: 80px;
+      font-size: 12px;
+      color: #D1D5DB;
+      animation: fadeIn 1s ease-out 1.2s both;
+    }
+    .page-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #9CA3AF;
+      font-size: 16px;
+      animation: fadeIn 1s ease-out 1.5s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.2;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.3;
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: rotate(-10deg) translateY(0px);
+      }
+      50% {
+        transform: rotate(-10deg) translateY(-20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide flex items-center justify-center">
+    <!-- Background circles -->
+    <div class="gradient-circle" style="width: 800px; height: 800px; left: -200px; top: -200px;"></div>
+    <div class="gradient-circle" style="width: 500px; height: 500px; right: -100px; bottom: -100px; animation-delay: 2s;"></div>
+    
+    <!-- Icon background -->
+    <div class="icon-container">
+      <i class="fas fa-charging-station icon-ev"></i>
+    </div>
+    
+    <!-- Content -->
+    <div class="content-container w-full px-80">
+      <div class="mb-12">
+        <h1 class="title text-8xl mb-6">친환경자동차 기술/시장 예측</h1>
+        <p class="subtitle text-3xl">Eco-friendly Vehicle Technology & Market Forecast</p>
+      </div>
+    </div>
+    
+    <!-- Presenter information -->
+    <div class="presenter-info">
+      <div class="flex flex-col">
+        <span class="text-2xl font-bold text-gray-700 mb-1">Power Solution Inc.</span>
+        <div class="flex items-center">
+          <span class="text-xl text-gray-600">CEO | 이창준</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Date -->
+    <div class="date text-lg">
+      <span>2025년 5월</span>
+    </div>
+    
+    <!-- Page number -->
+    <div class="page-indicator">
+      <span>1 / 7</span>
+    </div>
+    
+    <!-- Source attribution -->
+    <div class="source">
+      <span>자료출처: 산업연구원, 한국자동차연구원, 국토교통부</span>
+    </div>
+  </div>
+  
+  <!-- Navigation buttons -->
+  <div class="navigation">
+    <button class="nav-button" onclick="previousSlide()" id="prevBtn" disabled>
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="nav-button" onclick="nextSlide()" id="nextBtn">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+  
+  <script>
+    // Simple navigation system
+    function previousSlide() {
+      const currentSlide = 1;
+      if (currentSlide <= 1) return;
+      
+      const targetSlide = currentSlide - 1;
+      navigateToSlide(targetSlide);
+    }
+    
+    function nextSlide() {
+      const currentSlide = 1;
+      const totalSlides = 7;
+      if (currentSlide >= totalSlides) return;
+      
+      const targetSlide = currentSlide + 1;
+      navigateToSlide(targetSlide);
+    }
+    
+    function navigateToSlide(slideNumber) {
+      console.log(`Navigating to slide ${slideNumber}`);
+      
+      // Try postMessage to parent window
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: 'navigate',
+          slide: slideNumber,
+          action: 'goToSlide'
+        }, '*');
+      }
+      
+      // Try direct parent function call
+      if (window.parent && typeof window.parent.goToSlide === 'function') {
+        window.parent.goToSlide(slideNumber);
+      }
+      
+      // Try custom event
+      const event = new CustomEvent('slideNavigation', {
+        detail: { slide: slideNumber }
+      });
+      window.dispatchEvent(event);
+      
+      // Update URL hash as fallback
+      window.location.hash = `slide-${slideNumber}`;
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+      switch(event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          previousSlide();
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          nextSlide();
+          break;
+      }
+    });
+    
+    // Touch navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', function(event) {
+      touchStartX = event.touches[0].clientX;
+    });
+    
+    document.addEventListener('touchend', function(event) {
+      touchEndX = event.changedTouches[0].clientX;
+      const deltaX = touchStartX - touchEndX;
+      
+      if (Math.abs(deltaX) > 50) {
+        if (deltaX > 0) {
+          nextSlide();
+        } else {
+          previousSlide();
+        }
+      }
+    });
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Slide 1/7 loaded');
+      updateNavigationButtons();
+    });
+    
+    function updateNavigationButtons() {
+      const currentSlide = 1;
+      const totalSlides = 7;
+      
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      if (prevBtn) {
+        prevBtn.disabled = currentSlide <= 1;
+        prevBtn.style.opacity = currentSlide <= 1 ? '0.3' : '1';
+      }
+      
+      if (nextBtn) {
+        nextBtn.disabled = currentSlide >= totalSlides;
+        nextBtn.style.opacity = currentSlide >= totalSlides ? '0.3' : '1';
+      }
+    }
+  </script>
+</body>
+</html>
