@@ -1,0 +1,349 @@
+{
+  "metadata": {
+    "title": "전기차 개요 데이터",
+    "description": "전기차의 기본 정보, 정의, 역사, 및 전체적 현황에 대한 개요 데이터",
+    "lastUpdated": "2025-05-21",
+    "version": "1.0"
+  },
+  "definition": {
+    "what": "전기차(Electric Vehicle, EV)는 전기 모터를 주동력으로 사용하는 차량으로, 배터리와 같은 전기 에너지 저장 장치를 통해 전력을 공급받습니다. 전기차는 전통적인 내연기관 차량과 달리 기체 포기가 없거나 매우 적어 환경 오염을 줄이는 대체 운송 수단으로 인식됩니다.",
+    "types": [
+      {
+        "name": "BEV (순수전기차)",
+        "description": "Battery Electric Vehicle의 약자로, 오직 배터리와 전기 모터만을 사용하는 전기차",
+        "examples": ["Tesla Model 3", "Hyundai IONIQ 5", "Kia EV6", "Nissan Leaf", "BMW i4"]
+      },
+      {
+        "name": "PHEV (플러그인 하이브리드)",
+        "description": "Plug-in Hybrid Electric Vehicle의 약자로, 전기 모터와 내연기관을 모두 사용하며 외부에서 충전이 가능한 전기차",
+        "examples": ["Toyota Prius Prime", "BMW 330e", "Volvo XC60 Recharge", "Kia Niro PHEV", "Hyundai Tucson PHEV"]
+      },
+      {
+        "name": "HEV (하이브리드)",
+        "description": "Hybrid Electric Vehicle의 약자로, 전기 모터와 내연기관을 모두 사용하지만 외부 충전이 불가능한 차량",
+        "examples": ["Toyota Camry Hybrid", "Honda Accord Hybrid", "Hyundai Sonata Hybrid", "Kia K8 Hybrid", "Toyota Corolla Hybrid"]
+      },
+      {
+        "name": "FCEV (수소연료전지차)",
+        "description": "Fuel Cell Electric Vehicle의 약자로, 수소와 산소를 결합하여 전기를 생산하는 연료전지를 활용한 전기차",
+        "examples": ["Hyundai NEXO", "Toyota Mirai", "Honda Clarity Fuel Cell"]
+      }
+    ],
+    "source": "International Energy Agency (IEA), Electric Vehicle Definitions and Classification 2024"
+  },
+  "history": {
+    "timeline": [
+      {
+        "period": "1830s",
+        "event": "초기 전기차 개발",
+        "description": "스코틀랜드의 로버트 앤더슨과 미국의 토마스 다벤포트가 초기 전기차 모델 개발"
+      },
+      {
+        "period": "1890s",
+        "event": "전기차의 골든 에이지",
+        "description": "전기차가 증기차와 가소린 차량보다 인기. 에디슨과 포드의 전기차 발전 노력"
+      },
+      {
+        "period": "1910s - 1990s",
+        "event": "내연기관차의 도만과 전기차의 침체",
+        "description": "가소린 가격 하락, 향상된 도로 인프라, 대량 생산 시스템으로 내연기관차가 주요 운송수단으로 자리잡음"
+      },
+      {
+        "period": "1997",
+        "event": "토요타 프리우스 출시",
+        "description": "세계 최초의 대량 생산 하이브리드 전기차"
+      },
+      {
+        "period": "2008",
+        "event": "테슬라 로드스터 출시",
+        "description": "현대적 고성능 순수 전기차의 새로운 시대를 열었으며, 전기차의 이미지를 놀라운 고성능 스포츠카로 변화"
+      },
+      {
+        "period": "2010s",
+        "event": "전기차 재부활과 정부 지원",
+        "description": "기후변화 대응, 다양한 모델 출시, 경제적 인센티브, 충전 인프라 확대"
+      },
+      {
+        "period": "2017",
+        "event": "테슬라 모델 3 출시",
+        "description": "전기차의 대중화를 이끌어낸 가격 경쟁력 있는 전기차 모델"
+      },
+      {
+        "period": "2020s",
+        "event": "전기차 산업의 폭발적 성장",
+        "description": "대부분의 자동차 제조업체가 순수 전기차 모델 출시, 전동화 전환 계획 발표"
+      },
+      {
+        "period": "2024-2025",
+        "event": "가격 트리거 포인트 발생",
+        "description": "전기차 가격이 내연기관차와 동등한 수준에 도달하는 트리거 포인트에 도달하며 전기차 산업 및 사용이 급속히 확대"
+      }
+    ],
+    "source": "Electric Vehicle Historical Association; International Energy Agency (IEA), EV History and Development Timeline"
+  },
+  "globalStatus": {
+    "totalEvs": {
+      "value": 35,
+      "unit": "백만 대",
+      "year": 2024,
+      "growth": "+42% (2023년 대비)"
+    },
+    "marketPenetration": {
+      "value": 19,
+      "unit": "%",
+      "description": "전체 자동차 판매에서 전기차가 차지하는 비율",
+      "year": 2024
+    },
+    "charging": {
+      "publicChargers": {
+        "value": 2.7,
+        "unit": "백만 기",
+        "year": 2024
+      },
+      "fastChargers": {
+        "value": 1.25,
+        "unit": "백만 기",
+        "description": "50kW 이상의 급속 충전기",
+        "year": 2024
+      }
+    },
+    "leadership": {
+      "countries": [
+        {
+          "name": "노르웨이",
+          "evShare": 87,
+          "unit": "%",
+          "description": "신차 판매 전기차 점유율",
+          "year": 2024
+        },
+        {
+          "name": "스웨덴",
+          "evShare": 59,
+          "unit": "%",
+          "description": "신차 판매 전기차 점유율",
+          "year": 2024
+        },
+        {
+          "name": "네덜란드",
+          "evShare": 48,
+          "unit": "%",
+          "description": "신차 판매 전기차 점유율",
+          "year": 2024
+        },
+        {
+          "name": "중국",
+          "evShare": 32,
+          "unit": "%",
+          "description": "신차 판매 전기차 점유율",
+          "year": 2024
+        },
+        {
+          "name": "독일",
+          "evShare": 28,
+          "unit": "%",
+          "description": "신차 판매 전기차 점유율",
+          "year": 2024
+        },
+        {
+          "name": "한국",
+          "evShare": 15,
+          "unit": "%",
+          "description": "신차 판매 전기차 점유율",
+          "year": 2024
+        },
+        {
+          "name": "미국",
+          "evShare": 10,
+          "unit": "%",
+          "description": "신차 판매 전기차 점유율",
+          "year": 2024
+        }
+      ]
+    },
+    "source": "International Energy Agency (IEA), Global EV Outlook 2024; BloombergNEF Electric Vehicle Outlook 2024"
+  },
+  "advantages": [
+    {
+      "category": "환경적",
+      "items": [
+        {
+          "name": "온실가스 배출 감소",
+          "description": "순수 전기차는 주행 중 배기가스를 배출하지 않음"
+        },
+        {
+          "name": "대기오염 감소",
+          "description": "도심 지역의 대기질 향상에 기여"
+        },
+        {
+          "name": "소음 오염 감소",
+          "description": "내연기관체보다 작동 소음이 현저히 적어 소음 오염 감소"
+        }
+      ]
+    },
+    {
+      "category": "경제적",
+      "items": [
+        {
+          "name": "연료 비용 절감",
+          "description": "전기는 가소린이나 디젤보다 연료 효율이 높고 가격이 저렴함"
+        },
+        {
+          "name": "유지보수 비용 감소",
+          "description": "내연기관체보다 적은 운동 부품과 단순한 구조"
+        },
+        {
+          "name": "정부 인센티브",
+          "description": "국가에 따라 세금 혜택, 보조금, 등록비 감면 등 제공"
+        }
+      ]
+    },
+    {
+      "category": "기술적",
+      "items": [
+        {
+          "name": "최대 토크 비용",
+          "description": "전기 모터는 즉시 최대 토크 발생 가능"
+        },
+        {
+          "name": "낮은 무게 중심",
+          "description": "배터리가 바닥에 위치하여 안정성 향상"
+        },
+        {
+          "name": "스마트 기능 통합",
+          "description": "연결성, 소프트웨어 업데이트, 자율주행 기술과의 우수한 통합"
+        }
+      ]
+    }
+  ],
+  "challenges": [
+    {
+      "category": "인프라",
+      "items": [
+        {
+          "name": "충전 인프라 부족",
+          "description": "내연기관차에 비해 아직 충분한 충전 인프라 부족"
+        },
+        {
+          "name": "충전 시간",
+          "description": "기존 주유에 비해 일반적으로 더 긴 에너지 충전 시간 필요"
+        },
+        {
+          "name": "전력망 용량",
+          "description": "전기차 대중화에 따른 전력망 인프라 용량 확장 필요"
+        }
+      ]
+    },
+    {
+      "category": "경제적",
+      "items": [
+        {
+          "name": "초기 구매 가격",
+          "description": "내연기관차에 비해 아직 높은 초기 구매 가격"
+        },
+        {
+          "name": "배터리 교체 비용",
+          "description": "장기적 사용 후 배터리 교체 비용이 상당함"
+        },
+        {
+          "name": "중고차 가치 하락",
+          "description": "배터리 성능 저하에 따른 중고차 가치 하락 우려"
+        }
+      ]
+    },
+    {
+      "category": "기술적",
+      "items": [
+        {
+          "name": "주행 거리",
+          "description": "일부 소비자에게 주행 거리 불안(range anxiety) 문제 존재"
+        },
+        {
+          "name": "기후 영향",
+          "description": "매우 추운 날씨에는 배터리 성능 저하 가능"
+        },
+        {
+          "name": "보편화 과제",
+          "description": "다양한 차량 세그먼트에서 전기화 보편화 필요"
+        }
+      ]
+    }
+  ],
+  "keyMetrics": {
+    "comparisons": [
+      {
+        "metric": "연료 효율",
+        "ev": "3-4 miles/kWh",
+        "ice": "25-30 miles/gallon",
+        "comparison": "EV 효율 70-80% 더 높음"
+      },
+      {
+        "metric": "연료 비용 (100km 당)",
+        "ev": "$2-4",
+        "ice": "$8-12",
+        "comparison": "EV가 약 60-70% 더 저렴함"
+      },
+      {
+        "metric": "최대 주행 거리",
+        "ev": "250-600 km",
+        "ice": "500-900 km",
+        "comparison": "ICE가 약 30-40% 더 긴 주행 가능"
+      },
+      {
+        "metric": "에너지 충전 시간",
+        "ev": "30분-10시간",
+        "ice": "3-5분",
+        "comparison": "ICE가 평균 10배 빠름"
+      },
+      {
+        "metric": "유지보수 필요 부품 수",
+        "ev": "약 20-30개",
+        "ice": "약 200-300개",
+        "comparison": "EV 유지보수 필요성 약 90% 감소"
+      }
+    ],
+    "source": "U.S. Department of Energy, Alternative Fuels Data Center; International Energy Agency (IEA), EV Performance Metrics 2024"
+  },
+  "keyTechnologies": {
+    "batteryTrends": {
+      "energyDensity": {
+        "years": [2010, 2015, 2020, 2024],
+        "values": [100, 150, 200, 270],
+        "unit": "Wh/kg",
+        "description": "배터리 에너지 밀도 증가 추세"
+      },
+      "cost": {
+        "years": [2010, 2015, 2020, 2024],
+        "values": [1000, 550, 180, 120],
+        "unit": "USD/kWh",
+        "description": "배터리 팩 비용 감소 추세"
+      },
+      "chemistry": [
+        {
+          "name": "NMC (Nickel Manganese Cobalt)",
+          "share": 52,
+          "unit": "%",
+          "trend": "놀은 에너지 밀도로 인해 계속 증가하지만 코발트 의존성 문제"
+        },
+        {
+          "name": "LFP (Lithium Iron Phosphate)",
+          "share": 38,
+          "unit": "%",
+          "trend": "비용 결재 특성으로 비중 증가 체제"
+        },
+        {
+          "name": "NCA (Nickel Cobalt Aluminum)",
+          "share": 7,
+          "unit": "%",
+          "trend": "비용 결재 특성으로 비중 감소 체제로 전환되는 경향, 리튬 황 배터리로 의고 혹도"
+        },
+        {
+          "name": "Other",
+          "share": 3,
+          "unit": "%",
+          "trend": "소디웄 이온 배터리 포함 개발중인 다양한 기술"
+        }
+      ]
+    },
+    "source": "BloombergNEF Battery Technology Outlook 2024; International Energy Agency (IEA), Battery Technology Report 2024"
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "metadata": {
+    "title": "전기차 미래 전망 데이터",
+    "description": "전기차 기술의 미래 발전 방향, 산업 전망, 자율주행과의 연계, 스마트 시티 통합 등에 대한 데이터",
+    "lastUpdated": "2025-05-21",
+    "version": "1.0"
+  },
+  "marketProjections": {
+    "globalMarketShare": {
+      "years": [2020, 2025, 2030, 2035, 2040],
+      "evShare": [4, 19, 45, 75, 92],
+      "iceShare": [96, 81, 55, 25, 8],
+      "unit": "%",
+      "source": "BloombergNEF Long-Term Electric Vehicle Outlook 2024"
+    },
+    "automotiveTransformation": {
+      "metrics": [
+        {
+          "name": "전기차 전용 자동차 플랫폼 회사 수",
+          "years": [2020, 2025, 2030],
+          "values": [2, 14, 32],
+          "unit": "개"
+        },
+        {
+          "name": "자동차 생산업체 전기차 R&D 투자비율",
+          "years": [2020, 2025, 2030],
+          "values": [15, 48, 78],
+          "unit": "%"
+        },
+        {
+          "name": "주요 자동차 부품 업체 전기차 삼산 이행률",
+          "years": [2020, 2025, 2030],
+          "values": [9, 35, 70],
+          "unit": "%"
+        }
+      ],
+      "source": "McKinsey & Company, Future of Automotive and Mobility 2024"
+    }
+  },
+  "technologyTrends": {
+    "batteryTechnology": {
+      "technologies": [
+        {
+          "name": "고체 전해질 배터리",
+          "description": "기존 액체 전해질을 고체로 대체한 다음 세대 배터리",
+          "expectedMarketIntroduction": 2026,
+          "expectedMassProduction": 2028,
+          "benefits": [
+            "더 높은 에너지 밀도 (350-400 Wh/kg)",
+            "더 빠른 충전 속도 (10분 이하의 전충전)",
+            "개선된 안전성 (배터리 화재 위험 감소)",
+            "더 긴 사용 수명 (2000+ 사이클)"
+          ],
+          "challenges": [
+            "생산 공정 복잡성",
+            "초기 생산 비용 높음",
+            "일부 기술적 문제 해결 필요"
+          ],
+          "companies": [
+            "QuantumScape",
+            "Solid Power",
+            "Samsung SDI",
+            "Toyota",
+            "LG Energy Solution"
+          ]
+        },
+        {
+          "name": "소디움 이온 배터리",
+          "description": "리튬 대신 소디움을 사용하는 비용효율적 대체 기술",
+          "expectedMarketIntroduction": 2025,
+          "expectedMassProduction": 2027,
+          "benefits": [
+            "리튬보다 더 많은 자원 (30-50% 더 저렴한 비용)",
+            "비슷한 에너지 밀도",
+            "더 마일드한 환경 영향"
+          ],
+          "challenges": [
+            "리튬보다 낮은 에너지 밀도",
+            "처음 받아들이는 데 시간 소요",
+            "기술적 문제 해결 필요"
+          ],
+          "companies": [
+            "CATL",
+            "Natron Energy",
+            "Faradion"
+          ]
+        },
+        {
+          "name": "리튬-황 배터리",
+          "description": "서비스 가능한 주차 범위에 대폭적인 발전을 제공하는 고성능 기술",
+          "expectedMarketIntroduction": 2024,
+          "expectedMassProduction": 2026,
+          "benefits": [
+            "매우 높은 에너지 밀도 (500-600 Wh/kg)",
+            "더 가벼운 배터리",
+            "더 긴 주행거리"
+          ],
+          "challenges": [
+            "황은 불안정한 요소",
+            "주기적인 충전 필요",
+            "개발 초기 단계"
+          ],
+          "companies": [
+            "OXIS Energy",
+            "Sion Power",
+            "Lyten"
+          ]
+        }
+      ],
+      "source": "International Energy Agency (IEA), The Future of EV Batteries 2024; BloombergNEF Battery Technology Outlook 2024"
+    },
+    "chargingInnovations": {
+      "technologies": [
+        {
+          "name": "무선 충전 시스템",
+          "description": "케이블 없이 트렌스포머 코일을 통한 충전 방식",
+          "status": "합스 있는 것 같음",
+          "expectedMarketIntroduction": 2024,
+          "power": {
+            "current": "11-22 kW",
+            "projected2030": "50-100 kW"
+          },
+          "benefits": [
+            "케이블 없이도 충전 가능",
+            "자동화된 충전 시스템",
+            "물과 전기 접촉 방지"
+          ],
+          "challenges": [
+            "높은 초기 비용",
+            "당분간 낮은 효율",
+            "표준화 하는데 시간 필요"
+          ]
+        },
+        {
+          "name": "동적 전력 전송 (Dynamic Wireless Charging)",
+          "description": "주행 중 도로에 내장된 코일을 통한 충전 방식",
+          "status": "실험실 개발중(laboratory stage)",
+          "expectedMarketIntroduction": 2028,
+          "power": {
+            "current": "20 kW (실험실)",
+            "projected2030": "100-200 kW (실제 적용 시)"
+          },
+          "benefits": [
+            "주행 중 지속적 충전",
+            "배터리 사이즈 축소 가능",
+            "전기산업 발전에 기여"
+          ],
+          "challenges": [
+            "대규모 인프라 필요",
+            "엄청난 초기 비용",
+            "표준화 및 배포 문제"
+          ]
+        },
+        {
+          "name": "급속 충전 기술 (Ultra-Fast Charging)",
+          "description": "350kW 이상의 충전 속도로 5-10분 내 80% 충전 가능",
+          "status": "일부 적용 중, 계속 발전",
+          "expectedMarketIntroduction": 2025,
+          "power": {
+            "current": "350 kW",
+            "projected2030": "1 MW+"
+          },
+          "benefits": [
+            "내연기관차와 비슷한 주유 경험",
+            "주행거리 불안 감소",
+            "충전 대기 시간 대폭 축소"
+          ],
+          "challenges": [
+            "대폭적인 그리드 마지할필요",
+            "생넥 체인에 적응이 필요함",
+            "모든 차량이 이 투자할 필요"
+          ]
+        }
+      ],
+      "source": "Electric Vehicle Charging Infrastructure Market Outlook 2025"
+    }
+  },
+  "autonomyIntegration": {
+    "evAutonomyTimeline": {
+      "levels": [
+        {
+          "level": "Level 2+ (Enhanced Driver Assistance)",
+          "description": "스티어링, 가속, 제동 기능 동시 제공, 드라이버 지속 감독 필요",
+          "massMarketYear": 2024,
+          "currentPenetration": "15% of new EVs",
+          "projectedPenetration2030": "55-65%"
+        },
+        {
+          "level": "Level 3 (Conditional Automation)",
+          "description": "특정 조건에서 자율주행, 계속 비지속적 감시 필요",
+          "massMarketYear": 2026,
+          "currentPenetration": "2% of new EVs",
+          "projectedPenetration2030": "25-35%"
+        },
+        {
+          "level": "Level 4 (High Automation)",
+          "description": "특정 지역 또는 조건에서 완전 자율주행 가능",
+          "massMarketYear": 2029,
+          "currentPenetration": "Testing phase",
+          "projectedPenetration2030": "5-10%"
+        },
+        {
+          "level": "Level 5 (Full Automation)",
+          "description": "모든 조건에서 완전 자율주행 가능",
+          "massMarketYear": "2035+",
+          "currentPenetration": "N/A",
+          "projectedPenetration2030": "Limited testing"
+        }
+      ],
+      "source": "McKinsey & Company, Autonomous Driving Vehicle Market Outlook 2024"
+    },
+    "synergies": [
+      {
+        "name": "공유 운송 충전 네트워크",
+        "description": "자율주행 차량이 자동으로 충전소로 운행하여 충전 후 다음 사용자에게 배치",
+        "expectedImplementation": 2027,
+        "benefits": [
+          "플리트 운영 시간 및 비용 절감",
+          "차량 운용율 증가",
+          "차량 수 추가 없이 더 많은 사용자 지원"
+        ]
+      },
+      {
+        "name": "V2G (Vehicle-to-Grid) 자동화",
+        "description": "자율 전기차가 전력망과 연결하여 자동으로 전력 공급 및 저장",
+        "expectedImplementation": 2026,
+        "benefits": [
+          "전력망 안정화",
+          "소유주 추가 수익 발생",
+          "신재생에너지 활용도 증가"
+        ]
+      },
+      {
+        "name": "스마트 충전 어시스턴트",
+        "description": "자율주행 차량이 최적의 충전 시간과 위치를 자동으로 계획",
+        "expectedImplementation": 2025,
+        "benefits": [
+          "충전 스트레스 및 불편 감소",
+          "충전 시간 및 비용 최소화",
+          "사용자 경험 개선"
+        ]
+      }
+    ],
+    "source": "Autonomous Vehicle and EV Integration Report 2024"
+  },
+  "smartCityIntegration": {
+    "concepts": [
+      {
+        "name": "전기차 기반 스마트 그리드",
+        "description": "전기차 플리트가 도시 전력망의 분산형 저장 시스템으로 기능",
+        "timeframe": "2026-2030",
+        "pilotCities": ["Stockholm", "Singapore", "Portland", "Amsterdam", "Seoul"],
+        "benefits": [
+          "전력망 피크 로드 관리",
+          "비상 백업 전력 제공",
+          "초과 에너지 저장 및 활용",
+          "전기차 소유자 추가 수익 발생"
+        ]
+      },
+      {
+        "name": "통합 모빌리티 허브",
+        "description": "전기차 사용, 공유, 충전, 수리를 위한 통합 센터",
+        "timeframe": "2025-2028",
+        "pilotCities": ["Paris", "Barcelona", "Tokyo", "San Francisco", "Copenhagen"],
+        "benefits": [
+          "운송 활용도 증가",
+          "도시 교통 혼잡 감소",
+          "카이티 위치에서 캡슐호텔도 가능",
+          "추가 소매를 통한 결합 특성"
+        ]
+      },
+      {
+        "name": "전기차 기반 할당 모빌리티 시스템",
+        "description": "인구학적 및 새로운 지역 요구사항에 따라 자동으로 운행 요소를 충전하는 시스템, 새로운 버스 노선 등 설립",
+        "timeframe": "2027-2032",
+        "pilotCities": ["Helsinki", "Vienna", "Zurich", "Oslo", "Melbourne"],
+        "benefits": [
+          "도시 교통 퍼플리스 감소",
+          "저실용 지역 포함한 교통 실용화",
+          "특정 피크 시간대 조정",
+          "대기오염 및 소음 감소"
+        ]
+      }
+    ],
+    "source": "Smart Cities World Council, EV Integration Roadmap 2024"
+  }
+}

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 350 280" xmlns="http://www.w3.org/2000/svg">
+  <title>전기차 모터 및 구동 시스템</title>
+  <desc>전기 모터, 기어박스, 구동축, 전력 흐름을 나타내는 아이콘</desc>
+  
+  <!-- 배경 원형 베이스 -->
+  <circle cx="175" cy="140" r="120" fill="#f1faee" stroke="#2a9d8f" stroke-width="3" opacity="0.1"/>
+  
+  <!-- 전기 모터 본체 -->
+  <g id="electric-motor">
+    <!-- 모터 하우징 (외장) -->
+    <circle cx="120" cy="140" r="45" fill="#2a9d8f" stroke="#1e7068" stroke-width="3"/>
+    
+    <!-- 모터 내부 자석 구조 -->
+    <circle cx="120" cy="140" r="35" fill="#457b9d" stroke="#1d3557" stroke-width="2"/>
+    
+    <!-- 로터 코어 -->
+    <circle cx="120" cy="140" r="15" fill="#e63946" stroke="#333333" stroke-width="2"/>
+    
+    <!-- 자석 폴 (N/S) -->
+    <path d="M 105 125 A 15 15 0 0 1 135 125" fill="#1d3557" stroke="#333333" stroke-width="1"/>
+    <path d="M 105 155 A 15 15 0 0 0 135 155" fill="#4db6a9" stroke="#333333" stroke-width="1"/>
+    
+    <!-- N/S 마킹 -->
+    <text x="115" y="132" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" font-weight="bold">N</text>
+    <text x="125" y="150" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" font-weight="bold">S</text>
+    
+    <!-- 모터 연결 단자 -->
+    <rect x="110" y="95" width="20" height="10" rx="2" fill="#333333"/>
+    <text x="120" y="102" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="6" fill="#ffffff">AC</text>
+  </g>
+  
+  <!-- 기어박스 시스템 -->
+  <g id="gearbox">
+    <!-- 기어박스 하우징 -->
+    <rect x="170" y="110" width="80" height="60" rx="8" ry="8" 
+          fill="#457b9d" stroke="#1d3557" stroke-width="2"/>
+    
+    <!-- 대형 기어 (입력) -->
+    <circle cx="190" cy="140" r="18" fill="#a8dadc" stroke="#457b9d" stroke-width="2"/>
+    
+    <!-- 대형 기어 이방 -->
+    <g stroke="#1d3557" stroke-width="1" fill="none">
+      <line x1="180" y1="130" x2="200" y2="150"/>
+      <line x1="185" y1="125" x2="195" y2="155"/>
+      <line x1="190" y1="122" x2="190" y2="158"/>
+      <line x1="195" y1="125" x2="185" y2="155"/>
+      <line x1="200" y1="130" x2="180" y2="150"/>
+    </g>
+    
+    <!-- 소형 기어 (출력) -->
+    <circle cx="220" cy="140" r="12" fill="#2a9d8f" stroke="#1e7068" stroke-width="2"/>
+    
+    <!-- 소형 기어 이방 -->
+    <g stroke="#333333" stroke-width="1" fill="none">
+      <line x1="215" y1="133" x2="225" y2="147"/>
+      <line x1="218" y1="130" x2="222" y2="150"/>
+      <line x1="220" y1="128" x2="220" y2="152"/>
+      <line x1="222" y1="130" x2="218" y2="150"/>
+      <line x1="225" y1="133" x2="215" y2="147"/>
+    </g>
+    
+    <!-- 기어 비율 표시 -->
+    <text x="205" y="165" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="6" fill="#1d3557" font-weight="bold">9.6:1</text>
+  </g>
+  
+  <!-- 구동축 시스템 -->
+  <g id="drive-shaft">
+    <!-- 메인 구동축 -->
+    <rect x="255" y="137" width="60" height="6" fill="#333333"/>
+    
+    <!-- CV 조인트 (왼쪽) -->
+    <circle cx="260" cy="140" r="8" fill="#e63946" stroke="#333333" stroke-width="2"/>
+    <rect x="256" y="136" width="8" height="8" fill="#333333"/>
+    
+    <!-- CV 조인트 (오른쪽) -->
+    <circle cx="310" cy="140" r="8" fill="#e63946" stroke="#333333" stroke-width="2"/>
+    <rect x="306" y="136" width="8" height="8" fill="#333333"/>
+    </g>
+    
+    <!-- 전력 플로우 표시 -->
+    <g id="power-flow">
+    <!-- 전력 입력 화살표 -->
+    <path d="M 80 120 L 105 120 L 100 115 M 105 120 L 100 125" 
+          stroke="#e63946" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="75" y="115" font-family="Arial, sans-serif" 
+          font-size="8" fill="#e63946" font-weight="bold">AC Power</text>
+    
+    <!-- 모터-기어박스 연결 -->
+    <rect x="160" y="137" width="15" height="6" fill="#333333"/>
+    
+    <!-- 회전 방향 표시 -->
+    <g id="rotation-indicators">
+      <!-- 모터 회전 -->
+      <path d="M 105 125 A 10 10 0 0 1 125 125" 
+            stroke="#4db6a9" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+      
+      <!-- 기어 회전 -->
+      <path d="M 175 135 A 8 8 0 0 1 185 135" 
+            stroke="#2a9d8f" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+      <path d="M 225 135 A 6 6 0 0 0 215 135" 
+            stroke="#2a9d8f" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+    </g>
+    </g>
+    
+    <!-- 회전 화살표 마커 정의 -->
+    <defs>
+    <marker id="arrowhead" markerWidth="6" markerHeight="4" 
+            refX="6" refY="2" orient="auto">
+      <polygon points="0 0, 6 2, 0 4" fill="#2a9d8f"/>
+    </marker>
+    </defs>
+    
+    <!-- 성능 지표 -->
+    <g id="performance-indicators">
+    <!-- 출력 표시 -->
+    <rect x="60" y="200" width="80" height="35" rx="5" ry="5" 
+          fill="#a8dadc" stroke="#457b9d" stroke-width="2" opacity="0.9"/>
+    
+    <text x="100" y="215" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="8" fill="#1d3557" font-weight="bold">Power Output</text>
+    <text x="100" y="225" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="10" fill="#2a9d8f" font-weight="bold">200 kW</text>
+    
+    <!-- 토크 표시 -->
+    <rect x="210" y="200" width="80" height="35" rx="5" ry="5" 
+          fill="#a8dadc" stroke="#457b9d" stroke-width="2" opacity="0.9"/>
+    
+    <text x="250" y="215" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="8" fill="#1d3557" font-weight="bold">Torque</text>
+    <text x="250" y="225" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="10" fill="#2a9d8f" font-weight="bold">400 Nm</text>
+    </g>
+    
+    <!-- 효율 지표 -->
+    <g id="efficiency-indicator">
+    <!-- 효율 막대 -->
+    <rect x="120" y="195" width="110" height="8" rx="4" fill="#333333" opacity="0.3"/>
+    <rect x="122" y="197" width="99" height="4" rx="2" fill="#2a9d8f"/>
+    
+    <text x="175" y="215" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="8" fill="#1d3557" font-weight="bold">Efficiency: 95%</text>
+    </g>
+    
+    <!-- 시스템 사양 정보 -->
+    <g id="system-specs">
+    <text x="175" y="250" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="12" fill="#2a9d8f" font-weight="bold">Electric Motor System</text>
+    <text x="175" y="265" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="8" fill="#457b9d">Permanent Magnet Synchronous Motor</text>
+    <text x="175" y="275" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="8" fill="#1d3557">Water Cooled | Single Speed Reduction</text>
+    </g>
+    
+    </svg>

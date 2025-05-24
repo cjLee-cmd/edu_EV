@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전기차 환경 영향 - 교육용 웹사이트</title>
+    <meta name="description" content="전기차가 환경에 미치는 영향, 탄소 배출량 비교, 생애주기 분석 등에 대한 종합적인 정보를 제공합니다.">
+    <meta name="keywords" content="전기차 환경 영향, 탄소 배출량, 생애주기 분석, 지속가능성, 환경적 영향">
+    <meta name="author" content="전기차 교육 플랫폼">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#198754">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+<body>
+    <!-- 헤더 영역 -->
+    <header class="bg-success bg-gradient text-white py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="site-title"><a href="index.html" class="text-white text-decoration-none">전기차 현황</a></h1>
+                    <p class="site-description mb-0">지속 가능한 미래를 위한 교육 플랫폼</p>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                                        <img src="assets/images/header-illustration.svg" alt="전기차 일러스트레이션" class="img-fluid header-image" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 네비게이션 영역 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="네비게이션 토글">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="technologies.html">기술</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="market.html">시장 동향</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="environment.html">환경 영향</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="future.html">미래 전망</a>
+                    </li>
+                </ul>
+                </div>
+                </div>
+                </nav>
+                
+                <!-- 메인 콘텐츠 영역 -->
+                <main class="py-5">
+                    <!-- 페이지 소개 섹션 -->
+                    <section class="container mb-5">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <h2 class="mb-4">전기차와 환경</h2>
+                                <p class="lead">전기차는 지구 온난화와 대기 오염을 줄이는 큰 잠재력을 가지고 있지만, 전체 생애주기 관점에서 다양한 환경 영향을 고려해야 합니다.</p>
+                                <p>희소기체 배출부터 배터리 장수기한까지 전기차의 환경적 영향을 종합적으로 이해하는 것은 지속 가능한 미래를 구축하는 데 필수적인 요소입니다.</p>
+                            </div>
+                            <div class="col-lg-4 mt-4 mt-lg-0">
+                                <div class="card border-success">
+                                    <div class="card-header bg-success text-white">
+                                        <h3 class="h5 mb-0">중요 환경 영향 요소</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">탄소 배출량 감소</li>
+                                <li class="list-group-item">대기 오염물질 저감</li>
+                                <li class="list-group-item">자원 채굴과 소비</li>
+                                <li class="list-group-item">배터리 생산과 폐기</li>
+                                <li class="list-group-item">소음 오염 감소</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- 탄소 배출 비교 섹션 -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="mb-4 text-center">전기차 vs 내연기관 차량: 탄소 배출 비교</h2>
+                <div class="row align-items-center">
+                    <div class="col-lg-5 mb-4 mb-lg-0">
+                        <p>전기차는 운행 시 직접적인 배기가스를 배출하지 않지만, 전체 생애주기 관점에서는 배터리 생산과 전력 발전원을 고려해야 합니다. 하지만 대부분의 연구에서 전기차는 내연기관 차량보다 전체 탄소 배출이 상당히 적은 것으로 나타납니다.</p>
+                        <div class="mb-3 mt-4">
+                            <h4 class="h5">나라별 전력원 핵스에 따른 차이</h4>
+                            <p>전력 생산 방식에 따라 전기차의 탄소 배출양은 크게 달라집니다. 예를 들어, 수력, 태양광, 핵발전 비중이 높은 나라의 전기차는 석탄 발전 위주인 나라보다 환경적 혼소풍이 더 크게 나타납니다.</p>
+                        </div>
+                        <a href="#carbon-calculator" class="btn btn-success">탄소 배출 계산기 사용해보기</a>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="chart-container" style="position: relative; height:400px;">
+                            <canvas id="carbonComparisonChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 탄소 배출 계산기 섹션 -->
+        <section id="carbon-calculator" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="mb-4 text-center">개인 맞춤형 탄소 배출 계산기</h2>
+                <p class="text-center text-muted mb-5">귀하의 차량 사용 패턴에 맞는 탄소 배출량을 계산해보세요</p>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <h4 class="card-title mb-0"><i class="bi bi-calculator me-2"></i>탄소 배출량 계산</h4>
+                            </div>
+                            <div class="card-body">
+                                <form id="co2-calculator-form" role="form" aria-label="탄소 배출량 계산기">
+                                    <fieldset>
+                                        <legend class="visually-hidden">차량 정보 입력</legend>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="vehicle-type" class="form-label fw-bold">차량 유형</label>
+                                                <select class="form-select" id="vehicle-type" required 
+                                                        aria-required="true" aria-describedby="vehicle-type-help">
+                                                    <option value="">차량 유형을 선택하세요</option>
+                                                    <option value="ev">순수 전기차 (BEV)</option>
+                                                    <option value="phev">플러그인 하이브리드 (PHEV)</option>
+                                                    <option value="hev">하이브리드 (HEV)</option>
+                                                    <option value="ice">내연기관 차량 (ICE)</option>
+                                                </select>
+                                                <div id="vehicle-type-help" class="form-text" role="note">
+                                                    귀하가 운전하는 차량의 동력 원을 선택해주세요
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="power-source" class="form-label fw-bold">전력원 (전기차만 해당)</label>
+                                                <select class="form-select" id="power-source" aria-describedby="power-source-help">
+                                                    <option value="mixed">일반 전력망 (혼합)</option>
+                                                    <option value="renewable">재생에너지 위주</option>
+                                                    <option value="fossil">화석연료 위주</option>
+                                                </select>
+                                                <div id="power-source-help" class="form-text" role="note">
+                                                    전기차가 아닌 경우 이 설정은 무시됩니다
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="annual-distance" class="form-label fw-bold">연간 주행거리 (km)</label>
+                                            <input type="number" class="form-control" id="annual-distance" 
+                                                   placeholder="예: 15000" min="1" max="100000" required
+                                                   aria-required="true" aria-describedby="distance-help distance-range">
+                                            <div id="distance-help" class="form-text" role="note">
+                                                일반적으로 한국 운전자는 연간 12,000-20,000km 주행합니다
+                                            </div>
+                                            <div id="distance-range" class="form-text text-muted small" role="note">
+                                                입력 범위: 1km - 100,000km
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success btn-lg" 
+                                                aria-describedby="calculate-help">
+                                            <i class="bi bi-calculator me-2" aria-hidden="true"></i>탄소 배출량 계산하기
+                                        </button>
+                                        <div id="calculate-help" class="form-text mt-2" role="note">
+                                            입력한 정보를 바탕으로 연간 탄소 배출량을 계산합니다
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- 결과 표시 영역 -->
+                        <div id="calculator-results" class="mt-4" 
+                             role="region" aria-label="계산 결과" 
+                             aria-live="polite" aria-atomic="true"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 데이터 사용량 계산기 섹션 -->
+        <section id="data-usage-calculator" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="mb-4 text-center">휴대폰 데이터 사용량 계산기</h2>
+                <p class="text-center text-muted mb-5">데이터 사용량에 따른 전기 사용량과 전기료를 계산해보세요</p>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="card-title mb-0"><i class="bi bi-phone me-2"></i>데이터 사용량 계산</h4>
+                            </div>
+                            <div class="card-body">
+                                <form id="data-usage-calculator-form" role="form" aria-label="데이터 사용량 계산기">
+                                    <fieldset>
+                                        <legend class="visually-hidden">데이터 사용량 정보 입력</legend>
+                                        <div class="mb-4">
+                                            <label for="data-usage-amount" class="form-label fw-bold">월간 데이터 사용량 (GB)</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="data-usage-amount" 
+                                                       placeholder="예: 50" min="1" max="1000" required
+                                                       aria-required="true" aria-describedby="data-usage-help data-usage-range">
+                                                <span class="input-group-text">GB</span>
+                                            </div>
+                                            <div id="data-usage-help" class="form-text" role="note">
+                                                일반적으로 한국 사용자는 월간 30-100GB를 사용합니다
+                                            </div>
+                                            <div id="data-usage-range" class="form-text text-muted small" role="note">
+                                                입력 범위: 1GB - 1,000GB
+                                            </div>
+                                            
+                                            <!-- 데이터 사용량 슬라이더 -->
+                                            <div class="mt-3">
+                                                <label for="data-usage-slider" class="form-label small">빠른 선택</label>
+                                                <input type="range" class="form-range" id="data-usage-slider" 
+                                                       min="1" max="1000" value="50" 
+                                                       aria-describedby="slider-help">
+                                                <div class="d-flex justify-content-between text-muted small">
+                                                    <span>1GB</span>
+                                                    <span>500GB</span>
+                                                    <span>1000GB</span>
+                                                </div>
+                                                <div id="slider-help" class="form-text small" role="note">
+                                                    슬라이더로 빠르게 선택할 수 있습니다
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg" 
+                                                aria-describedby="calculate-data-help">
+                                            <i class="bi bi-calculator me-2" aria-hidden="true"></i>데이터 사용량 계산하기
+                                        </button>
+                                        <div id="calculate-data-help" class="form-text mt-2" role="note">
+                                            입력한 데이터 사용량을 바탕으로 전기료와 환경 영향을 계산합니다
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- 결과 표시 영역 -->
+                        <div id="data-usage-results" class="mt-4" 
+                             role="region" aria-label="데이터 사용량 계산 결과" 
+                             aria-live="polite" aria-atomic="true"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 생애주기 분석 섹션 -->
+        <section class="container py-5">
+            <h2 class="mb-4 text-center">전기차 생애주기 분석</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="h5 mb-3">전기차 전체 생애주기 단계</h3>
+                            <div class="d-flex flex-column gap-3">
+                                <div class="lifecycle-stage">
+                                    <h4 class="h6 fw-bold">1. 원료 채굴 및 미처리</h4>
+                                    <p>리튬, 코발트, 니켜, 논, 그래파이트 등 배터리 원료 채굴과 처리 과정이 포함됩니다.</p>
+                                </div>
+                                <div class="lifecycle-stage">
+                                    <h4 class="h6 fw-bold">2. 부품 제조</h4>
+                                    <p>배터리, 모터, 전기 시스템, 차체 등 주요 부품 제조 과정의 환경 영향입니다.</p>
+                                </div>
+                                <div class="lifecycle-stage">
+                                    <h4 class="h6 fw-bold">3. 조립 및 유통</h4>
+                                    <p>차량 조립 과정과 소비자에게 유통되기까지의 환경 영향입니다.</p>
+                                </div>
+                                <div class="lifecycle-stage">
+                                    <h4 class="h6 fw-bold">4. 사용 및 운행</h4>
+                                    <p>전기차 운행에 필요한 전력 생산 및 충전 프로세스의 환경 영향입니다.</p>
+                                </div>
+                                <div class="lifecycle-stage">
+                                    <h4 class="h6 fw-bold">5. 수명 종료 및 재활용</h4>
+                                    <p>차량 폐기, 부품 재활용, 비배터리 재활용, 그리고 배터리 재활용 및 폐기의 환경 영향입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="h5 mb-3">생애주기 단계별 환경 영향</h3>
+                            <div class="chart-container" style="position: relative; height:350px;">
+                                <canvas id="lifecycleImpactChart"></canvas>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="h6 fw-bold">환경 영향 개선을 위한 노력</h4>
+                                <ul class="mt-2">
+                                    <li>배터리 기술 개선과 수명 연장</li>
+                                    <li>우수한 배터리 재활용 시스템 구축</li>
+                                    <li>주요 부품 제조 과정의 자원 절감</li>
+                                    <li>재생 가능 에너지원 전력 확대</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>전기차 현황</h5>
+                    <p class="text-muted">지속 가능한 미래를 위한 교육 플랫폼</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>링크</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-decoration-none text-white">홈</a></li>
+                        <li><a href="technologies.html" class="text-decoration-none text-white">기술</a></li>
+                        <li><a href="market.html" class="text-decoration-none text-white">시장 동향</a></li>
+                        <li><a href="environment.html" class="text-decoration-none text-white">환경 영향</a></li>
+                        <li><a href="future.html" class="text-decoration-none text-white">미래 전망</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>추가 정보</h5>
+                    <p>이 웹사이트는 전기차에 관한 교육 목적으로 제작되었으며, 가장 최신의 연구 결과와 통계를 기반으로 합니다.</p>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 small">
+                    <p class="mb-0">&copy; 2025 전기차 현황 교육 플랫폼. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end small">
+                    <a href="#" class="text-decoration-none text-white me-3">개인정보취급방침</a>
+                    <a href="#" class="text-decoration-none text-white">이용약관</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- 차트 및 계산기 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 계산기 결과 차트 인스턴스 변수
+            let resultComparisonChartInstance = null;
+            let resultImpactChartInstance = null;
+            
+            // 계산기 결과 차트 생성 함수
+            function createResultCharts(vehicleType, co2PerKm, annualCO2) {
+                // 기존 차트 인스턴스 제거
+                if (resultComparisonChartInstance) {
+                    resultComparisonChartInstance.destroy();
+                }
+                if (resultImpactChartInstance) {
+                    resultImpactChartInstance.destroy();
+                }
+                
+                // 1. 차량별 CO2 배출량 비교 바차트
+                const comparisonCtx = document.getElementById('resultComparisonChart').getContext('2d');
+                
+                // 차량 유형별 데이터 정의
+                const vehicleData = {
+                    'electric': { name: '전기차', co2: 50, color: 'rgba(40, 167, 69, 0.8)', borderColor: 'rgba(40, 167, 69, 1)' },
+                    'hybrid': { name: '하이브리드', co2: 120, color: 'rgba(23, 162, 184, 0.8)', borderColor: 'rgba(23, 162, 184, 1)' },
+                    'ice': { name: '내연기관', co2: 200, color: 'rgba(220, 53, 69, 0.8)', borderColor: 'rgba(220, 53, 69, 1)' }
+                };
+                
+                const labels = Object.values(vehicleData).map(v => v.name);
+                const data = Object.values(vehicleData).map(v => v.co2);
+                const backgroundColors = Object.values(vehicleData).map(v => v.color);
+                const borderColors = Object.values(vehicleData).map(v => v.borderColor);
+                
+                // 사용자 선택 차량 하이라이트 처리
+                const userIndex = Object.keys(vehicleData).indexOf(vehicleType);
+                if (userIndex !== -1) {
+                    backgroundColors[userIndex] = backgroundColors[userIndex].replace('0.8', '1.0');
+                }
+                
+                resultComparisonChartInstance = new Chart(comparisonCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'CO₂ 배출량 (g/km)',
+                            data: data,
+                            backgroundColor: backgroundColors,
+                            borderColor: borderColors,
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            },
+                            title: {
+                                display: true,
+                                text: '차량별 CO₂ 배출량 비교'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.label}: ${context.parsed.y}g CO₂/km`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'CO₂ 배출량 (g/km)'
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // 2. 환경 개선 효과 도넛차트
+                const impactCtx = document.getElementById('resultImpactChart').getContext('2d');
+                
+                // 내연기관 차량 대비 개선 효과 계산
+                const baselineCO2 = 200; // 내연기관 차량 기준
+                const savedCO2 = Math.max(0, baselineCO2 - co2PerKm);
+                const savedPercentage = Math.round((savedCO2 / baselineCO2) * 100);
+                const remainingPercentage = 100 - savedPercentage;
+                
+                resultImpactChartInstance = new Chart(impactCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['절약된 CO₂', '여전히 배출되는 CO₂'],
+                        datasets: [{
+                            label: '환경 개선 효과',
+                            data: [savedPercentage, remainingPercentage],
+                            backgroundColor: [
+                                'rgba(40, 167, 69, 0.8)',
+                                'rgba(220, 53, 69, 0.3)'
+                            ],
+                            borderColor: [
+                                'rgba(40, 167, 69, 1)',
+                                'rgba(220, 53, 69, 1)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            title: {
+                                display: true,
+                                text: '내연기관 대비 개선 효과'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.label}: ${context.formattedValue}%`;
+                                    }
+                                }
+                            }
+                        }
+                        }
+                        });
+                        
+                        // 인포그래픽 애니메이션 효과 시작
+                        setTimeout(() => {
+                        // 카운터 애니메이션
+                        const counters = document.querySelectorAll('.counter');
+                        counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const duration = 2000; // 2초
+                        const increment = target / (duration / 16); // 60fps
+                        let current = 0;
+                        
+                        const updateCounter = () => {
+                            if (current < target) {
+                                current += increment;
+                                counter.textContent = Math.round(current);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target;
+                            }
+                        };
+                        
+                        updateCounter();
+                        });
+                        
+                        // 프로그레스 바 애니메이션
+                        const progressBars = document.querySelectorAll('.progress-animated');
+                        progressBars.forEach(bar => {
+                        const targetWidth = bar.getAttribute('data-width');
+                        bar.style.transition = 'width 1.5s ease-out';
+                        setTimeout(() => {
+                            bar.style.width = targetWidth + '%';
+                        }, 100);
+                        });
+                        }, 300);
+                        }
+        
+            // 탄소 배출 비교 차트
+            const carbonCtx = document.getElementById('carbonComparisonChart').getContext('2d');
+            const carbonChart = new Chart(carbonCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['순수 전기차 (재생에너지)', '순수 전기차 (혼합 전력)', '순수 전기차 (화석연료 전력)', '플러그인 하이브리드', '하이브리드', '가송 자동차', '디젤 자동차'],
+                    datasets: [{
+                        label: '생애주기 탄소 배출량 (g CO₂/km)',
+                        data: [30, 70, 130, 90, 120, 170, 210],
+                        backgroundColor: [
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(40, 167, 69, 0.6)',
+                            'rgba(40, 167, 69, 0.4)',
+                            'rgba(23, 162, 184, 0.8)',
+                            'rgba(23, 162, 184, 0.6)',
+                            'rgba(220, 53, 69, 0.8)',
+                            'rgba(220, 53, 69, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(40, 167, 69, 1)',
+                            'rgba(40, 167, 69, 1)',
+                            'rgba(40, 167, 69, 1)',
+                            'rgba(23, 162, 184, 1)',
+                            'rgba(23, 162, 184, 1)',
+                            'rgba(220, 53, 69, 1)',
+                            'rgba(220, 53, 69, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '차량 유형별 전체 생애주기 탄소 배출량 비교'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'CO₂ 배출량 (g/km)'
+                            }
+                        }
+                    }
+                }
+            });
+    
+            // 생애주기 단계별 환경 영향 차트
+            const lifecycleCtx = document.getElementById('lifecycleImpactChart').getContext('2d');
+            const lifecycleChart = new Chart(lifecycleCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['원료 채굴 및 미처리', '부품 제조', '조립 및 유통', '사용 및 운행', '수명 종료 및 재활용'],
+                    datasets: [{
+                        label: '환경 영향 비율',
+                        data: [25, 35, 5, 25, 10],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        title: {
+                            display: true,
+                            text: '전기차 생애주기 단계별 환경 영향 비율'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.formattedValue}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+    
+            // CO2 배출 계산기 기능
+            const calculatorForm = document.getElementById('co2-calculator-form');
+            const calculatorResults = document.getElementById('calculator-results');
+    
+            calculatorForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 입력값 가져오기
+                const vehicleType = document.getElementById('vehicle-type').value;
+                const annualDistance = parseInt(document.getElementById('annual-distance').value);
+                const powerSource = document.getElementById('power-source').value;
+                
+                // 간단한 계산 로직 (실제 응용에서는 더 복잡한 계산이 필요합니다)
+                let co2PerKm = 0;
+                let annualCO2 = 0;
+                let comparisonText = '';
+                
+                switch(vehicleType) {
+                    case 'ev':
+                        if (powerSource === 'renewable') {
+                            co2PerKm = 30;
+                            comparisonText = '내연기관 차량 대비 약 85% 적은 배출량';
+                        } else if (powerSource === 'mixed') {
+                            co2PerKm = 70;
+                            comparisonText = '내연기관 차량 대비 약 65% 적은 배출량';
+                        } else {
+                            co2PerKm = 130;
+                            comparisonText = '내연기관 차량 대비 약 35% 적은 배출량';
+                        }
+                        break;
+                    case 'phev':
+                        co2PerKm = 90;
+                        comparisonText = '내연기관 차량 대비 약 55% 적은 배출량';
+                        break;
+                    case 'hev':
+                        co2PerKm = 120;
+                        comparisonText = '내연기관 차량 대비 약 40% 적은 배출량';
+                        break;
+                    case 'ice':
+                        co2PerKm = 200;
+                        comparisonText = '기준값 (일반 내연기관 차량)';
+                        break;
+                }
+                
+                annualCO2 = (co2PerKm * annualDistance) / 1000; // kg으로 변환
+                
+                // 결과 표시 - 차트 기반 시각화
+                calculatorResults.innerHTML = `
+                    <div class="card border-success">
+                        <div class="card-header bg-success text-white text-center">
+                            <h4 class="mb-0" role="heading" aria-level="3">
+                                <i class="bi bi-graph-up me-2" aria-hidden="true"></i>계산 결과 시각화
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- 주요 수치 요약 -->
+                            <div class="row text-center mb-4">
+                                <div class="col-md-6">
+                                    <div class="bg-light p-3 rounded">
+                                        <div class="h2 text-success mb-1">${co2PerKm}</div>
+                                        <div class="text-muted">g CO₂/km</div>
+                                        <div class="small">거리당 배출량</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bg-light p-3 rounded">
+                                        <div class="h2 text-success mb-1">${annualCO2.toFixed(1)}</div>
+                                        <div class="text-muted">kg CO₂/년</div>
+                                        <div class="small">연간 총 배출량</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 환경 이익 인포그래픽 섹션 -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h5 class="mb-3 text-center">
+                                        <i class="bi bi-award me-2 text-success" aria-hidden="true"></i>
+                                        환경 개선 효과
+                                    </h5>
+                                </div>
+                            </div>
+                            
+                            <div class="row text-center mb-4">
+                                <!-- 나무 심기 효과 -->
+                                <div class="col-md-4 mb-3">
+                                    <div class="bg-light p-3 rounded border">
+                                        <div class="mb-2">
+                                            <i class="bi bi-tree text-success display-4" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="h4 text-success mb-1">
+                                            <span class="counter" data-target="${Math.round(annualCO2 * 0.045)}">0</span>그루
+                                        </div>
+                                        <div class="text-muted small">나무 심기와 동등한 효과</div>
+                                        <div class="mt-2">
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-success progress-animated" 
+                                                     role="progressbar" 
+                                                     data-width="${Math.min(100, (annualCO2 * 0.045 / 10) * 100)}"
+                                                     style="width: 0%"
+                                                     aria-valuenow="${Math.round(annualCO2 * 0.045)}" 
+                                                     aria-valuemin="0" 
+                                                     aria-valuemax="10"
+                                                     aria-label="나무 심기 효과 진행률">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 절약 거리 효과 -->
+                                <div class="col-md-4 mb-3">
+                                    <div class="bg-light p-3 rounded border">
+                                        <div class="mb-2">
+                                            <i class="bi bi-car-front text-primary display-4" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="h4 text-primary mb-1">
+                                            <span class="counter" data-target="${Math.round((200 - co2PerKm) * annualDistance / 200)}">0</span>km
+                                        </div>
+                                        <div class="text-muted small">내연기관 대비 절약된 거리</div>
+                                        <div class="mt-2">
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-primary progress-animated" 
+                                                     role="progressbar" 
+                                                     data-width="${Math.min(100, ((200 - co2PerKm) / 200) * 100)}"
+                                                     style="width: 0%"
+                                                     aria-valuenow="${Math.round(((200 - co2PerKm) / 200) * 100)}" 
+                                                     aria-valuemin="0" 
+                                                     aria-valuemax="100"
+                                                     aria-label="탄소 절약 효과 진행률">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 에너지 효율성 -->
+                                <div class="col-md-4 mb-3">
+                                    <div class="bg-light p-3 rounded border">
+                                        <div class="mb-2">
+                                            <i class="bi bi-lightning-fill text-warning display-4" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="h4 text-warning mb-1">
+                                            <span class="counter" data-target="${Math.round(((200 - co2PerKm) / 200) * 100)}">0</span>%
+                                        </div>
+                                        <div class="text-muted small">에너지 효율성 개선</div>
+                                        <div class="mt-2">
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-warning progress-animated" 
+                                                     role="progressbar" 
+                                                     data-width="${Math.min(100, ((200 - co2PerKm) / 200) * 100)}"
+                                                     style="width: 0%"
+                                                     aria-valuenow="${Math.round(((200 - co2PerKm) / 200) * 100)}" 
+                                                     aria-valuemin="0" 
+                                                     aria-valuemax="100"
+                                                     aria-label="에너지 효율성 진행률">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 환경 효과 요약 배지 -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                                        <span class="badge bg-success fs-6 p-2">
+                                            <i class="bi bi-check-circle me-1" aria-hidden="true"></i>
+                                            연간 ${(200 - co2PerKm) * annualDistance / 1000}kg CO₂ 절약
+                                        </span>
+                                        <span class="badge bg-info fs-6 p-2">
+                                            <i class="bi bi-globe me-1" aria-hidden="true"></i>
+                                            지구 온난화 방지에 기여
+                                        </span>
+                                        <span class="badge bg-primary fs-6 p-2">
+                                            <i class="bi bi-heart me-1" aria-hidden="true"></i>
+                                            깨끗한 공기 환경 조성
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <!-- 차트 영역 -->
+                            <div class="row">
+                                <div class="col-lg-8 mb-4">
+                                    <h5 class="mb-3">차량별 CO₂ 배출량 비교</h5>
+                                    <div class="chart-container" style="position: relative; height: 300px;">
+                                        <canvas id="resultComparisonChart" role="img" 
+                                                aria-label="차량별 이산화탄소 배출량 비교 차트"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 mb-4">
+                                    <h5 class="mb-3">환경 개선 효과</h5>
+                                    <div class="chart-container" style="position: relative; height: 300px;">
+                                        <canvas id="resultImpactChart" role="img" 
+                                                aria-label="환경 개선 효과 차트"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 비교 정보 -->
+                            <div class="alert alert-info" role="note">
+                                <i class="bi bi-info-circle me-2" aria-hidden="true"></i>
+                                <strong>비교 결과:</strong> ${comparisonText}
+                            </div>
+                            
+                            <div class="text-center mt-3 small text-muted" role="note">
+                                * 이 계산은 일반적인 차량 사용 패턴을 기준으로 한 추정값입니다.
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // 차트 생성 (약간의 지연을 두어 DOM 렌더링 완료 대기)
+                setTimeout(() => {
+                    createResultCharts(vehicleType, co2PerKm, annualCO2);
+                }, 100);
+            });
+        });
+        
+        // 데이터 사용량 계산기 상수 정의
+        const DATA_CENTER_EFFICIENCY = 0.5; // kWh per GB
+        const EV_EFFICIENCY = 15; // kWh per 100km
+        
+        // 한국전력 누진세 계산 함수
+        function calculateElectricBill(kWh) {
+            let totalBill = 0;
+            
+            if (kWh <= 200) {
+                // 1구간: 200kWh 이하 - 120원/kWh
+                totalBill = kWh * 120;
+            } else if (kWh <= 400) {
+                // 2구간: 201~400kWh - 214원/kWh
+                totalBill = (200 * 120) + ((kWh - 200) * 214);
+            } else {
+                // 3구간: 400kWh 초과 - 307원/kWh
+                totalBill = (200 * 120) + (200 * 214) + ((kWh - 400) * 307);
+            }
+            
+            return Math.round(totalBill);
+        }
+        
+        // 데이터 사용량 계산 함수
+        function calculateDataUsage(dataGB) {
+            try {
+                // 입력값 검증
+                if (!dataGB || dataGB <= 0 || dataGB > 1000) {
+                    throw new Error('데이터 사용량은 1GB~1000GB 사이여야 합니다.');
+                }
+                
+                // 전력 소비량 계산 (kWh)
+                const powerConsumption = dataGB * DATA_CENTER_EFFICIENCY;
+                
+                // 전기료 계산 (원)
+                const electricBill = calculateElectricBill(powerConsumption);
+                
+                // 전기차 주행거리 환산 (km)
+                const evDistance = (powerConsumption / EV_EFFICIENCY) * 100;
+                
+                return {
+                    dataGB: dataGB,
+                    powerConsumption: powerConsumption.toFixed(2),
+                    electricBill: electricBill,
+                    evDistance: evDistance.toFixed(1)
+                };
+            } catch (error) {
+                console.error('데이터 사용량 계산 오류:', error);
+                throw error;
+            }
+        
+        // 데이터 사용량 계산기 이벤트 리스너
+        const dataCalculatorForm = document.getElementById('data-usage-calculator-form');
+        const dataCalculatorResults = document.getElementById('data-usage-results');
+        const dataUsageSlider = document.getElementById('data-usage-slider');
+        const dataUsageAmount = document.getElementById('data-usage-amount');
+        
+        // 슬라이더와 입력 필드 동기화
+        if (dataUsageSlider && dataUsageAmount) {
+            dataUsageSlider.addEventListener('input', function() {
+                dataUsageAmount.value = this.value;
+            });
+            
+            dataUsageAmount.addEventListener('input', function() {
+                const value = Math.max(1, Math.min(1000, parseInt(this.value) || 1));
+                dataUsageSlider.value = value;
+                this.value = value;
+            });
+        }
+        
+        if (dataCalculatorForm && dataCalculatorResults) {
+            dataCalculatorForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                try {
+                    // 입력값 가져오기
+                    const dataGB = parseFloat(document.getElementById('data-usage-amount').value);
+                    
+                    // 계산 수행
+                    const result = calculateDataUsage(dataGB);
+                    
+                    // 결과 HTML 생성
+                    dataCalculatorResults.innerHTML = `
+                        <div class="alert alert-primary" role="alert">
+                            <h4 class="alert-heading">
+                                <i class="bi bi-check-circle-fill me-2"></i>데이터 사용량 계산 결과
+                            </h4>
+                            <hr>
+                            <div class="row text-center">
+                                <div class="col-md-3 mb-3">
+                                    <div class="card border-primary">
+                                        <div class="card-body">
+                                            <i class="bi bi-phone-fill text-primary fs-1 mb-2"></i>
+                                            <h5 class="card-title">데이터 사용량</h5>
+                                            <p class="card-text fs-4 fw-bold text-primary">${result.dataGB} GB</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="card border-warning">
+                                        <div class="card-body">
+                                            <i class="bi bi-lightning-fill text-warning fs-1 mb-2"></i>
+                                            <h5 class="card-title">전력 소비량</h5>
+                                            <p class="card-text fs-4 fw-bold text-warning">${result.powerConsumption} kWh</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="card border-danger">
+                                        <div class="card-body">
+                                            <i class="bi bi-currency-dollar text-danger fs-1 mb-2"></i>
+                                            <h5 class="card-title">월 전기료</h5>
+                                            <p class="card-text fs-4 fw-bold text-danger">${result.electricBill.toLocaleString()} 원</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="card border-success">
+                                        <div class="card-body">
+                                            <i class="bi bi-ev-front-fill text-success fs-1 mb-2"></i>
+                                            <h5 class="card-title">전기차 주행거리</h5>
+                                            <p class="card-text fs-4 fw-bold text-success">${result.evDistance} km</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <p class="mb-0 text-center">
+                                <small class="text-muted">
+                                    * 계산은 대략적인 추정치이며, 실제 값과 다륿 수 있습니다.<br>
+                                    * 데이터센터 효율: 0.5kWh/GB, 전기차 효율: 15kWh/100km 기준
+                                </small>
+                            </p>
+                        </div>
+                    `;
+                    
+                    // 결과 영역으로 스크롤
+                    dataCalculatorResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                } catch (error) {
+                    // 에러 처리
+                    dataCalculatorResults.innerHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            <h4 class="alert-heading">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>계산 오류
+                            </h4>
+                            <p class="mb-0">${error.message}</p>
+                        </div>
+                    `;
+                }
+            });
+            }
+            });
+        </script>
+        </body>
+        </html>

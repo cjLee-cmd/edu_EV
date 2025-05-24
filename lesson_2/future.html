@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전기차의 미래 전망 - EV 교육 포털</title>
+    <meta name="description" content="전기차 기술의 미래 발전 방향, 산업 전망, 자율주행과의 연계, 스마트 시티 통합 등에 대한 정보를 제공합니다.">
+    <meta name="keywords" content="전기차 미래, 자율주행, 스마트 시티, 미래 모빌리티, 전기차 혁신">
+    <meta name="author" content="전기차 교육 플랫폼">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0d6efd">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/charts.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
+</head>
+<body class="bg-light">
+    <!-- 헤더 영역 -->
+    <header class="bg-success bg-gradient text-white py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="site-title"><a href="index.html" class="text-white text-decoration-none">전기차 현황</a></h1>
+                    <p class="site-description mb-0">지속 가능한 미래를 위한 교육 플랫폼</p>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                                        <img src="assets/images/header-illustration.svg" alt="전기차 일러스트레이션" class="img-fluid header-image" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 네비게이션 영역 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="네비게이션 토글">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="technologies.html">기술</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="market.html">시장 동향</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="environment.html">환경 영향</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="future.html">미래 전망</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero-section future-hero">
+            <div class="hero-content">
+                <h1>전기차의 미래 전망</h1>
+                <p>미래 모빌리티 혁신을 주도하는 전기차 기술과 시장의 진화를 알아보세요</p>
+            </div>
+        </section>
+
+        <section class="intro-section">
+            <h2>미래 전기차 기술과 시장의 진화</h2>
+            <p>현재 급속히 발전하고 있는 전기차 시장은 향후 수십 년간 자동차 산업의 판도를 완전히 바꾸게 될 것입니다. 배터리 기술의 혁신, 충전 인프라의 발전, 자율주행 기술과의 결합, 그리고 스마트 시티 통합은 전기차의 미래를 형성하는 주요 요소입니다.</p>
+            <p>이 페이지에서는 전기차 산업의 미래 전망과 주요 기술 트렌드, 그리고 이것이 우리 사회와 도시 환경에 미칠 영향에 대해 살펴봅니다.</p>
+        </section>
+        
+        <section class="market-projections-section" id="market-projections">
+            <h2>전기차 시장 전망 및 로드맵</h2>
+            
+            <div class="timeline-container">
+                <h3>전기차 산업 발전 로드맵</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2025</div>
+                        <div class="timeline-content">
+                            <h4>급속 보급 단계</h4>
+                            <p>전기차 가격 평가 레벨, 다양한 가격대 모델 출시, 핵심 시장에서 전기차 점유율 20%에 다다름</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2030</div>
+                        <div class="timeline-content">
+                            <h4>산업 전환점</h4>
+                            <p>전기차 새 자동차 판매의 45%까지 점유, 대부분의 자동차 제조사가 전기차 전용 플랫폼으로 전환</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2035</div>
+                        <div class="timeline-content">
+                            <h4>대중화 완성 단계</h4>
+                            <p>대부분의 주요 시장에서 새 차량 판매의 75% 이상이 전기차로 전환, 충전 인프라가 주유소와 동등한 수준으로 보급</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2040</div>
+                        <div class="timeline-content">
+                            <h4>산업 지배적 위치 확보</h4>
+                            <p>전 세계 자동차 시장의 90% 이상을 전기차가 차지, 내연기관 자동차는 특수 목적으로만 제한적 생산</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>글로벌 시장 점유율 전망 (2020-2040)</h3>
+                <canvas id="marketShareChart"></canvas>
+                <div class="chart-legend">
+                    <span class="ev-legend">전기차</span>
+                    <span class="ice-legend">내연기관차</span>
+                </div>
+            </div>
+            
+            <div class="transformation-metrics">
+                <h3>자동차 산업 변화 지표</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h4>전기차 전용 플랫폼 회사 수</h4>
+                        <div class="metric-values">
+                            <div class="metric-year">2020: <span class="metric-value">2개</span></div>
+                            <div class="metric-year">2025: <span class="metric-value">14개</span></div>
+                            <div class="metric-year">2030: <span class="metric-value">32개</span></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>자동차 생산업체 전기차 R&D 투자비율</h4>
+                        <div class="metric-values">
+                            <div class="metric-year">2020: <span class="metric-value">15%</span></div>
+                            <div class="metric-year">2025: <span class="metric-value">48%</span></div>
+                            <div class="metric-year">2030: <span class="metric-value">78%</span></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>주요 자동차 부품 업체 전기차 산업 이행률</h4>
+                        <div class="metric-values">
+                            <div class="metric-year">2020: <span class="metric-value">9%</span></div>
+                            <div class="metric-year">2025: <span class="metric-value">35%</span></div>
+                            <div class="metric-year">2030: <span class="metric-value">70%</span></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="data-source">자료 출처: McKinsey & Company, Future of Automotive and Mobility 2024; BloombergNEF Long-Term Electric Vehicle Outlook 2024</p>
+            </div>
+        </section>
+        
+        <section class="battery-technology-section" id="battery-technology">
+            <h2>미래 배터리 기술 트렌드</h2>
+            <p>배터리 기술은 전기차 발전의 핵심이며, 에너지 밀도, 충전 속도, 안전성, 수명을 개선하기 위한 혁신적인 기술들이 개발되고 있습니다.</p>
+            
+            <div class="technology-cards">
+                <div class="tech-card">
+                    <h3>고체 전해질 배터리</h3>
+                    <div class="tech-info">
+                        <div class="tech-timeline">
+                            <span>시장 출시: 2026년</span>
+                            <span>대량 생산: 2028년</span>
+                        </div>
+                        <p class="tech-description">기존 액체 전해질을 고체로 대체한 다음 세대 배터리 기술입니다.</p>
+                        <div class="tech-details-container">
+                            <div class="benefits">
+                                <h4>장점</h4>
+                                <ul>
+                                    <li>더 높은 에너지 밀도 (350-400 Wh/kg)</li>
+                                    <li>더 빠른 충전 속도 (10분 이하의 전충전)</li>
+                                    <li>개선된 안전성 (배터리 화재 위험 감소)</li>
+                                    <li>더 긴 사용 수명 (2000+ 사이클)</li>
+                                </ul>
+                            </div>
+                            <div class="challenges">
+                                <h4>도전 과제</h4>
+                                <ul>
+                                    <li>생산 공정 복잡성</li>
+                                    <li>초기 생산 비용 높음</li>
+                                    <li>일부 기술적 문제 해결 필요</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="companies">
+                            <h4>주요 기업</h4>
+                            <p>QuantumScape, Solid Power, Samsung SDI, Toyota, LG Energy Solution</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>소디움 이온 배터리</h3>
+                    <div class="tech-info">
+                        <div class="tech-timeline">
+                            <span>시장 출시: 2025년</span>
+                            <span>대량 생산: 2027년</span>
+                        </div>
+                        <p class="tech-description">리튬 대신 소디움을 사용하는 비용효율적 대체 기술입니다.</p>
+                        <div class="tech-details-container">
+                            <div class="benefits">
+                                <h4>장점</h4>
+                                <ul>
+                                    <li>리튬보다 더 많은 자원 (30-50% 더 저렴한 비용)</li>
+                                    <li>비슷한 에너지 밀도</li>
+                                    <li>더 마일드한 환경 영향</li>
+                                </ul>
+                            </div>
+                            <div class="challenges">
+                                <h4>도전 과제</h4>
+                                <ul>
+                                    <li>리튬보다 낮은 에너지 밀도</li>
+                                    <li>처음 받아들이는 데 시간 소요</li>
+                                    <li>기술적 문제 해결 필요</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="companies">
+                            <h4>주요 기업</h4>
+                            <p>CATL, Natron Energy, Faradion</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>리튬-황 배터리</h3>
+                    <div class="tech-info">
+                        <div class="tech-timeline">
+                            <span>시장 출시: 2024년</span>
+                            <span>대량 생산: 2026년</span>
+                        </div>
+                        <p class="tech-description">서비스 가능한 주차 범위에 대폭적인 발전을 제공하는 고성능 기술입니다.</p>
+                        <div class="tech-details-container">
+                            <div class="benefits">
+                                <h4>장점</h4>
+                                <ul>
+                                    <li>매우 높은 에너지 밀도 (500-600 Wh/kg)</li>
+                                    <li>더 가벼운 배터리</li>
+                                    <li>더 긴 주행거리</li>
+                                </ul>
+                            </div>
+                            <div class="challenges">
+                                <h4>도전 과제</h4>
+                                <ul>
+                                    <li>황은 불안정한 요소</li>
+                                    <li>주기적인 충전 필요</li>
+                                    <li>개발 초기 단계</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="companies">
+                            <h4>주요 기업</h4>
+                            <p>OXIS Energy, Sion Power, Lyten</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="data-source">자료 출처: International Energy Agency (IEA), The Future of EV Batteries 2024; BloombergNEF Battery Technology Outlook 2024</p>
+        </section>
+        
+        <section class="charging-innovations-section" id="charging-innovations">
+            <h2>충전 인프라 혁신</h2>
+            <p>혁신적인 충전 기술은 전기차 배터리에 전력을 공급하는 방법을 혁신하여 충전 시간을 단축하고 사용자 편의성을 향상시킬 예정입니다.</p>
+            
+            <div class="charging-tech-container">
+                <div class="charging-tech-card">
+                    <h3>무선 충전 시스템</h3>
+                    <div class="tech-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">상태:</span>
+                            <span class="spec-value">일부 적용 중</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">예상 시장 출시:</span>
+                            <span class="spec-value">2024년</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">현재 출력:</span>
+                            <span class="spec-value">11-22 kW</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">2030년 예상 출력:</span>
+                            <span class="spec-value">50-100 kW</span>
+                        </div>
+                    </div>
+                    <div class="tech-description">
+                        <p>케이블 없이 트렌스포머 코일을 통한 충전 방식으로, 자동차 바닥에 코일을 설치하여 주차장 또는 즉석에서 간편하게 충전할 수 있습니다.</p>
+                    </div>
+                    <div class="pros-cons-container">
+                        <div class="pros">
+                            <h4>장점</h4>
+                            <ul>
+                                <li>케이블 없이도 충전 가능</li>
+                                <li>자동화된 충전 시스템</li>
+                                <li>물과 전기 접촉 방지</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>한계</h4>
+                            <ul>
+                                <li>높은 초기 비용</li>
+                                <li>당분간 낮은 효율</li>
+                                <li>표준화 하는데 시간 필요</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="charging-tech-card">
+                    <h3>동적 전력 전송 (Dynamic Wireless Charging)</h3>
+                    <div class="tech-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">상태:</span>
+                            <span class="spec-value">실험실 개발중</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">예상 시장 출시:</span>
+                            <span class="spec-value">2028년</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">현재 출력:</span>
+                            <span class="spec-value">20 kW (실험실)</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">2030년 예상 출력:</span>
+                            <span class="spec-value">100-200 kW</span>
+                        </div>
+                    </div>
+                    <div class="tech-description">
+                        <p>주행 중 도로에 내장된 코일을 통한 충전 방식으로, 카가 주행 중에도 지속적으로 충전이 가능합니다.</p>
+                    </div>
+                    <div class="pros-cons-container">
+                        <div class="pros">
+                            <h4>장점</h4>
+                            <ul>
+                                <li>주행 중 지속적 충전</li>
+                                <li>배터리 사이즈 축소 가능</li>
+                                <li>전기산업 발전에 기여</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>한계</h4>
+                            <ul>
+                                <li>대규모 인프라 필요</li>
+                                <li>엄청난 초기 비용</li>
+                                <li>표준화 및 배포 문제</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="charging-tech-card">
+                    <h3>급속 충전 기술 (Ultra-Fast Charging)</h3>
+                    <div class="tech-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">상태:</span>
+                            <span class="spec-value">일부 적용 중, 계속 발전</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">예상 시장 출시:</span>
+                            <span class="spec-value">2025년</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">현재 출력:</span>
+                            <span class="spec-value">350 kW</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">2030년 예상 출력:</span>
+                            <span class="spec-value">1 MW+</span>
+                        </div>
+                    </div>
+                    <div class="tech-description">
+                        <p>350kW 이상의 충전 속도로 5-10분 내 80% 충전이 가능한 최신 기술로, 기존 충전 시간을 혁신적으로 단축합니다.</p>
+                    </div>
+                    <div class="pros-cons-container">
+                        <div class="pros">
+                            <h4>장점</h4>
+                            <ul>
+                                <li>내연기관차와 비슷한 주유 경험</li>
+                                <li>주행거리 불안 감소</li>
+                                <li>충전 대기 시간 대폭 축소</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>한계</h4>
+                            <ul>
+                                <li>대폭적인 그리드 마지할 필요</li>
+                                <li>생택 체인에 적응이 필요함</li>
+                                <li>모든 차량이 이 기술을 지원해야 함</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="data-source">자료 출처: Electric Vehicle Charging Infrastructure Market Outlook 2025</p>
+        </section>
+        
+        <section class="autonomy-integration-section" id="autonomy-integration">
+            <h2>자율주행과의 통합</h2>
+            <p>전기차와 자율주행 기술의 통합은 미래 모빌리티의 핵심이 될 것으로 예상됩니다. 전기차의 전자 시스템은 자율주행 기술과 특별히 좋은 호환성을 보입니다.</p>
+            
+            <div class="autonomy-timeline-container">
+                <h3>전기차 자율주행 로드맵</h3>
+                <div class="autonomy-levels">
+                    <div class="autonomy-level">
+                        <div class="level-header">
+                            <h4>Level 2+ (향상된 드라이버 보조)</h4>
+                            <span class="year-tag">대중화: 2024년</span>
+                        </div>
+                        <p class="level-description">스티어링, 가속, 제동 기능 동시 제공, 드라이버 지속 감독 필요</p>
+                        <div class="penetration">
+                            <div class="penetration-item">
+                                <span class="pen-label">현재 점유율:</span>
+                                <span class="pen-value">신규 전기차의 15%</span>
+                            </div>
+                            <div class="penetration-item">
+                                <span class="pen-label">2030년 예상 점유율:</span>
+                                <span class="pen-value">55-65%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="autonomy-level">
+                        <div class="level-header">
+                            <h4>Level 3 (조건부 자동화)</h4>
+                            <span class="year-tag">대중화: 2026년</span>
+                        </div>
+                        <p class="level-description">특정 조건에서 자율주행, 계속 비지속적 감시 필요</p>
+                        <div class="penetration">
+                            <div class="penetration-item">
+                                <span class="pen-label">현재 점유율:</span>
+                                <span class="pen-value">신규 전기차의 2%</span>
+                            </div>
+                            <div class="penetration-item">
+                                <span class="pen-label">2030년 예상 점유율:</span>
+                                <span class="pen-value">25-35%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="autonomy-level">
+                        <div class="level-header">
+                            <h4>Level 4 (고도 자동화)</h4>
+                            <span class="year-tag">대중화: 2029년</span>
+                        </div>
+                        <p class="level-description">특정 지역 또는 조건에서 완전 자율주행 가능</p>
+                        <div class="penetration">
+                            <div class="penetration-item">
+                                <span class="pen-label">현재 점유율:</span>
+                                <span class="pen-value">테스트 단계</span>
+                            </div>
+                            <div class="penetration-item">
+                                <span class="pen-label">2030년 예상 점유율:</span>
+                                <span class="pen-value">5-10%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="autonomy-level">
+                        <div class="level-header">
+                            <h4>Level 5 (완전 자동화)</h4>
+                            <span class="year-tag">대중화: 2035년+</span>
+                        </div>
+                        <p class="level-description">모든 조건에서 완전 자율주행 가능</p>
+                        <div class="penetration">
+                            <div class="penetration-item">
+                                <span class="pen-label">현재 점유율:</span>
+                                <span class="pen-value">N/A</span>
+                            </div>
+                            <div class="penetration-item">
+                                <span class="pen-label">2030년 예상 점유율:</span>
+                                <span class="pen-value">제한적 테스트</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="synergies-container">
+                <h3>전기차와 자율주행의 시너지</h3>
+                <div class="synergy-cards">
+                    <div class="synergy-card">
+                        <h4>공유 운송 충전 네트워크</h4>
+                        <div class="synergy-year">예상 구현 시기: 2027년</div>
+                        <p class="synergy-description">자율주행 차량이 자동으로 충전소로 운행하여 충전 후 다음 사용자에게 배치</p>
+                        <div class="benefits">
+                            <h5>핵심 이점</h5>
+                            <ul>
+                                <li>플리트 운영 시간 및 비용 절감</li>
+                                <li>차량 운용율 증가</li>
+                                <li>차량 수 추가 없이 더 많은 사용자 지원</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="synergy-card">
+                        <h4>V2G (Vehicle-to-Grid) 자동화</h4>
+                        <div class="synergy-year">예상 구현 시기: 2026년</div>
+                        <p class="synergy-description">자율 전기차가 전력망과 연결하여 자동으로 전력 공급 및 저장</p>
+                        <div class="benefits">
+                            <h5>핵심 이점</h5>
+                            <ul>
+                                <li>전력망 안정화</li>
+                                <li>소유주 추가 수익 발생</li>
+                                <li>신재생에너지 활용도 증가</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="synergy-card">
+                        <h4>스마트 충전 어시스턴트</h4>
+                        <div class="synergy-year">예상 구현 시기: 2025년</div>
+                        <p class="synergy-description">자율주행 차량이 최적의 충전 시간과 위치를 자동으로 계획</p>
+                        <div class="benefits">
+                            <h5>핵심 이점</h5>
+                            <ul>
+                                <li>충전 스트레스 및 불편 감소</li>
+                                <li>충전 시간 및 비용 최소화</li>
+                                <li>사용자 경험 개선</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="data-source">자료 출처: McKinsey & Company, Autonomous Driving Vehicle Market Outlook 2024; Autonomous Vehicle and EV Integration Report 2024</p>
+        </section>
+        
+        <section class="smart-city-section" id="smart-city">
+            <h2>스마트 시티 통합</h2>
+            <p>전기차는 미래 스마트 시티의 핵심 요소로, 도시 인프라와 통합되어 새로운 가치를 창출할 것으로 예상됩니다. 전기차와 스마트 시티의 통합은 지속 가능한 도시 개발을 위한 핵심 요소입니다.</p>
+            
+            <div class="smart-city-concepts">
+                <div class="concept-card">
+                    <h3>전기차 기반 스마트 그리드</h3>
+                    <div class="concept-timeline">시기: 2026-2030년</div>
+                    <p class="concept-description">전기차 플리트가 도시 전력망의 분산형 저장 시스템으로 기능하여 전력을 저장하고 필요할 때 공급합니다.</p>
+                    <div class="pilot-cities">
+                        <h4>시범 도시</h4>
+                        <div class="city-tags">
+                            <span>Stockholm</span>
+                            <span>Singapore</span>
+                            <span>Portland</span>
+                            <span>Amsterdam</span>
+                            <span>Seoul</span>
+                        </div>
+                    </div>
+                    <div class="concept-benefits">
+                        <h4>핵심 이점</h4>
+                        <ul>
+                            <li>전력망 피크 로드 관리</li>
+                            <li>비상 백업 전력 제공</li>
+                            <li>초과 에너지 저장 및 활용</li>
+                            <li>전기차 소유자 추가 수익 발생</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>통합 모빌리티 허브</h3>
+                    <div class="concept-timeline">시기: 2025-2028년</div>
+                    <p class="concept-description">전기차 사용, 공유, 충전, 수리를 위한 통합 센터로, 도시 내 여러 지점에 위치하여 다양한 기능을 제공합니다.</p>
+                    <div class="pilot-cities">
+                        <h4>시범 도시</h4>
+                        <div class="city-tags">
+                            <span>Paris</span>
+                            <span>Barcelona</span>
+                            <span>Tokyo</span>
+                            <span>San Francisco</span>
+                            <span>Copenhagen</span>
+                        </div>
+                    </div>
+                    <div class="concept-benefits">
+                        <h4>핵심 이점</h4>
+                        <ul>
+                            <li>운송 활용도 증가</li>
+                            <li>도시 교통 혼잡 감소</li>
+                            <li>다양한 모빌리티 서비스 통합</li>
+                            <li>추가 소매를 통한 결합 특성</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>전기차 기반 할당 모빌리티 시스템</h3>
+                    <div class="concept-timeline">시기: 2027-2032년</div>
+                    <p class="concept-description">인구학적 및 새로운 지역 요구사항에 따라 자동으로 운행 요소를 충전하는 시스템, 새로운 버스 노선 등 설립합니다.</p>
+                    <div class="pilot-cities">
+                        <h4>시범 도시</h4>
+                        <div class="city-tags">
+                            <span>Helsinki</span>
+                            <span>Vienna</span>
+                            <span>Zurich</span>
+                            <span>Oslo</span>
+                            <span>Melbourne</span>
+                        </div>
+                    </div>
+                    <div class="concept-benefits">
+                        <h4>핵심 이점</h4>
+                        <ul>
+                            <li>도시 교통 퍼플리스 감소</li>
+                            <li>저실용 지역 포함한 교통 실용화</li>
+                            <li>특정 피크 시간대 조정</li>
+                            <li>대기오염 및 소음 감소</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="data-source">자료 출처: Smart Cities World Council, EV Integration Roadmap 2024</p>
+        </section>
+        
+        <section class="conclusion-section">
+            <h2>전기차의 미래: 지속 가능한 모빌리티를 향한 여정</h2>
+            <p>전기차 기술의 발전은 단순한 자동차 산업의 변화를 넘어, 도시 계획, 에너지 관리, 그리고 미래 사회의 생활 방식을 재형성하고 있습니다. 지속 가능한 모빌리티를 향한 이 여정은 혁신적 기술, 사회적 변화, 그리고 정책적 지원이 함께 하면서 효과적으로 진행될 것입니다.</p>
+            <p>이 페이지에서 살펴본 전기차 산업의 미래 전망은 주요 기술 트렌드, 시장 진화, 그리고 자율주행 및 스마트 시티와의 통합에 대한 효과적인 이해를 제공합니다. 전기차의 미래는 단순히 우리가 이동하는 방식을 바꾸는 것을 넘어, 도시 환경, 에너지 시스템, 그리고 산업 구조에 대한 전반적인 변화를 가져올 것입니다.</p>
+        </section>
+        </main>
+        
+        <!-- 푸터 영역 -->
+        <footer class="bg-dark text-white py-4 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5>전기차 현황</h5>
+                        <p class="text-muted">지속 가능한 미래를 위한 교육 플랫폼</p>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5>링크</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html" class="text-decoration-none text-white">홈</a></li>
+                            <li><a href="technologies.html" class="text-decoration-none text-white">기술</a></li>
+                            <li><a href="market.html" class="text-decoration-none text-white">시장 동향</a></li>
+                            <li><a href="environment.html" class="text-decoration-none text-white">환경 영향</a></li>
+                            <li><a href="future.html" class="text-decoration-none text-white">미래 전망</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>추가 정보</h5>
+                        <p>이 웹사이트는 전기차에 관한 교육 목적으로 제작되었으며, 가장 최신의 연구 결과와 통계를 기반으로 합니다.</p>
+                    </div>
+                </div>
+                <hr class="my-4 bg-secondary">
+                <div class="row">
+                    <div class="col-md-6 small">
+                        <p class="mb-0">&copy; 2025 전기차 현황 교육 플랫폼. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end small">
+                        <a href="#" class="text-decoration-none text-white me-3">개인정보취급방침</a>
+                        <a href="#" class="text-decoration-none text-white">이용약관</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <script src="assets/js/main.js" defer></script>
+        <script src="assets/js/charts.js" defer></script>
+        <script src="assets/js/future-charts.js" defer></script>
+        </body>
+        </html>

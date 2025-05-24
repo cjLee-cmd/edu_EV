@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전기차 시장 동향 - 교육용 웹사이트</title>
+    <meta name="description" content="전기차 시장의 현황, 성장 추세, 주요 제조사, 정부 정책 및 인센티브 등에 대한 정보를 제공합니다.">
+    <meta name="keywords" content="전기차 시장, EV 상황, 전기차 판매량, 정부 정책, 기업 전략">
+    <meta name="author" content="전기차 교육 플랫폼">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0d6efd">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/charts.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- 헤더 영역 -->
+    <header class="bg-primary text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="site-title"><a href="index.html" class="text-white text-decoration-none">전기차 현황</a></h1>
+                    <p class="site-description mb-0">지속 가능한 미래를 위한 교육 플랫폼</p>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                                        <img src="assets/images/header-illustration.svg" alt="전기차 일러스트레이션" class="img-fluid header-image" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 네비게이션 영역 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="네비게이션 토글">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="technologies.html">기술</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="market.html">시장 동향</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="environment.html">환경 영향</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="future.html">미래 전망</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 페이지 제목 영역 -->
+    <section class="bg-secondary text-white py-3">
+        <div class="container">
+            <h2 class="page-title">전기차 시장 동향</h2>
+            <p class="lead">전기차 시장의 현황과 성장 추세, 정책과 경제적 영향을 알아봅니다</p>
+        </div>
+    </section>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="container py-4">
+        <!-- 시장 현황 및 성장 추세 섹션 -->
+        <section class="mb-5" id="market-overview">
+            <h3 class="section-title">전기차 시장 현황 및 성장 추세</h3>
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">전세계 전기차 판매량 추이 (2015-2030)</h4>
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="checkbox" id="showForecast" checked>
+                                <label class="form-check-label" for="showForecast">예측 데이터 포함</label>
+                            </div>
+                            <div class="filter-controls mb-3">
+                                <div class="row g-2">
+                                    <div class="col-auto">
+                                        <select class="form-select form-select-sm" id="regionFilter">
+                                            <option value="global" selected>전체 지역</option>
+                                            <option value="asia">아시아</option>
+                                            <option value="europe">유럽</option>
+                                            <option value="namerica">북미</option>
+                                            <option value="others">기타 지역</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-auto">
+                                        <select class="form-select form-select-sm" id="yearRange">
+                                            <option value="all" selected>전체 기간</option>
+                                            <option value="recent">최근 5년</option>
+                                            <option value="forecast">미래 예측</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-container" style="position: relative; height: 400px;">
+                                <canvas id="salesChart"></canvas>
+                            </div>
+                            <p class="text-muted mt-3 small">데이터 출처: International Energy Agency (IEA), Global EV Outlook 2024; BloombergNEF Electric Vehicle Outlook 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mb-4 h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">전기차 현황 통계</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="bi bi-car-front-fill text-primary me-2"></i> 2024년 전기차 판매량</span>
+                                    <span class="badge bg-primary rounded-pill">18.9백만 대</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="bi bi-graph-up-arrow text-success me-2"></i> 연간 성장률 (2023-2024)</span>
+                                    <span class="badge bg-success rounded-pill">33.1%</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="bi bi-percent text-info me-2"></i> 전체 자동차 판매 점유율</span>
+                                    <span class="badge bg-info rounded-pill">14%</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4">
+                                <h5>전기차 유형별 점유율 (2024)</h5>
+                                <div class="chart-container mt-3" style="position: relative;">
+                                    <canvas id="distributionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- 주요 제조사 및 지역별 시장 점유율 섹션 -->
+        <section class="mb-5" id="manufacturers-regions">
+            <h3 class="section-title">주요 제조사 및 지역별 시장 점유율</h3>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">전기차 주요 제조사 점유율</h4>
+                            <div class="form-group mb-3">
+                                <select class="form-select form-select-sm" id="manufacturerYearSelect">
+                                    <option value="2024q1" selected>2024년 1분기</option>
+                                    <option value="2023q4">2023년 4분기</option>
+                                    <option value="2023q2">2023년 2분기</option>
+                                    <option value="2022q4">2022년 4분기</option>
+                                </select>
+                            </div>
+                            <div class="chart-container" style="position: relative; height: 350px;">
+                                <canvas id="manufacturersChart"></canvas>
+                            </div>
+                            <p class="text-muted mt-3 small">데이터 출처: EV-Volumes, Global Top 20 EV Automotive Groups, Q1 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">지역별 전기차 시장 점유율 (2024)</h4>
+                            <div class="chart-container" style="position: relative; height: 350px;">
+                                <canvas id="regionsChart"></canvas>
+                            </div>
+                            <p class="text-muted mt-3 small">데이터 출처: International Energy Agency (IEA), Global EV Outlook 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="card-title mb-0">주요 전기차 제조사 현황</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>순위</th>
+                                            <th>제조사</th>
+                                            <th>본사지</th>
+                                            <th>주요 모델</th>
+                                            <th>시장 점유율</th>
+                                            <th>우수 분야</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Tesla</td>
+                                            <td>미국</td>
+                                            <td>Model Y, Model 3, Cybertruck</td>
+                                            <td>18.2%</td>
+                                            <td>기술 혁신, 자체 충전망</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>BYD</td>
+                                            <td>중국</td>
+                                            <td>Atto 3, Seal, Dolphin</td>
+                                            <td>17.5%</td>
+                                            <td>가격 경쟁력, 배터리 기술</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Volkswagen Group</td>
+                                            <td>독일</td>
+                                            <td>ID.4, Audi e-tron, Porsche Taycan</td>
+                                            <td>8.5%</td>
+                                            <td>플랫폼 다양성, 브랜드 포트폴리오</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Hyundai-Kia</td>
+                                            <td>한국</td>
+                                            <td>IONIQ 5, IONIQ 6, EV6</td>
+                                            <td>6.2%</td>
+                                            <td>디자인, E-GMP 플랫폼</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>SAIC</td>
+                                            <td>중국</td>
+                                            <td>Wuling Mini EV, MG4, Zhiji L7</td>
+                                            <td>7.8%</td>
+                                            <td>저가형 마켓, 청소년 세대</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- 정부 정책 및 인센티브 섹션 -->
+        <section class="mb-5" id="policies-incentives">
+            <h3 class="section-title">정부 정책 및 인센티브</h3>
+            <div class="row g-4">
+                <div class="col-md-12 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h4 class="card-title mb-0">전기차 도입 촉진 정책 현황</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-4">전세계적으로 정부가 전기차 도입을 촉진하기 위해 다양한 정책과 인센티브를 제공하고 있습니다. 주요 정책은 크게 세 가지 카테고리로 구분할 수 있습니다:</p>
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-success">
+                                        <div class="card-header bg-success text-white">
+                                            <h5 class="card-title mb-0">구매 지원</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">구매 보조금</li>
+                                                <li class="list-group-item">세금 리베이트 / 세액 공제</li>
+                                                <li class="list-group-item">취득세 또는 부가가치세 면제</li>
+                                                <li class="list-group-item">대출 지원 / 이자 보조</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-success">
+                                        <div class="card-header bg-success text-white">
+                                            <h5 class="card-title mb-0">사용 혹택</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">냄실 세금 감면 또는 면제</li>
+                                                <li class="list-group-item">주차 요금 할인 또는 무료</li>
+                                                <li class="list-group-item">전용 차선 사용 권한</li>
+                                                <li class="list-group-item">비치 출입 특별 허가</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-success">
+                                        <div class="card-header bg-success text-white">
+                                            <h5 class="card-title mb-0">충전 인프라 구축</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">공공 충전소 구축 지원</li>
+                                                <li class="list-group-item">가정용 충전기 설치 보조금</li>
+                                                <li class="list-group-item">회사 충전 인프라 설치 세액 공제</li>
+                                                <li class="list-group-item">충전소 구축 위한 토지 무상 제공</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            <h4 class="card-title mb-0">주요국 전기차 지원 정책 비교</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>국가</th>
+                                            <th>주요 정책</th>
+                                            <th>지원 금액</th>
+                                            <th>유효 기간</th>
+                                            <th>전기차 점유율</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>미국</td>
+                                            <td>Federal Tax Credit, State Incentives</td>
+                                            <td>최대 $7,500 연방세 공제 + 주별 추가 혜택</td>
+                                            <td>2032년까지</td>
+                                            <td>12%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>중국</td>
+                                            <td>NEV Subsidies, Tax Exemptions</td>
+                                            <td>구매자에게 직접 보조금 지급, 세금 면제</td>
+                                            <td>지속 지원 중</td>
+                                            <td>37%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>한국</td>
+                                            <td>국고보조금, 지자체보조금, 취득세 면제</td>
+                                            <td>BEV 구매 시 최대 950만원(국고+지자체)</td>
+                                            <td>2025년</td>
+                                            <td>5%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>노르웨이</td>
+                                            <td>구매 세금 면제, 통행료 할인, 무료 주차</td>
+                                            <td>전기차 구매시 구매세 면제(25% 수준)</td>
+                                            <td>지속 지원 중</td>
+                                            <td>90%+</td>
+                                        </tr>
+                                        <tr>
+                                            <td>독일</td>
+                                            <td>Innovation Premium, Company Car Benefits</td>
+                                            <td>최대 4,000유로 보조금</td>
+                                            <td>2025년</td>
+                                            <td>28%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-muted mt-3 small">데이터 출처: Global EV Policy Database, BloombergNEF, AVERE, 2024년 기준</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- 시장 도전 과제 섹션 -->
+<section class="mb-5" id="challenges">
+    <h3 class="section-title">전기차 시장의 도전 과제</h3>
+    <div class="row g-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="card-title mb-0">전기차 대중화 방해 요소와 해결 전망</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card h-100 border-warning">
+                                <div class="card-header bg-warning text-dark">
+                                    <h5 class="card-title mb-0">고가의 초기 비용</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>문제점</strong>: 순수 전기차의 구매 가격이 내연기관 차량보다 평균 15-30% 높음</p>
+                                    <hr>
+                                    <p><strong>해결 전망</strong>: 배터리 가격 하락 및 대량 생산으로 2027년경 평균 가격 동등화 예상</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-warning">
+                                <div class="card-header bg-warning text-dark">
+                                    <h5 class="card-title mb-0">충전 인프라 부족</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>문제점</strong>: 전지구적으로 충전 인프라 밀도가 부족하며, 특히 도심 외 지역에서 심각</p>
+                                    <hr>
+                                    <p><strong>해결 전망</strong>: 2025-2030년 사이 전지구적 충전 네트워크 확대 예상</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-warning">
+                                <div class="card-header bg-warning text-dark">
+                                    <h5 class="card-title mb-0">배터리 구리 및 소재 공급망 이슈</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>문제점</strong>: 리튬, 코발트, 니켈 등 주요 소재의 공급망 불안정성</p>
+                                    <hr>
+                                    <p><strong>해결 전망</strong>: 대체 소재 개발 및 공급망 다양화로 점진적 해결 전망</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <p class="text-muted small">데이터 출처: McKinsey & Company, The Global Electric Vehicle Market in 2024, Challenges and Opportunities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- 푸터 영역 -->
+<footer class="bg-dark text-white py-4 mt-4">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h5>전기차 현황</h5>
+            <p>지속 가능한 미래를 위한 교육 플랫폼</p>
+            <p>&copy; 2025 전기차 현황 교육용 웹사이트</p>
+        </div>
+        <div class="col-md-3">
+            <h5>링크</h5>
+            <ul class="list-unstyled">
+                <li><a href="index.html" class="text-white">홈</a></li>
+                <li><a href="technologies.html" class="text-white">기술</a></li>
+                <li><a href="market.html" class="text-white">시장 동향</a></li>
+                <li><a href="environment.html" class="text-white">환경 영향</a></li>
+                <li><a href="future.html" class="text-white">미래 전망</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h5>자료 출처</h5>
+            <ul class="list-unstyled">
+                <li><a href="https://www.iea.org" class="text-white" target="_blank">국제에너지기구 (IEA)</a></li>
+                <li><a href="https://www.bloomberg.com/professional/solution/bnef/" class="text-white" target="_blank">BloombergNEF</a></li>
+                <li><a href="https://www.ev-volumes.com/" class="text-white" target="_blank">EV-Volumes</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</footer>
+
+<!-- 스크립트 영역 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="assets/js/market-charts.js"></script>
+<script src="assets/js/navigation.js" defer></script>
+</body>
+</html>

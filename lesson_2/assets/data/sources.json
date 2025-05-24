@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "title": "전기차 관련 출처 정보",
+    "description": "웹사이트에서 사용된 데이터 출처 및 참고문헌 정보",
+    "lastUpdated": "2025-05-21",
+    "version": "1.0"
+  },
+  "sources": [
+    {
+      "id": "iea_ev_outlook_2024",
+      "title": "Global EV Outlook 2024",
+      "organization": "International Energy Agency (IEA)",
+      "url": "https://www.iea.org/reports/global-ev-outlook-2024",
+      "year": 2024,
+      "type": "report",
+      "description": "전 세계 전기차 사용 현황, 정책, 시장 동향에 대한 종합적인 보고서"
+    },
+    {
+      "id": "bnef_ev_outlook_2024",
+      "title": "Electric Vehicle Outlook 2024",
+      "organization": "BloombergNEF",
+      "url": "https://about.bnef.com/electric-vehicle-outlook/",
+      "year": 2024,
+      "type": "report",
+      "description": "전기차 사용 추세, 보급, 정책 및 시장 전망에 대한 데이터 분석"
+    },
+    {
+      "id": "iea_battery_tech_2024",
+      "title": "Battery Technology Report 2024",
+      "organization": "International Energy Agency (IEA)",
+      "url": "https://www.iea.org/reports/battery-technology-report-2024",
+      "year": 2024,
+      "type": "report",
+      "description": "배터리 기술의 발전 현황, 기술 동향, 연구 및 혁신 추세"
+    },
+    {
+      "id": "mckinsey_mobility_future_2024",
+      "title": "Future of Automotive and Mobility 2024",
+      "organization": "McKinsey & Company",
+      "url": "https://www.mckinsey.com/industries/automotive-and-assembly/our-insights/future-of-mobility-2024",
+      "year": 2024,
+      "type": "report",
+      "description": "자동차 산업의 미래와 모빌리티 동향에 대한 시장 분석"
+    },
+    {
+      "id": "icct_lifecycle_assessment_2024",
+      "title": "Life Cycle Assessment of Electric Vehicles",
+      "organization": "International Council for Clean Transportation (ICCT)",
+      "url": "https://theicct.org/publications/ev-life-cycle-assessment-2024",
+      "year": 2024,
+      "type": "report",
+      "description": "전기차와 내연기관차의 전체 수명주기를 고려한 환경 영향 비교 분석"
+    },
+    {
+      "id": "doe_alternative_fuels_2024",
+      "title": "Alternative Fuels Data Center",
+      "organization": "U.S. Department of Energy",
+      "url": "https://afdc.energy.gov/fuels/electricity.html",
+      "year": 2024,
+      "type": "database",
+      "description": "대체 연료와 전기차 관련 공식 데이터베이스"
+    },
+    {
+      "id": "bnef_battery_tech_2024",
+      "title": "Battery Technology Outlook 2024",
+      "organization": "BloombergNEF",
+      "url": "https://about.bnef.com/battery-technology-outlook/",
+      "year": 2024,
+      "type": "report",
+      "description": "배터리 기술 전망, 가격 동향, 공급망 및 신기술 동향에 대한 분석"
+    },
+    {
+      "id": "ev_charging_infrastructure_2025",
+      "title": "Electric Vehicle Charging Infrastructure Market Outlook 2025",
+      "organization": "Market Research Future",
+      "url": "https://www.marketresearchfuture.com/reports/electric-vehicle-charging-station-market",
+      "year": 2024,
+      "type": "report",
+      "description": "전기차 충전 인프라의 시장 동향, 경쟁 효용, 및 혁신 프로젝트에 대한 분석"
+    },
+    {
+      "id": "ev_autonomous_integration_2024",
+      "title": "Autonomous Vehicle and EV Integration Report 2024",
+      "organization": "Frost & Sullivan",
+      "url": "https://www.frost.com/research/industry/mobility/autonomous-driving/",
+      "year": 2024,
+      "type": "report",
+      "description": "자율주행과 전기차 기술의 통합과 시너지 효과에 대한 분석"
+    },
+    {
+      "id": "smart_cities_ev_2024",
+      "title": "EV Integration Roadmap 2024",
+      "organization": "Smart Cities World Council",
+      "url": "https://www.smartcitiesworld.net/",
+      "year": 2024,
+      "type": "report",
+      "description": "스마트 시티와 전기차 통합을 위한 로드맵과 성공 사례 분석"
+    },
+    {
+      "id": "usgs_minerals_2024",
+      "title": "Mineral Commodity Summaries 2024",
+      "organization": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries",
+      "year": 2024,
+      "type": "report",
+      "description": "전기차 및 배터리 생산에 필요한 광물 자원의 현황과 공급 동향"
+    },
+    {
+      "id": "iea_minerals_2024",
+      "title": "The Role of Critical Minerals in Clean Energy Transitions 2024",
+      "organization": "International Energy Agency (IEA)",
+      "url": "https://www.iea.org/reports/the-role-of-critical-minerals-in-clean-energy-transitions",
+      "year": 2024,
+      "type": "report",
+      "description": "전기차와 청정 에너지 산업에 필수적인 광물 자원 공급의 안정성에 대한 분석"
+    },
+    {
+      "id": "ev_battery_recycling_2024",
+      "title": "EV Battery Recycling Market 2024",
+      "organization": "Circular Energy Storage Research and Consulting",
+      "url": "https://www.circularenergystorage.com/",
+      "year": 2024,
+      "type": "report",
+      "description": "전기차 배터리 재활용 산업의 현황, 기술 발전 및 경제성 분석"
+    },
+    {
+      "id": "ev_perf_metrics_2024",
+      "title": "EV Performance Metrics 2024",
+      "organization": "International Energy Agency (IEA)",
+      "url": "https://www.iea.org/data-and-statistics/ev-performance-metrics",
+      "year": 2024,
+      "type": "report",
+      "description": "전기차의 성능 지표 및 내연기관차와의 상세 비교 데이터"
+    }
+  ]
+}

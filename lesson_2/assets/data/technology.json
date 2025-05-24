@@ -1,0 +1,219 @@
+{
+  "metadata": {
+    "title": "전기차 기술 데이터",
+    "description": "전기차의 핵심 기술, 배터리 시스템, 충전 인프라, 모터 및 구동 시스템 등에 대한 데이터",
+    "lastUpdated": "2025-05-21",
+    "version": "1.0"
+  },
+  "batteryTechnology": {
+    "types": [
+      {
+        "name": "리튬이온(Li-ion)",
+        "description": "전기차에서 가장 많이 사용되는 배터리 유형",
+        "advantages": ["높은 에너지 밀도", "상대적으로 가벼움", "긴 사용 수명", "적은 메모리 효과"],
+        "disadvantages": ["고가", "고온에서 성능 및 안전성 저하", "환경적 영향"],
+        "subtypes": [
+          {
+            "name": "NMC (Nickel Manganese Cobalt)",
+            "description": "니켈, 망간, 코발트 혼합 양극 사용, 고성능 / Tesla, VW, BMW 등 사용"
+          },
+          {
+            "name": "LFP (Lithium Iron Phosphate)",
+            "description": "리튬, 철, 포스페이트 양극 사용, 저가형 / BYD, Tesla 일부 모델 사용"
+          },
+          {
+            "name": "NCA (Nickel Cobalt Aluminum)",
+            "description": "니켈, 코발트, 알루미늄 혼합 양극 사용, 고성능 / Tesla 사용"
+          }
+        ]
+      },
+      {
+        "name": "고체 전해질(Solid-state)",
+        "description": "전해질을 고체로 대체한 차세대 배터리",
+        "advantages": ["더 높은 에너지 밀도", "빠른 충전 속도", "개선된 안전성", "더 긴 수명"],
+        "disadvantages": ["매우 고가", "상용화 진행 중", "온도 영향 민감"],
+        "status": "연구 및 초기 상용화 단계, 2025-2028년경 시장 도입 예상",
+        "companies": ["Toyota", "QuantumScape", "Samsung SDI", "SK Innovation", "Solid Power"]
+      }
+    ],
+    "performance": {
+      "energyDensity": {
+        "current": {
+          "value": "250-300",
+          "unit": "Wh/kg",
+          "year": 2024
+        },
+        "forecast": {
+          "value": "350-400",
+          "unit": "Wh/kg",
+          "year": 2030
+        },
+        "source": "BloombergNEF Battery Technology Outlook 2024"
+      },
+      "chargingSpeed": {
+        "current": {
+          "value": "15-30",
+          "unit": "분 (10%-80%)",
+          "year": 2024
+        },
+        "forecast": {
+          "value": "5-10",
+          "unit": "분 (10%-80%)",
+          "year": 2030
+        },
+        "source": "International Energy Agency (IEA), Battery Technology Report 2024"
+      },
+      "cycleLife": {
+        "current": {
+          "value": "1,000-1,500",
+          "unit": "충전 사이클",
+          "year": 2024
+        },
+        "forecast": {
+          "value": "2,000-3,000",
+          "unit": "충전 사이클",
+          "year": 2030
+        },
+        "source": "Battery University, Lithium-ion Battery Life Expectancy"
+      }
+    },
+    "source": "International Energy Agency (IEA), Battery Technology Report 2024; The Faraday Institution, Battery Technology Development"
+  },
+  "chargingInfrastructure": {
+    "types": [
+      {
+        "name": "Level 1 (AC 완속 충전)",
+        "power": "2.3-3.7 kW",
+        "chargingTime": "20-30 시간 (0-100%)",
+        "location": "가정용 및 일반 오피스",
+        "cost": "$300-800"
+      },
+      {
+        "name": "Level 2 (AC 중급 충전)",
+        "power": "7-22 kW",
+        "chargingTime": "4-10 시간 (0-100%)",
+        "location": "가정용(고급), 상업용, 공공 충전소",
+        "cost": "$800-2,000"
+      },
+      {
+        "name": "DC 급속 충전 (DC Fast Charging)",
+        "power": "50-350 kW",
+        "chargingTime": "15-45 분 (10-80%)",
+        "location": "고속도로, 상업용, 대형 주차장",
+        "cost": "$20,000-100,000"
+      },
+      {
+        "name": "고출력 매가충전기 (Ultra-Fast Charging)",
+        "power": "350+ kW",
+        "chargingTime": "5-15 분 (10-80%)",
+        "location": "차세대 충전소, 주요 고속도로",
+        "cost": "$100,000-250,000"
+      }
+    ],
+    "standards": [
+      {
+        "name": "CCS (Combined Charging System)",
+        "regions": ["유럽", "미국", "한국"],
+        "manufacturers": ["BMW", "Ford", "GM", "Volkswagen Group", "Mercedes-Benz", "Hyundai-Kia"],
+        "power": "350 kW 까지 지원"
+      },
+      {
+        "name": "CHAdeMO",
+        "regions": ["일본", "한국(일부)"],
+        "manufacturers": ["Nissan", "Mitsubishi", "Subaru"],
+        "power": "200 kW 까지 지원"
+      },
+      {
+        "name": "Tesla NACS (North American Charging Standard)",
+        "regions": ["미국", "유럽(일부)"],
+        "manufacturers": ["Tesla", "Ford", "GM", "Rivian"],
+        "power": "250 kW 까지 지원"
+      },
+      {
+        "name": "GB/T",
+        "regions": ["중국"],
+        "manufacturers": ["BYD", "SAIC", "Geely", "NIO"],
+        "power": "200 kW 까지 지원"
+      }
+    ],
+    "globalInfrastructure": {
+      "totalStations": {
+        "value": "2.7",
+        "unit": "백만 기",
+        "year": 2024
+      },
+      "fastChargers": {
+        "value": "45",
+        "unit": "%",
+        "year": 2024
+      },
+      "growthRate": {
+        "value": "28",
+        "unit": "%/년",
+        "period": "2021-2024"
+      },
+      "source": "International Energy Agency (IEA), Global EV Outlook 2024"
+    }
+  },
+  "drivetrainTechnology": {
+    "motorTypes": [
+      {
+        "name": "영구자석 동기 모터 (PMSM)",
+        "description": "영구자석을 사용하는 고성능, 고효율 모터",
+        "efficiency": "94-97%",
+        "advantages": ["높은 효율", "높은 출력 밀도", "저소음", "적은 유지보수"],
+        "disadvantages": ["비쌀 희토류 소재 사용", "자석 가격 변동성"],
+        "manufacturers": ["Tesla", "Hyundai-Kia", "BMW", "Mercedes-Benz"]
+      },
+      {
+        "name": "유도 모터 (Induction Motor)",
+        "description": "자석을 사용하지 않는 견고한 모터 형식",
+        "efficiency": "90-92%",
+        "advantages": ["비용 효율적", "견고성", "희토류 필요 없음"],
+        "disadvantages": ["영구자석 모터보다 낮은 효율", "더 높은 열 발생"],
+        "manufacturers": ["Tesla (for high power applications)", "GM", "Volkswagen Group (some models)"]
+      },
+      {
+        "name": "표면 영구자석 모터 (SPM)",
+        "description": "자석이 회전자 표면에 부착된 형태",
+        "efficiency": "92-95%",
+        "advantages": ["단순한 구조", "넘어지는 토크", "높은 토크 밀도"],
+        "disadvantages": ["자석 타기 위험", "떨어질 위험", "고속 상태에서 효율 감소"],
+        "manufacturers": ["Volkswagen Group", "Nissan", "Renault"]
+      },
+      {
+        "name": "내장형 영구자석 모터 (IPM)",
+        "description": "자석이 회전자 내부에 삽입된 형태",
+        "efficiency": "94-97%",
+        "advantages": ["높은 출력 및 전력 밀도", "넓은 속도 범위", "안정적인 자석 고정"],
+        "disadvantages": ["복잡한 구조", "비용 증가", "자석 경로 누설"],
+        "manufacturers": ["Toyota", "Hyundai-Kia", "Honda", "BYD"]
+      }
+    ],
+    "powerElectronics": {
+      "components": [
+        {
+          "name": "인버터 (Inverter)",
+          "description": "DC 전력을 AC 전력으로 변환하여 전기 모터 구동",
+          "trends": ["더 효율적인 SiC 및 GaN 반도체 사용 증가", "소형화 및 경량화", "통합 패키지 개발"]
+        },
+        {
+          "name": "DC-DC 컨버터",
+          "description": "고전압 배터리의 전원을 차량 내 저전압 시스템에 공급",
+          "trends": ["더 높은 효율", "실리콘 카바이드 (SiC) 기술 도입", "비용 절감"]
+        },
+        {
+          "name": "온보드 충전기 (OBC)",
+          "description": "AC 전원을 DC 전원으로 변환하여 배터리 충전",
+          "trends": ["충전 용량 증가(11kW+)", "소형화 및 경량화", "양방향 충전 기능"]
+        }
+      ],
+      "semiconductorTrends": {
+        "current": "Si (Silicon)",
+        "emerging": "SiC (Silicon Carbide), GaN (Gallium Nitride)",
+        "benefits": ["더 높은 효율(5-10% 효율 증가)", "더 적은 열 발생", "더 높은 전력 밀도", "더 가벼운 부품", "빠른 충전"]
+      },
+      "source": "Power Electronics Industry Association, EV Power Electronics Technology Outlook 2024"
+    }
+  }
+}
