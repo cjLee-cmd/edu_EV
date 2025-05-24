@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Eco-EV 교육자료</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .lesson-link {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .lesson-link:hover {
+            color: #764ba2;
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-6xl font-bold gradient-text mb-4">
+                <i class="fas fa-charging-station mr-4"></i>
+                2025 Eco-EV 교육자료
+            </h1>
+            <p class="text-xl text-white opacity-90">친환경 자동차 교육자료</p>
+        </div>
+
+        <!-- Lesson Cards -->
+        <div class="grid gap-8">
+            <!-- Lesson 1 -->
+            <div class="card rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">
+                            <i class="fas fa-car-side text-green-500 mr-3"></i>
+                            Lesson 1
+                        </h2>
+                        <h3 class="text-xl text-gray-600 mb-4">
+                            <a href="lesson_1/main.html" class="lesson-link font-semibold">
+                                친환경자동차 기술/시장 예측
+                            </a>
+                        </h3>
+                        <p class="text-gray-500">친환경 자동차의 기술 동향과 시장 전망을 살펴봅니다.</p>
+                    </div>
+                    <div class="text-right">
+                        <a href="lesson_1/main.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold rounded-full hover:from-green-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-105">
+                            <span>시작하기</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-16">
+            <div class="card rounded-xl p-6 inline-block">
+                <div class="flex items-center justify-center space-x-4 text-gray-600">
+                    <div class="flex items-center">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        <span>2025년 5월</span>
+                    </div>
+                    <div class="w-px h-6 bg-gray-300"></div>
+                    <div class="flex items-center">
+                        <i class="fas fa-building mr-2"></i>
+                        <span>Power Solution Inc.</span>
+                    </div>
+                    <div class="w-px h-6 bg-gray-300"></div>
+                    <div class="flex items-center">
+                        <i class="fas fa-user mr-2"></i>
+                        <span>CEO 이창준</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scroll behavior and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
