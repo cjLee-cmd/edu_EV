@@ -39,6 +39,9 @@
         .slide-frame.prev {
             transform: translateX(-100%);
         }
+        .slide-frame.next {
+            transform: translateX(100%);
+        }
         .navigation {
             position: fixed;
             top: 50%;
@@ -205,25 +208,41 @@
 
         function changeSlide(newSlide) {
             if (newSlide >= 0 && newSlide < slides.length) {
-                // Remove active class from current slide
-                slideFrames[currentSlide].classList.remove('active');
-                slideFrames[currentSlide].classList.add('prev');
+                const isNext = newSlide > currentSlide;
                 
-                // Set new current slide
-                currentSlide = newSlide;
+                // Remove all classes from current slide
+                slideFrames[currentSlide].classList.remove('active', 'prev', 'next');
                 
-                // Add active class to new slide
-                slideFrames[currentSlide].classList.remove('prev');
-                slideFrames[currentSlide].classList.add('active');
+                // Position current slide to slide out
+                if (isNext) {
+                    slideFrames[currentSlide].classList.add('prev'); // Current slide moves left
+                } else {
+                    slideFrames[currentSlide].classList.add('next'); // Current slide moves right
+                }
                 
-                // Clean up previous slides
-                slideFrames.forEach((frame, index) => {
-                    if (index !== currentSlide) {
-                        setTimeout(() => {
-                            frame.classList.remove('prev');
-                        }, 500);
-                    }
-                });
+                // Position new slide to slide in
+                slideFrames[newSlide].classList.remove('prev', 'next');
+                if (isNext) {
+                    slideFrames[newSlide].classList.add('next'); // New slide starts from right
+                } else {
+                    slideFrames[newSlide].classList.add('prev'); // New slide starts from left
+                }
+                
+                // Set new current slide after a brief delay
+                setTimeout(() => {
+                    slideFrames[newSlide].classList.remove('prev', 'next');
+                    slideFrames[newSlide].classList.add('active');
+                    currentSlide = newSlide;
+                }, 50);
+                
+                // Clean up after animation
+                setTimeout(() => {
+                    slideFrames.forEach((frame, index) => {
+                        if (index !== currentSlide) {
+                            frame.classList.remove('active', 'prev', 'next');
+                        }
+                    });
+                }, 550);
                 
                 updateSlideInfo();
                 updateNavigationButtons();

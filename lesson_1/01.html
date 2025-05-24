@@ -14,15 +14,32 @@
       font-family: 'Noto Sans KR', sans-serif;
     }
     .slide {
-      width: 100%;
-      max-width: 1200px;
-      min-height: 100vh;
-      margin: 0 auto;
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      margin: 0;
       overflow: hidden;
       position: relative;
       background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
-      padding: 20px;
+      padding: 0;
       box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .slide-content {
+      width: 100%;
+      height: 100%;
+      max-width: 1920px;
+      max-height: 1080px;
+      aspect-ratio: 16/9;
+      position: relative;
+      background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
     }
     .title {
       font-weight: 800;
@@ -231,47 +248,49 @@
     </a>
   </div>
   
-  <div class="slide flex items-center justify-center">
-    <!-- Background circles -->
-    <div class="gradient-circle" style="width: 800px; height: 800px; left: -200px; top: -200px;"></div>
-    <div class="gradient-circle" style="width: 500px; height: 500px; right: -100px; bottom: -100px; animation-delay: 2s;"></div>
-    
-    <!-- Icon background -->
-    <div class="icon-container">
-      <i class="fas fa-charging-station icon-ev"></i>
-    </div>
-    
-    <!-- Content -->
-    <div class="content-container w-full px-80">
-      <div class="mb-12">
-        <h1 class="title text-8xl mb-6">친환경자동차 기술/시장 예측</h1>
-        <p class="subtitle text-3xl">Eco-friendly Vehicle Technology & Market Forecast</p>
+  <div class="slide">
+    <div class="slide-content">
+      <!-- Background circles -->
+      <div class="gradient-circle" style="width: 800px; height: 800px; left: -200px; top: -200px;"></div>
+      <div class="gradient-circle" style="width: 500px; height: 500px; right: -100px; bottom: -100px; animation-delay: 2s;"></div>
+      
+      <!-- Icon background -->
+      <div class="icon-container">
+        <i class="fas fa-charging-station icon-ev"></i>
       </div>
-    </div>
-    
-    <!-- Presenter information -->
-    <div class="presenter-info">
-      <div class="flex flex-col">
-        <span class="text-2xl font-bold text-gray-700 mb-1">Power Solution Inc.</span>
-        <div class="flex items-center">
-          <span class="text-xl text-gray-600">CEO | 이창준</span>
+      
+      <!-- Content -->
+      <div class="content-container w-full px-80">
+        <div class="mb-12">
+          <h1 class="title text-8xl mb-6">친환경자동차 기술/시장 예측</h1>
+          <p class="subtitle text-3xl">Eco-friendly Vehicle Technology & Market Forecast</p>
         </div>
       </div>
-    </div>
-    
-    <!-- Date -->
-    <div class="date text-lg">
-      <span>2025년 5월</span>
-    </div>
-    
-    <!-- Page number -->
-    <div class="page-indicator">
-      <span>1 / 7</span>
-    </div>
-    
-    <!-- Source attribution -->
-    <div class="source">
-      <span>자료출처: 산업연구원, 한국자동차연구원, 국토교통부</span>
+      
+      <!-- Presenter information -->
+      <div class="presenter-info">
+        <div class="flex flex-col">
+          <span class="text-2xl font-bold text-gray-700 mb-1">Power Solution Inc.</span>
+          <div class="flex items-center">
+            <span class="text-xl text-gray-600">CEO | 이창준</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Date -->
+      <div class="date text-lg">
+        <span>2025년 5월</span>
+      </div>
+      
+      <!-- Page number -->
+      <div class="page-indicator">
+        <span>1 / 7</span>
+      </div>
+      
+      <!-- Source attribution -->
+      <div class="source">
+        <span>자료출처: 산업연구원, 한국자동차연구원, 국토교통부</span>
+      </div>
     </div>
   </div>
   
