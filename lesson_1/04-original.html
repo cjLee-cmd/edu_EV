@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주요 기업별 시장 점유율 및 경쟁 현황</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .slide {
+      width: 1920px;
+      min-height: 1080px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    }
+    .header-gradient {
+      background: linear-gradient(90deg, #8257e5 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .content-container {
+      position: relative;
+      z-index: 10;
+    }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 460px;
+    }
+    .company-card {
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+    .company-card:hover {
+      transform: translateY(-5px);
+    }
+    .badge {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-right: 4px;
+      display: inline-block;
+    }
+    .badge-tech {
+      background-color: rgba(167, 139, 250, 0.2);
+      color: #6D28D9;
+    }
+    .badge-price {
+      background-color: rgba(52, 211, 153, 0.2);
+      color: #047857;
+    }
+    .badge-scale {
+      background-color: rgba(59, 130, 246, 0.2);
+      color: #1D4ED8;
+    }
+    .navigation {
+      position: fixed;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+    .nav-button {
+      background-color: rgba(130, 87, 229, 0.2);
+      color: #8257e5;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .nav-button:hover {
+      background-color: rgba(130, 87, 229, 0.5);
+    }
+    .page-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #9CA3AF;
+    }
+    .source {
+      position: absolute;
+      bottom: 20px;
+      right: 80px;
+      font-size: 12px;
+      color: #D1D5DB;
+    }
+    .growth-indicator {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+    .growth-up {
+      color: #10B981;
+    }
+    .growth-down {
+      color: #EF4444;
+    }
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(130, 87, 229, 0.05) 0%, rgba(167, 139, 250, 0.1) 100%);
+      border-left: 4px solid #8257e5;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide flex flex-col p-16">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-5xl font-bold header-gradient mb-2">주요 기업별 시장 점유율 및 경쟁 현황</h1>
+      <p class="text-xl text-gray-500">글로벌 친환경차 시장 경쟁사 분석 (2025년 1분기 기준)</p>
+    </div>
+    
+    <!-- Main content -->
+    <div class="content-container flex-1 grid grid-cols-5 gap-8">
+      <!-- Market share chart - left side -->
+      <div class="col-span-3">
+        <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-4">글로벌 친환경차 시장 점유율 (%)</h2>
+          <div class="chart-container">
+            <canvas id="marketShareChart"></canvas>
+          </div>
+        </div>
+        
+        <div class="highlight-box p-6 rounded-lg">
+          <h3 class="text-lg font-bold text-purple-800 mb-2">인사이트</h3>
+          <p class="text-gray-700">
+            중국 BYD가 친환경차 시장 주도하며 테슬라와 격차 확대 중. 현대기아차는 하이브리드 경쟁력으로 유럽·미국 시장에서 성장세. 폭스바겐은 저가 전기차 모델로 유럽 시장 공략 강화 중.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Company details - right side -->
+      <div class="col-span-2 grid grid-rows-4 gap-4">
+        <div class="company-card p-5 rounded-lg border-l-4 border-purple-700">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-xl font-bold text-purple-800">BYD (중국)</h3>
+            <span class="text-xl font-bold text-purple-700">38.7%</span>
+          </div>
+          <div class="mb-2">
+            <span class="badge badge-tech">기술 혁신</span>
+            <span class="badge badge-price">가격 경쟁력</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-2">배터리와 차량 수직 통합 생산 체제로 비용 절감</p>
+          <div class="growth-indicator growth-up">
+            <i class="fas fa-arrow-up mr-1"></i> 전년 대비 61% 성장
+          </div>
+        </div>
+        
+        <div class="company-card p-5 rounded-lg border-l-4 border-purple-600">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-xl font-bold text-purple-800">테슬라 (미국)</h3>
+            <span class="text-xl font-bold text-purple-700">21.0%</span>
+          </div>
+          <div class="mb-2">
+            <span class="badge badge-tech">자율주행</span>
+            <span class="badge badge-scale">충전 인프라</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-2">순수 전기차 분야 선도, 소프트웨어와 자율주행 강점</p>
+          <div class="growth-indicator growth-down">
+            <i class="fas fa-arrow-down mr-1"></i> 전년 대비 9% 감소
+          </div>
+        </div>
+        
+        <div class="company-card p-5 rounded-lg border-l-4 border-purple-500">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-xl font-bold text-purple-800">현대기아차 (한국)</h3>
+            <span class="text-xl font-bold text-purple-700">9.3%</span>
+          </div>
+          <div class="mb-2">
+            <span class="badge badge-tech">다양한 라인업</span>
+            <span class="badge badge-price">품질 경쟁력</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-2">EV-HEV-FCEV 풀 라인업 구축, 디자인 경쟁력</p>
+          <div class="growth-indicator growth-up">
+            <i class="fas fa-arrow-up mr-1"></i> 전년 대비 28.8% 성장
+          </div>
+        </div>
+        
+        <div class="company-card p-5 rounded-lg border-l-4 border-purple-400">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-xl font-bold text-purple-800">폭스바겐 그룹 (독일)</h3>
+            <span class="text-xl font-bold text-purple-700">7.0%</span>
+          </div>
+          <div class="mb-2">
+            <span class="badge badge-price">저가 모델</span>
+            <span class="badge badge-scale">유럽 시장 강세</span>
+          </div>
+          <p class="text-sm text-gray-600 mb-2">2025년 저가 전기차 출시 가속화로 시장 확대 전략</p>
+          <div class="growth-indicator growth-up">
+            <i class="fas fa-arrow-up mr-1"></i> 전년 대비 12.6% 성장
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Statistics row -->
+    <div class="mt-6 grid grid-cols-4 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-700 flex items-center">
+        <div class="bg-purple-100 rounded-full p-3 mr-4">
+          <i class="fas fa-car text-xl text-purple-700"></i>
+        </div>
+        <div>
+          <h3 class="text-3xl font-bold text-purple-700">320만대</h3>
+          <p class="text-sm text-gray-600">2024년 미국 친환경차 판매량</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-500 flex items-center">
+        <div class="bg-purple-100 rounded-full p-3 mr-4">
+          <i class="fas fa-chart-line text-xl text-purple-700"></i>
+        </div>
+        <div>
+          <h3 class="text-3xl font-bold text-purple-700">25%</h3>
+          <p class="text-sm text-gray-600">2027년까지 예상 시장 점유율</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-400 flex items-center">
+        <div class="bg-purple-100 rounded-full p-3 mr-4">
+          <i class="fas fa-battery-three-quarters text-xl text-purple-700"></i>
+        </div>
+        <div>
+          <h3 class="text-3xl font-bold text-purple-700">33%</h3>
+          <p class="text-sm text-gray-600">2025년 전기차 출하량 증가 예측</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-300 flex items-center">
+        <div class="bg-purple-100 rounded-full p-3 mr-4">
+          <i class="fas fa-industry text-xl text-purple-700"></i>
+        </div>
+        <div>
+          <h3 class="text-3xl font-bold text-purple-700">6,200만대</h3>
+          <p class="text-sm text-gray-600">2025년 BEV 생산 예상량</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Page number -->
+    <div class="page-indicator">
+      <span class="text-lg">4 / 7</span>
+    </div>
+    
+    <!-- Source attribution -->
+    <div class="source">
+      <span>자료출처: 카운터포인트 리서치, 지디넷코리아, 콕스 오토모티브, 가트너</span>
+    </div>
+  </div>
+  
+  <!-- Navigation buttons -->
+  <div class="navigation">
+    <button class="nav-button" onclick="previousSlide()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="nav-button" onclick="nextSlide()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+  
+  <script>
+    // Chart initialization
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.getElementById('marketShareChart').getContext('2d');
+      
+      const marketShareData = {
+        labels: ['BYD (중국)', '테슬라 (미국)', '현대기아차 (한국)', '폭스바겐 그룹 (독일)', '지리 홀딩스 (중국)', '토요타 (일본)', '기타'],
+        datasets: [{
+          label: '글로벌 친환경차 시장 점유율 (%)',
+          data: [38.7, 21.0, 9.3, 7.0, 5.2, 4.8, 14.0],
+          backgroundColor: [
+            '#8257e5',  // BYD - 진한 보라
+            '#9A73E5',  // 테슬라 - 보라
+            '#a78bfa',  // 현대기아 - 중간 보라
+            '#b8a0fa',  // 폭스바겐 - 연한 보라
+            '#c4b5fd',  // 지리 홀딩스 - 더 연한 보라
+            '#d5c8fd',  // 토요타 - 매우 연한 보라
+            '#f3f4f6'   // 기타 - 회색
+          ],
+          borderColor: '#ffffff',
+          borderWidth: 1,
+          borderRadius: 5,
+          maxBarThickness: 60
+        }]
+      };
+      
+      const marketShareChart = new Chart(ctx, {
+        type: 'bar',
+        data: marketShareData,
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.raw + '%';
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: {
+                display: false
+              },
+              ticks: {
+                font: {
+                  family: 'Noto Sans KR'
+                },
+                color: '#4B5563'
+              }
+            },
+            y: {
+              grid: {
+                display: false
+              },
+              ticks: {
+                font: {
+                  family: 'Noto Sans KR',
+                  size: 14,
+                  weight: 'bold'
+                },
+                color: '#4B5563'
+              }
+            }
+          }
+        }
+      });
+    });
+    
+    // Navigation functionality
+    function previousSlide() {
+      // Navigation logic will be implemented for previous slide
+      console.log("Previous slide");
+    }
+    
+    function nextSlide() {
+      // Navigation logic will be implemented for next slide
+      console.log("Next slide");
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        previousSlide();
+      } else if (event.key === 'ArrowRight') {
+        nextSlide();
+      }
+    });
+  </script>
+</body>
+</html>

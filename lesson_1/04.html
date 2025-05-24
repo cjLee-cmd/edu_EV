@@ -7,365 +7,449 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const CompanyMarketSlide = () => {
+      const chartRef = useRef(null);
+      const chartInstance = useRef(null);
+      const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+
+      // 반응형 크기 계산 함수
+      const calculateSize = () => {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        
+        // 16:9 비율 유지
+        const aspectRatio = 16 / 9;
+        let width, height;
+        
+        if (screenWidth / screenHeight > aspectRatio) {
+          height = Math.min(screenHeight, 1080);
+          width = height * aspectRatio;
+        } else {
+          width = Math.min(screenWidth, 1920);
+          height = width / aspectRatio;
+        }
+        
+        return { width, height };
+      };
+
+      useEffect(() => {
+        const updateSize = () => {
+          setContainerSize(calculateSize());
+        };
+        
+        updateSize();
+        window.addEventListener('resize', updateSize);
+        return () => window.removeEventListener('resize', updateSize);
+      }, []);
+
+      useEffect(() => {
+        if (chartRef.current && containerSize.width > 0) {
+          // 기존 차트 인스턴스 제거
+          if (chartInstance.current) {
+            chartInstance.current.destroy();
+          }
+
+          const ctx = chartRef.current.getContext('2d');
+          
+          chartInstance.current = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['테슬라', '비야디', '폭스바겐', '현대기아', '스텔란티스', '제네럴모터스', 'BMW', '토요타'],
+              datasets: [{
+                label: '2023년 글로벌 EV 판매량 (만 대)',
+                data: [180.9, 302.4, 77.1, 65.8, 48.2, 45.1, 38.4, 10.4],
+                backgroundColor: [
+                  '#8257e5',
+                  '#a78bfa',
+                  '#c4b5fd',
+                  '#ddd6fe',
+                  '#e9d5ff',
+                  '#f3e8ff',
+                  '#faf5ff',
+                  '#fdfdfe'
+                ],
+                borderColor: '#8257e5',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false
+                },
+                tooltip: {
+                  backgroundColor: 'rgba(130, 87, 229, 0.9)',
+                  titleColor: '#ffffff',
+                  bodyColor: '#ffffff',
+                  borderColor: '#8257e5',
+                  borderWidth: 1,
+                  callbacks: {
+                    label: function(context) {
+                      return context.dataset.label + ': ' + context.parsed.y + '만 대';
+                    }
+                  }
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  grid: {
+                    color: 'rgba(0, 0, 0, 0.1)'
+                  },
+                  ticks: {
+                    font: {
+                      size: Math.max(8, containerSize.width * 0.008)
+                    },
+                    callback: function(value) {
+                      return value + '만';
+                    }
+                  }
+                },
+                x: {
+                  grid: {
+                    display: false
+                  },
+                  ticks: {
+                    font: {
+                      size: Math.max(8, containerSize.width * 0.008)
+                    },
+                    maxRotation: 45
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        return () => {
+          if (chartInstance.current) {
+            chartInstance.current.destroy();
+          }
+        };
+      }, [containerSize]);
+
+      const getFontSize = (baseSize) => {
+        const scale = Math.min(containerSize.width / 1920, containerSize.height / 1080);
+        return Math.max(baseSize * scale, 10);
+      };
+
+      const getSpacing = (baseSpacing) => {
+        const scale = Math.min(containerSize.width / 1920, containerSize.height / 1080);
+        return Math.max(baseSpacing * scale, 4);
+      };
+
+      const companies = [
+        {
+          name: '비야디 (BYD)',
+          country: '중국',
+          marketShare: '18.7%',
+          sales: '302.4만 대',
+          logo: '🔋',
+          advantages: ['기술력', '가격 경쟁력'],
+          badge: 'tech',
+          description: '배터리 제조 기반의 수직 통합 전략'
+        },
+        {
+          name: '테슬라 (Tesla)',
+          country: '미국',
+          marketShare: '11.2%',
+          sales: '180.9만 대',
+          logo: '⚡',
+          advantages: ['브랜드력', '기술 혁신'],
+          badge: 'tech',
+          description: '프리미엄 전기차 시장 선도'
+        },
+        {
+          name: '현대기아',
+          country: '한국',
+          marketShare: '4.1%',
+          sales: '65.8만 대',
+          logo: '🚗',
+          advantages: ['품질', '디자인'],
+          badge: 'price',
+          description: '전 라인업 전동화 추진'
+        },
+        {
+          name: '폭스바겐',
+          country: '독일',
+          marketShare: '4.8%',
+          sales: '77.1만 대',
+          logo: '🔧',
+          advantages: ['기술력', '규모의 경제'],
+          badge: 'scale',
+          description: 'ID 시리즈로 대중화 전략'
+        }
+      ];
+
+      if (containerSize.width === 0) return <div>Loading...</div>;
+
+      return (
+        <div 
+          className="slide bg-gradient-to-br from-gray-50 to-white overflow-hidden relative flex flex-col"
+          style={{
+            width: `${containerSize.width}px`,
+            height: `${containerSize.height}px`,
+            margin: '0 auto',
+            aspectRatio: '16/9',
+            padding: `${getSpacing(64)}px`
+          }}
+        >
+          {/* 헤더 */}
+          <div className="text-center mb-8" style={{ marginBottom: `${getSpacing(32)}px` }}>
+            <h1 
+              className="font-bold mb-2 bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent"
+              style={{ 
+                fontSize: `${getFontSize(48)}px`,
+                marginBottom: `${getSpacing(8)}px`
+              }}
+            >
+              주요 기업별 시장 점유율 및 경쟁 현황
+            </h1>
+            <p 
+              className="text-gray-500"
+              style={{ fontSize: `${getFontSize(20)}px` }}
+            >
+              2023년 글로벌 전기차 시장 리더십 분석
+            </p>
+          </div>
+          
+          {/* 메인 콘텐츠 */}
+          <div className="flex-1 flex flex-col lg:flex-row gap-8" style={{ gap: `${getSpacing(32)}px` }}>
+            {/* 차트 섹션 */}
+            <div className="w-full lg:w-3/5">
+              <div 
+                className="bg-white rounded-lg shadow-sm"
+                style={{ 
+                  padding: `${getSpacing(24)}px`,
+                  height: `${Math.min(containerSize.height * 0.5, 400)}px`
+                }}
+              >
+                <h3 
+                  className="font-bold text-gray-800 mb-4 text-center"
+                  style={{ 
+                    fontSize: `${getFontSize(20)}px`,
+                    marginBottom: `${getSpacing(16)}px`
+                  }}
+                >
+                  2023년 글로벌 EV 판매량 순위
+                </h3>
+                <canvas ref={chartRef}></canvas>
+              </div>
+            </div>
+            
+            {/* 기업 정보 카드 */}
+            <div className="w-full lg:w-2/5 space-y-4" style={{ gap: `${getSpacing(16)}px` }}>
+              {companies.map((company, index) => (
+                <div 
+                  key={company.name}
+                  className="company-card bg-white rounded-lg shadow-sm"
+                  style={{ padding: `${getSpacing(20)}px` }}
+                >
+                  <div className="flex items-center justify-between mb-2" style={{ marginBottom: `${getSpacing(8)}px` }}>
+                    <div className="flex items-center">
+                      <span 
+                        className="text-2xl mr-3"
+                        style={{ 
+                          fontSize: `${getFontSize(24)}px`,
+                          marginRight: `${getSpacing(12)}px`
+                        }}
+                      >
+                        {company.logo}
+                      </span>
+                      <div>
+                        <h4 
+                          className="font-bold text-gray-800"
+                          style={{ fontSize: `${getFontSize(16)}px` }}
+                        >
+                          {company.name}
+                        </h4>
+                        <p 
+                          className="text-gray-500"
+                          style={{ fontSize: `${getFontSize(12)}px` }}
+                        >
+                          {company.country}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div 
+                        className="font-bold text-purple-700"
+                        style={{ fontSize: `${getFontSize(18)}px` }}
+                      >
+                        {company.marketShare}
+                      </div>
+                      <div 
+                        className="text-gray-600"
+                        style={{ fontSize: `${getFontSize(12)}px` }}
+                      >
+                        {company.sales}
+                      </div>
+                    </div>
+                  </div>
+                  <p 
+                    className="text-gray-600 mb-2"
+                    style={{ 
+                      fontSize: `${getFontSize(12)}px`,
+                      marginBottom: `${getSpacing(8)}px`
+                    }}
+                  >
+                    {company.description}
+                  </p>
+                  <div>
+                    {company.advantages.map((advantage, i) => (
+                      <span 
+                        key={i}
+                        className={`badge badge-${company.badge}`}
+                        style={{ fontSize: `${getFontSize(10)}px` }}
+                      >
+                        {advantage}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* 하단 인사이트 */}
+          <div 
+            className="mt-6 bg-purple-50 rounded-lg border-l-4 border-purple-500"
+            style={{ 
+              marginTop: `${getSpacing(24)}px`,
+              padding: `${getSpacing(24)}px`
+            }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{ gap: `${getSpacing(24)}px` }}>
+              <div className="text-center">
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(28)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  中 vs 美
+                </div>
+                <p 
+                  className="text-gray-600"
+                  style={{ fontSize: `${getFontSize(12)}px` }}
+                >
+                  중국 BYD와 미국 테슬라의 양강 구도
+                </p>
+              </div>
+              <div className="text-center">
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(28)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  30%
+                </div>
+                <p 
+                  className="text-gray-600"
+                  style={{ fontSize: `${getFontSize(12)}px` }}
+                >
+                  상위 2개 기업의 시장 점유율
+                </p>
+              </div>
+              <div className="text-center">
+                <div 
+                  className="text-3xl font-bold text-purple-600 mb-2"
+                  style={{ 
+                    fontSize: `${getFontSize(28)}px`,
+                    marginBottom: `${getSpacing(8)}px`
+                  }}
+                >
+                  4위
+                </div>
+                <p 
+                  className="text-gray-600"
+                  style={{ fontSize: `${getFontSize(12)}px` }}
+                >
+                  현대기아 글로벌 EV 시장 순위
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<CompanyMarketSlide />, document.getElementById('root'));
+  </script>
+
   <style>
     body, html {
       margin: 0;
       padding: 0;
       font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f5f5f5;
     }
-    .slide {
-      width: 1920px;
-      min-height: 1080px;
-      overflow: hidden;
-      position: relative;
-      background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
-    }
-    .header-gradient {
-      background: linear-gradient(90deg, #8257e5 0%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .content-container {
-      position: relative;
-      z-index: 10;
-    }
-    .chart-container {
-      position: relative;
-      width: 100%;
-      height: 460px;
-    }
+    
     .company-card {
       background-color: white;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
       transition: transform 0.3s ease;
     }
+    
     .company-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     }
+    
     .badge {
-      font-size: 12px;
+      display: inline-block;
       padding: 2px 8px;
       border-radius: 12px;
       margin-right: 4px;
-      display: inline-block;
+      margin-bottom: 4px;
     }
+    
     .badge-tech {
       background-color: rgba(167, 139, 250, 0.2);
       color: #6D28D9;
     }
+    
     .badge-price {
       background-color: rgba(52, 211, 153, 0.2);
       color: #047857;
     }
+    
     .badge-scale {
       background-color: rgba(59, 130, 246, 0.2);
       color: #1D4ED8;
     }
-    .navigation {
-      position: fixed;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-      transform: translateY(-50%);
-      z-index: 100;
+    
+    @media (max-width: 1024px) {
+      .lg\\:flex-row {
+        flex-direction: column;
+      }
+      
+      .lg\\:w-3\\/5, .lg\\:w-2\\/5 {
+        width: 100%;
+      }
     }
-    .nav-button {
-      background-color: rgba(130, 87, 229, 0.2);
-      color: #8257e5;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .nav-button:hover {
-      background-color: rgba(130, 87, 229, 0.5);
-    }
-    .page-indicator {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #9CA3AF;
-    }
-    .source {
-      position: absolute;
-      bottom: 20px;
-      right: 80px;
-      font-size: 12px;
-      color: #D1D5DB;
-    }
-    .growth-indicator {
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-    }
-    .growth-up {
-      color: #10B981;
-    }
-    .growth-down {
-      color: #EF4444;
-    }
-    .highlight-box {
-      background: linear-gradient(135deg, rgba(130, 87, 229, 0.05) 0%, rgba(167, 139, 250, 0.1) 100%);
-      border-left: 4px solid #8257e5;
+    
+    @media (max-width: 768px) {
+      .md\\:grid-cols-3 {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
-</head>
-<body>
-  <div class="slide flex flex-col p-16">
-    <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-5xl font-bold header-gradient mb-2">주요 기업별 시장 점유율 및 경쟁 현황</h1>
-      <p class="text-xl text-gray-500">글로벌 친환경차 시장 경쟁사 분석 (2025년 1분기 기준)</p>
-    </div>
-    
-    <!-- Main content -->
-    <div class="content-container flex-1 grid grid-cols-5 gap-8">
-      <!-- Market share chart - left side -->
-      <div class="col-span-3">
-        <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
-          <h2 class="text-xl font-bold text-gray-800 mb-4">글로벌 친환경차 시장 점유율 (%)</h2>
-          <div class="chart-container">
-            <canvas id="marketShareChart"></canvas>
-          </div>
-        </div>
-        
-        <div class="highlight-box p-6 rounded-lg">
-          <h3 class="text-lg font-bold text-purple-800 mb-2">인사이트</h3>
-          <p class="text-gray-700">
-            중국 BYD가 친환경차 시장 주도하며 테슬라와 격차 확대 중. 현대기아차는 하이브리드 경쟁력으로 유럽·미국 시장에서 성장세. 폭스바겐은 저가 전기차 모델로 유럽 시장 공략 강화 중.
-          </p>
-        </div>
-      </div>
-      
-      <!-- Company details - right side -->
-      <div class="col-span-2 grid grid-rows-4 gap-4">
-        <div class="company-card p-5 rounded-lg border-l-4 border-purple-700">
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-bold text-purple-800">BYD (중국)</h3>
-            <span class="text-xl font-bold text-purple-700">38.7%</span>
-          </div>
-          <div class="mb-2">
-            <span class="badge badge-tech">기술 혁신</span>
-            <span class="badge badge-price">가격 경쟁력</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-2">배터리와 차량 수직 통합 생산 체제로 비용 절감</p>
-          <div class="growth-indicator growth-up">
-            <i class="fas fa-arrow-up mr-1"></i> 전년 대비 61% 성장
-          </div>
-        </div>
-        
-        <div class="company-card p-5 rounded-lg border-l-4 border-purple-600">
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-bold text-purple-800">테슬라 (미국)</h3>
-            <span class="text-xl font-bold text-purple-700">21.0%</span>
-          </div>
-          <div class="mb-2">
-            <span class="badge badge-tech">자율주행</span>
-            <span class="badge badge-scale">충전 인프라</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-2">순수 전기차 분야 선도, 소프트웨어와 자율주행 강점</p>
-          <div class="growth-indicator growth-down">
-            <i class="fas fa-arrow-down mr-1"></i> 전년 대비 9% 감소
-          </div>
-        </div>
-        
-        <div class="company-card p-5 rounded-lg border-l-4 border-purple-500">
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-bold text-purple-800">현대기아차 (한국)</h3>
-            <span class="text-xl font-bold text-purple-700">9.3%</span>
-          </div>
-          <div class="mb-2">
-            <span class="badge badge-tech">다양한 라인업</span>
-            <span class="badge badge-price">품질 경쟁력</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-2">EV-HEV-FCEV 풀 라인업 구축, 디자인 경쟁력</p>
-          <div class="growth-indicator growth-up">
-            <i class="fas fa-arrow-up mr-1"></i> 전년 대비 28.8% 성장
-          </div>
-        </div>
-        
-        <div class="company-card p-5 rounded-lg border-l-4 border-purple-400">
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-bold text-purple-800">폭스바겐 그룹 (독일)</h3>
-            <span class="text-xl font-bold text-purple-700">7.0%</span>
-          </div>
-          <div class="mb-2">
-            <span class="badge badge-price">저가 모델</span>
-            <span class="badge badge-scale">유럽 시장 강세</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-2">2025년 저가 전기차 출시 가속화로 시장 확대 전략</p>
-          <div class="growth-indicator growth-up">
-            <i class="fas fa-arrow-up mr-1"></i> 전년 대비 12.6% 성장
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Statistics row -->
-    <div class="mt-6 grid grid-cols-4 gap-6">
-      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-700 flex items-center">
-        <div class="bg-purple-100 rounded-full p-3 mr-4">
-          <i class="fas fa-car text-xl text-purple-700"></i>
-        </div>
-        <div>
-          <h3 class="text-3xl font-bold text-purple-700">320만대</h3>
-          <p class="text-sm text-gray-600">2024년 미국 친환경차 판매량</p>
-        </div>
-      </div>
-      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-500 flex items-center">
-        <div class="bg-purple-100 rounded-full p-3 mr-4">
-          <i class="fas fa-chart-line text-xl text-purple-700"></i>
-        </div>
-        <div>
-          <h3 class="text-3xl font-bold text-purple-700">25%</h3>
-          <p class="text-sm text-gray-600">2027년까지 예상 시장 점유율</p>
-        </div>
-      </div>
-      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-400 flex items-center">
-        <div class="bg-purple-100 rounded-full p-3 mr-4">
-          <i class="fas fa-battery-three-quarters text-xl text-purple-700"></i>
-        </div>
-        <div>
-          <h3 class="text-3xl font-bold text-purple-700">33%</h3>
-          <p class="text-sm text-gray-600">2025년 전기차 출하량 증가 예측</p>
-        </div>
-      </div>
-      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-300 flex items-center">
-        <div class="bg-purple-100 rounded-full p-3 mr-4">
-          <i class="fas fa-industry text-xl text-purple-700"></i>
-        </div>
-        <div>
-          <h3 class="text-3xl font-bold text-purple-700">6,200만대</h3>
-          <p class="text-sm text-gray-600">2025년 BEV 생산 예상량</p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Page number -->
-    <div class="page-indicator">
-      <span class="text-lg">4 / 7</span>
-    </div>
-    
-    <!-- Source attribution -->
-    <div class="source">
-      <span>자료출처: 카운터포인트 리서치, 지디넷코리아, 콕스 오토모티브, 가트너</span>
-    </div>
-  </div>
-  
-  <!-- Navigation buttons -->
-  <div class="navigation">
-    <button class="nav-button" onclick="previousSlide()">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="nav-button" onclick="nextSlide()">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-  </div>
-  
-  <script>
-    // Chart initialization
-    document.addEventListener('DOMContentLoaded', function() {
-      const ctx = document.getElementById('marketShareChart').getContext('2d');
-      
-      const marketShareData = {
-        labels: ['BYD (중국)', '테슬라 (미국)', '현대기아차 (한국)', '폭스바겐 그룹 (독일)', '지리 홀딩스 (중국)', '토요타 (일본)', '기타'],
-        datasets: [{
-          label: '글로벌 친환경차 시장 점유율 (%)',
-          data: [38.7, 21.0, 9.3, 7.0, 5.2, 4.8, 14.0],
-          backgroundColor: [
-            '#8257e5',  // BYD - 진한 보라
-            '#9A73E5',  // 테슬라 - 보라
-            '#a78bfa',  // 현대기아 - 중간 보라
-            '#b8a0fa',  // 폭스바겐 - 연한 보라
-            '#c4b5fd',  // 지리 홀딩스 - 더 연한 보라
-            '#d5c8fd',  // 토요타 - 매우 연한 보라
-            '#f3f4f6'   // 기타 - 회색
-          ],
-          borderColor: '#ffffff',
-          borderWidth: 1,
-          borderRadius: 5,
-          maxBarThickness: 60
-        }]
-      };
-      
-      const marketShareChart = new Chart(ctx, {
-        type: 'bar',
-        data: marketShareData,
-        options: {
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false
-            },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  return context.raw + '%';
-                }
-              }
-            }
-          },
-          scales: {
-            x: {
-              grid: {
-                display: false
-              },
-              ticks: {
-                font: {
-                  family: 'Noto Sans KR'
-                },
-                color: '#4B5563'
-              }
-            },
-            y: {
-              grid: {
-                display: false
-              },
-              ticks: {
-                font: {
-                  family: 'Noto Sans KR',
-                  size: 14,
-                  weight: 'bold'
-                },
-                color: '#4B5563'
-              }
-            }
-          }
-        }
-      });
-    });
-    
-    // Navigation functionality
-    function previousSlide() {
-      // Navigation logic will be implemented for previous slide
-      console.log("Previous slide");
-    }
-    
-    function nextSlide() {
-      // Navigation logic will be implemented for next slide
-      console.log("Next slide");
-    }
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft') {
-        previousSlide();
-      } else if (event.key === 'ArrowRight') {
-        nextSlide();
-      }
-    });
-  </script>
 </body>
 </html>

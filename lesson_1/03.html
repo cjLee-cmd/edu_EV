@@ -7,324 +7,426 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const VehicleTypeSlide = () => {
+      const chartRef = useRef(null);
+      const chartInstance = useRef(null);
+      const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+
+      // 반응형 크기 계산 함수
+      const calculateSize = () => {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        
+        // 16:9 비율 유지
+        const aspectRatio = 16 / 9;
+        let width, height;
+        
+        if (screenWidth / screenHeight > aspectRatio) {
+          height = Math.min(screenHeight, 1080);
+          width = height * aspectRatio;
+        } else {
+          width = Math.min(screenWidth, 1920);
+          height = width / aspectRatio;
+        }
+        
+        return { width, height };
+      };
+
+      useEffect(() => {
+        const updateSize = () => {
+          setContainerSize(calculateSize());
+        };
+        
+        updateSize();
+        window.addEventListener('resize', updateSize);
+        return () => window.removeEventListener('resize', updateSize);
+      }, []);
+
+      useEffect(() => {
+        if (chartRef.current && containerSize.width > 0) {
+          // 기존 차트 인스턴스 제거
+          if (chartInstance.current) {
+            chartInstance.current.destroy();
+          }
+
+          const ctx = chartRef.current.getContext('2d');
+          
+          chartInstance.current = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels: ['HEV (하이브리드)', 'BEV (배터리 전기차)', 'PHEV (플러그인 하이브리드)', 'FCEV (수소연료전지)', '기타'],
+              datasets: [{
+                data: [15.0, 7.9, 2.1, 0.3, 74.7],
+                backgroundColor: [
+                  '#8257e5',
+                  '#a78bfa', 
+                  '#c4b5fd',
+                  '#ddd6fe',
+                  '#f3f4f6'
+                ],
+                borderWidth: 2,
+                borderColor: '#ffffff'
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'bottom',
+                  labels: {
+                    font: {
+                      size: Math.max(10, containerSize.width * 0.008),
+                      family: 'Noto Sans KR'
+                    },
+                    padding: 15,
+                    usePointStyle: true
+                  }
+                },
+                tooltip: {
+                  backgroundColor: 'rgba(130, 87, 229, 0.9)',
+                  titleColor: '#ffffff',
+                  bodyColor: '#ffffff',
+                  borderColor: '#8257e5',
+                  borderWidth: 1,
+                  callbacks: {
+                    label: function(context) {
+                      return context.label + ': ' + context.parsed + '%';
+                    }
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        return () => {
+          if (chartInstance.current) {
+            chartInstance.current.destroy();
+          }
+        };
+      }, [containerSize]);
+
+      const getFontSize = (baseSize) => {
+        const scale = Math.min(containerSize.width / 1920, containerSize.height / 1080);
+        return Math.max(baseSize * scale, 10);
+      };
+
+      const getSpacing = (baseSpacing) => {
+        const scale = Math.min(containerSize.width / 1920, containerSize.height / 1080);
+        return Math.max(baseSpacing * scale, 4);
+      };
+
+      const vehicleTypes = [
+        {
+          type: 'BEV',
+          name: '배터리 전기차',
+          percentage: '7.9%',
+          description: '순수 배터리로 구동되는 무공해 차량',
+          pros: '무공해, 유지비 저렴',
+          cons: '충전시간, 주행거리 제한',
+          growth: '35%',
+          colorClass: 'card-bev',
+          bgColor: 'bg-purple-50'
+        },
+        {
+          type: 'HEV',
+          name: '하이브리드',
+          percentage: '15.0%',
+          description: '내연기관과 배터리를 함께 사용',
+          pros: '연비 효율, 별도 충전 불필요',
+          cons: '완전 친환경 아님',
+          growth: '28.8%',
+          colorClass: 'card-hev',
+          bgColor: 'bg-purple-100'
+        },
+        {
+          type: 'PHEV',
+          name: '플러그인 하이브리드',
+          percentage: '2.1%',
+          description: '외부 충전 가능한 고용량 배터리 장착',
+          pros: '단거리 전기주행 가능',
+          cons: '배터리 무게로 효율 저하',
+          growth: '24.6%',
+          colorClass: 'card-phev',
+          bgColor: 'bg-purple-200'
+        },
+        {
+          type: 'FCEV',
+          name: '수소연료전지',
+          percentage: '0.3%',
+          description: '수소와 산소의 화학반응으로 전기 생산',
+          pros: '빠른 충전, 긴 주행거리',
+          cons: '인프라 부족, 고비용',
+          growth: '10.5%',
+          colorClass: 'card-fcev',
+          bgColor: 'bg-purple-300'
+        }
+      ];
+
+      if (containerSize.width === 0) return <div>Loading...</div>;
+
+      return (
+        <div 
+          className="slide bg-gradient-to-br from-gray-50 to-white overflow-hidden relative flex flex-col"
+          style={{
+            width: `${containerSize.width}px`,
+            height: `${containerSize.height}px`,
+            margin: '0 auto',
+            aspectRatio: '16/9',
+            padding: `${getSpacing(64)}px`
+          }}
+        >
+          {/* 헤더 */}
+          <div className="mb-8" style={{ marginBottom: `${getSpacing(32)}px` }}>
+            <h1 
+              className="font-bold mb-2 bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent"
+              style={{ 
+                fontSize: `${getFontSize(48)}px`,
+                marginBottom: `${getSpacing(8)}px`
+              }}
+            >
+              주요 친환경차 유형별 시장 점유율
+            </h1>
+            <p 
+              className="text-gray-500"
+              style={{ fontSize: `${getFontSize(20)}px` }}
+            >
+              BEV, HEV, PHEV, FCEV 기술별 현황 및 전망
+            </p>
+          </div>
+          
+          {/* 메인 콘텐츠 */}
+          <div className="flex-1 flex flex-col lg:flex-row gap-8" style={{ gap: `${getSpacing(32)}px` }}>
+            {/* 차트 섹션 */}
+            <div className="w-full lg:w-1/2">
+              <div 
+                className="bg-white rounded-lg shadow-sm mb-4"
+                style={{ 
+                  padding: `${getSpacing(16)}px`,
+                  marginBottom: `${getSpacing(16)}px`,
+                  height: `${Math.min(containerSize.height * 0.4, 350)}px`
+                }}
+              >
+                <canvas ref={chartRef}></canvas>
+              </div>
+              <div 
+                className="bg-purple-50 rounded-lg border-l-4 border-purple-500"
+                style={{ padding: `${getSpacing(24)}px` }}
+              >
+                <p 
+                  className="text-gray-700"
+                  style={{ fontSize: `${getFontSize(16)}px` }}
+                >
+                  <span className="font-semibold text-purple-700">인사이트:</span> 하이브리드가 현 시장 친환경차 주도. 전기차는 충전 인프라와 배터리 기술 발전에 따라 점진적 성장 중. 수소차는 상용차 중심으로 제한적 성장세.
+                </p>
+              </div>
+            </div>
+            
+            {/* 차량 유형 설명 */}
+            <div className="w-full lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gap: `${getSpacing(16)}px` }}>
+              {vehicleTypes.map((vehicle, index) => (
+                <div 
+                  key={vehicle.type}
+                  className={`vehicle-card ${vehicle.colorClass} bg-white rounded-lg shadow-sm`}
+                  style={{ padding: `${getSpacing(20)}px` }}
+                >
+                  <div className="flex justify-between items-center mb-2" style={{ marginBottom: `${getSpacing(8)}px` }}>
+                    <h3 
+                      className="font-bold text-purple-800"
+                      style={{ fontSize: `${getFontSize(18)}px` }}
+                    >
+                      {vehicle.type} ({vehicle.name})
+                    </h3>
+                    <span 
+                      className="font-bold text-purple-700"
+                      style={{ fontSize: `${getFontSize(18)}px` }}
+                    >
+                      {vehicle.percentage}
+                    </span>
+                  </div>
+                  <p 
+                    className="text-gray-600 mb-3"
+                    style={{ 
+                      fontSize: `${getFontSize(12)}px`,
+                      marginBottom: `${getSpacing(12)}px`
+                    }}
+                  >
+                    {vehicle.description}
+                  </p>
+                  <div className="mt-2" style={{ 
+                    marginTop: `${getSpacing(8)}px`,
+                    fontSize: `${getFontSize(10)}px`
+                  }}>
+                    <span className="pro-con pro">장점: {vehicle.pros}</span><br />
+                    <span className="pro-con con">단점: {vehicle.cons}</span>
+                  </div>
+                  <div 
+                    className="mt-3 text-gray-500"
+                    style={{ 
+                      marginTop: `${getSpacing(12)}px`,
+                      fontSize: `${getFontSize(12)}px`
+                    }}
+                  >
+                    <i className="fas fa-chart-line text-purple-600 mr-1"></i> 
+                    연평균 성장률: {vehicle.growth}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* 하단 통계 */}
+          <div 
+            className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6"
+            style={{ 
+              marginTop: `${getSpacing(24)}px`,
+              gap: `${getSpacing(24)}px`
+            }}
+          >
+            <div 
+              className="bg-white rounded-lg shadow-sm border-l-4 border-purple-700"
+              style={{ padding: `${getSpacing(16)}px` }}
+            >
+              <h3 
+                className="font-bold text-purple-700"
+                style={{ fontSize: `${getFontSize(28)}px` }}
+              >
+                76.2%
+              </h3>
+              <p 
+                className="text-gray-600"
+                style={{ fontSize: `${getFontSize(12)}px` }}
+              >
+                국내 하이브리드차의 친환경차 시장 내 점유율
+              </p>
+            </div>
+            <div 
+              className="bg-white rounded-lg shadow-sm border-l-4 border-purple-500"
+              style={{ padding: `${getSpacing(16)}px` }}
+            >
+              <h3 
+                className="font-bold text-purple-700"
+                style={{ fontSize: `${getFontSize(28)}px` }}
+              >
+                35%
+              </h3>
+              <p 
+                className="text-gray-600"
+                style={{ fontSize: `${getFontSize(12)}px` }}
+              >
+                배터리 전기차 연평균 성장률 (최고)
+              </p>
+            </div>
+            <div 
+              className="bg-white rounded-lg shadow-sm border-l-4 border-purple-300"
+              style={{ padding: `${getSpacing(16)}px` }}
+            >
+              <h3 
+                className="font-bold text-purple-700"
+                style={{ fontSize: `${getFontSize(28)}px` }}
+              >
+                25.3%
+              </h3>
+              <p 
+                className="text-gray-600"
+                style={{ fontSize: `${getFontSize(12)}px` }}
+              >
+                전체 친환경차 시장 점유율
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<VehicleTypeSlide />, document.getElementById('root'));
+  </script>
+
   <style>
     body, html {
       margin: 0;
       padding: 0;
       font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f5f5f5;
     }
-    .slide {
-      width: 1920px;
-      min-height: 1080px;
-      overflow: hidden;
-      position: relative;
-      background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
-    }
-    .header-gradient {
-      background: linear-gradient(90deg, #8257e5 0%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .content-container {
-      position: relative;
-      z-index: 10;
-    }
-    .chart-container {
-      position: relative;
-      width: 100%;
-      height: 500px;
-    }
+    
     .vehicle-card {
       background-color: white;
-      border-top: 4px solid;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    
     .card-bev {
-      border-color: #8257e5;
+      border-top: 4px solid #8257e5;
     }
+    
     .card-hev {
-      border-color: #a78bfa;
+      border-top: 4px solid #a78bfa;
     }
+    
     .card-phev {
-      border-color: #c4b5fd;
+      border-top: 4px solid #c4b5fd;
     }
+    
     .card-fcev {
-      border-color: #ddd6fe;
+      border-top: 4px solid #ddd6fe;
     }
-    .navigation {
-      position: fixed;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-      transform: translateY(-50%);
-      z-index: 100;
+    
+    .vehicle-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     }
-    .nav-button {
-      background-color: rgba(130, 87, 229, 0.2);
-      color: #8257e5;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .nav-button:hover {
-      background-color: rgba(130, 87, 229, 0.5);
-    }
+    
     .pro-con {
       display: inline-block;
-      font-size: 12px;
+      font-size: inherit;
       padding: 2px 8px;
       border-radius: 12px;
       margin-right: 4px;
+      margin-bottom: 4px;
     }
+    
     .pro {
       background-color: rgba(167, 139, 250, 0.2);
       color: #6D28D9;
     }
+    
     .con {
       background-color: rgba(209, 213, 219, 0.3);
       color: #4B5563;
     }
-    .page-indicator {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #9CA3AF;
+    
+    @media (max-width: 1024px) {
+      .lg\\:flex-row {
+        flex-direction: column;
+      }
+      
+      .lg\\:w-1\\/2 {
+        width: 100%;
+      }
     }
-    .source {
-      position: absolute;
-      bottom: 20px;
-      right: 80px;
-      font-size: 12px;
-      color: #D1D5DB;
+    
+    @media (max-width: 768px) {
+      .md\\:grid-cols-2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .md\\:grid-cols-3 {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
-</head>
-<body>
-  <div class="slide flex flex-col p-16">
-    <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-5xl font-bold header-gradient mb-2">주요 친환경차 유형별 시장 점유율</h1>
-      <p class="text-xl text-gray-500">BEV, HEV, PHEV, FCEV 기술별 현황 및 전망</p>
-    </div>
-    
-    <!-- Main content -->
-    <div class="content-container flex-1 flex">
-      <!-- Chart section -->
-      <div class="w-1/2 pr-8">
-        <div class="chart-container bg-white p-4 rounded-lg shadow-sm mb-4">
-          <canvas id="vehicleTypeChart"></canvas>
-        </div>
-        <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-500">
-          <p class="text-lg text-gray-700"><span class="font-semibold text-purple-700">인사이트:</span> 하이브리드가 현 시장 친환경차 주도. 전기차는 충전 인프라와 배터리 기술 발전에 따라 점진적 성장 중. 수소차는 상용차 중심으로 제한적 성장세.</p>
-        </div>
-      </div>
-      
-      <!-- Vehicle type descriptions -->
-      <div class="w-1/2 grid grid-cols-2 gap-4">
-        <div class="vehicle-card card-bev p-5 rounded-lg">
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-bold text-purple-800">BEV (배터리 전기차)</h3>
-            <span class="text-xl font-bold text-purple-700">7.9%</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-3">순수 배터리로 구동되는 무공해 차량</p>
-          <div class="mt-2 text-sm">
-            <span class="pro-con pro">장점: 무공해, 유지비 저렴</span>
-            <span class="pro-con con">단점: 충전시간, 주행거리 제한</span>
-          </div>
-          <div class="mt-3 text-sm text-gray-500">
-            <i class="fas fa-chart-line text-purple-600 mr-1"></i> 연평균 성장률: 35%
-          </div>
-        </div>
-        
-        <div class="vehicle-card card-hev p-5 rounded-lg">
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-bold text-purple-800">HEV (하이브리드)</h3>
-            <span class="text-xl font-bold text-purple-700">15.0%</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-3">내연기관과 배터리를 함께 사용</p>
-          <div class="mt-2 text-sm">
-            <span class="pro-con pro">장점: 연비 효율, 별도 충전 불필요</span>
-            <span class="pro-con con">단점: 완전 친환경 아님</span>
-          </div>
-          <div class="mt-3 text-sm text-gray-500">
-            <i class="fas fa-chart-line text-purple-600 mr-1"></i> 연평균 성장률: 28.8%
-          </div>
-        </div>
-        
-        <div class="vehicle-card card-phev p-5 rounded-lg">
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-bold text-purple-800">PHEV (플러그인 하이브리드)</h3>
-            <span class="text-xl font-bold text-purple-700">2.1%</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-3">외부 충전 가능한 고용량 배터리 장착</p>
-          <div class="mt-2 text-sm">
-            <span class="pro-con pro">장점: 단거리 전기주행 가능</span>
-            <span class="pro-con con">단점: 배터리 무게로 효율 저하</span>
-          </div>
-          <div class="mt-3 text-sm text-gray-500">
-            <i class="fas fa-chart-line text-purple-600 mr-1"></i> 연평균 성장률: 24.6%
-          </div>
-        </div>
-        
-        <div class="vehicle-card card-fcev p-5 rounded-lg">
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-bold text-purple-800">FCEV (수소연료전지)</h3>
-            <span class="text-xl font-bold text-purple-700">0.3%</span>
-          </div>
-          <p class="text-sm text-gray-600 mb-3">수소와 산소의 화학반응으로 전기 생산</p>
-          <div class="mt-2 text-sm">
-            <span class="pro-con pro">장점: 빠른 충전, 긴 주행거리</span>
-            <span class="pro-con con">단점: 인프라 부족, 고비용</span>
-          </div>
-          <div class="mt-3 text-sm text-gray-500">
-            <i class="fas fa-chart-line text-purple-600 mr-1"></i> 연평균 성장률: 10.5%
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Statistics row -->
-    <div class="mt-6 grid grid-cols-3 gap-6">
-      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-700">
-        <h3 class="text-3xl font-bold text-purple-700">76.2%</h3>
-        <p class="text-gray-600">국내 하이브리드차의 친환경차 시장 내 점유율</p>
-      </div>
-      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-500">
-        <h3 class="text-3xl font-bold text-purple-700">30.4%</h3>
-        <p class="text-gray-600">국내 전체 자동차 판매 중 친환경차 비율</p>
-      </div>
-      <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-300">
-        <h3 class="text-3xl font-bold text-purple-700">300km+</h3>
-        <p class="text-gray-600">최신 수소차 모델의 1회 충전 주행거리</p>
-      </div>
-    </div>
-    
-    <!-- Page number -->
-    <div class="page-indicator">
-      <span class="text-lg">3 / 7</span>
-    </div>
-    
-    <!-- Source attribution -->
-    <div class="source">
-      <span>자료출처: 한국자동차연구원, 에드먼즈, 카운터포인트 리서치</span>
-    </div>
-  </div>
-  
-  <!-- Navigation buttons -->
-  <div class="navigation">
-    <button class="nav-button" onclick="previousSlide()">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="nav-button" onclick="nextSlide()">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-  </div>
-  
-  <script>
-    // Chart initialization
-    document.addEventListener('DOMContentLoaded', function() {
-      const ctx = document.getElementById('vehicleTypeChart').getContext('2d');
-      
-      const vehicleTypeChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: ['BEV (배터리 전기차)', 'HEV (하이브리드)', 'PHEV (플러그인 하이브리드)', 'FCEV (수소연료전지)', '기타 내연기관차'],
-          datasets: [{
-            data: [7.9, 15.0, 2.1, 0.3, 74.7],
-            backgroundColor: [
-              '#8257e5',  // 짙은 보라
-              '#a78bfa',  // 보라
-              '#c4b5fd',  // 라이트 보라
-              '#ddd6fe',  // 매우 연한 보라
-              '#f3f4f6'   // 회색
-            ],
-            borderColor: '#ffffff',
-            borderWidth: 2
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            title: {
-              display: true,
-              text: '2025년 친환경차 유형별 시장 점유율 (%)',
-              font: {
-                size: 18,
-                family: 'Noto Sans KR',
-                weight: 'bold'
-              },
-              color: '#4B5563',
-              padding: 20
-            },
-            legend: {
-              position: 'bottom',
-              labels: {
-                font: {
-                  family: 'Noto Sans KR',
-                  size: 14
-                },
-                padding: 20,
-                color: '#4B5563'
-              }
-            },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  let label = context.label || '';
-                  if (label) {
-                    label += ': ';
-                  }
-                  label += context.raw + '%';
-                  return label;
-                }
-              }
-            },
-            datalabels: {
-              formatter: (value) => {
-                return value + '%';
-              },
-              color: '#fff',
-              font: {
-                weight: 'bold',
-                size: 14
-              }
-            }
-          }
-        }
-      });
-    });
-    
-    // Navigation functionality
-    function previousSlide() {
-      // Navigation logic will be implemented for previous slide
-      console.log("Previous slide");
-    }
-    
-    function nextSlide() {
-      // Navigation logic will be implemented for next slide
-      console.log("Next slide");
-    }
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft') {
-        previousSlide();
-      } else if (event.key === 'ArrowRight') {
-        nextSlide();
-      }
-    });
-  </script>
 </body>
 </html>
